@@ -8,8 +8,8 @@ public class HoadonService {
     private HoaDonGateway HD;
 
     //consttructor
-    public HoadonService(){
-        HoaDonGateway HD;
+    public HoadonService(HoaDonGateway HD){
+        this.HD = HD;
     }
     public void themHoaDon(){
         HD= new HoaDonGatewayImpl();
