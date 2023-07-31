@@ -4,8 +4,10 @@ import pesistence.HoaDonGateway;
 import pesistence.HoaDonGatewayImpl;
 
 public class HoadonService {
-    
+    //instance field
     private HoaDonGateway HD;
+
+    //consttructor
     public HoadonService(){
         HoaDonGateway HD;
     }
