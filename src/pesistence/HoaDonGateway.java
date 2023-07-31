@@ -1,12 +1,14 @@
 package pesistence;
-import  domain.model.HoaDon;
+import java.util.List;
+
+import domain.model.HoaDon;
 
 public interface HoaDonGateway {
-    void themHoaDon(HoaDon hoaDon);
-    void xoaHoaDon(HoaDon hoaDon);
-    void suaHoaDon(HoaDon hoaDon);
-    void tinhSoLuongTungLoai();
-    void tbHoaDonNN();
-    void xuatHoaDonTrongThang();
-    void timKiem();    
+    public void themHoaDon();
+    public void xoaHoaDon();
+    public void suaHoaDon();
+    public void tinhSoLuongTungLoai();
+    public void tbHoaDonNN();
+    public List<HoaDon> xuatHoaDonTrongThang();
+    public List<HoaDon> timKiem();    
 }
