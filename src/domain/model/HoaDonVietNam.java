@@ -24,6 +24,14 @@ public class HoaDonVietNam extends HoaDon {
         return doiTuongHK;
     }
 
+    public void setDoiTuongHK(DoiTuongHK doiTuongHK) {
+        this.doiTuongHK = doiTuongHK;
+    }
+
+    public Double getDinhMuc() {
+        return dinhMuc;
+    }
+
     public void setDinhMuc(Double dinhMuc) {
         this.dinhMuc = dinhMuc;
     }    
