@@ -1,7 +1,7 @@
 package domain.model;
 
 public class HoaDonNuocNgoai extends HoaDon{
-    public String quocTinh;
+    private String quocTinh;
     
     public HoaDonNuocNgoai(int maKH, String hotenKH, String ngayraHD, Double soLuong, Double donGia, String quocTinh) {
         super(maKH, hotenKH, ngayraHD, soLuong, donGia);
@@ -18,7 +18,7 @@ public class HoaDonNuocNgoai extends HoaDon{
 
     @Override
     public Double thanhTien() {
-        return soLuong * donGia;
+        return getDonGia() * getSoLuong();
     }
 
     

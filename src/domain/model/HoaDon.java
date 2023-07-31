@@ -1,11 +1,11 @@
 package domain.model;
 
 public abstract class HoaDon {
-    int maKH;
-    String hotenKH;
-    String ngayraHD;
-    Double soLuong;
-    Double donGia;
+    private int maKH;
+    private String hotenKH;
+    private String ngayraHD;
+    private Double soLuong;
+    private Double donGia;
 
 
     public HoaDon(int maKH, String hotenKH, String ngayraHD, Double soLuong, Double donGia) {
