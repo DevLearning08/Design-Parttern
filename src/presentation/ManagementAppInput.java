@@ -19,7 +19,6 @@ public class ManagementAppInput extends JPanel {
     private JTextField quotaField;
     private JTextField nationalityField;
 
-    private ManagementApp electricityBillGUI;
     private ManagementApp managementApp;
 
     public ManagementAppInput(ManagementApp managementApp) {
@@ -60,12 +59,18 @@ public class ManagementAppInput extends JPanel {
         add(nationalityField);
         add(new JLabel());
         add(createButtonPanel());
+
     }
 
     // Tạo JPanel chứa các nút bấm để thêm, xoá, sửa, tính toán và xuất hoá đơn
     private JPanel createButtonPanel() {
         JPanel panel = new JPanel();
+        JButton searchButton = new JButton("Tìm kiếm");
         JButton addButton = new JButton("Thêm");
+        JButton deleteButton = new JButton("Xóa");
+        JButton updateButton = new JButton("Sửa");
+        JButton calculateButton = new JButton("Thành tiền");
+        JButton invoiceButton = new JButton("Xuất hoá đơn");
         // ...
 
         // Xử lý sự kiện khi nhấn các nút bấm
@@ -80,6 +85,11 @@ public class ManagementAppInput extends JPanel {
 
         // Thêm các nút bấm vào panel
         panel.add(addButton);
+        panel.add(deleteButton);
+        panel.add(updateButton);
+        panel.add(calculateButton);
+        panel.add(searchButton);
+        panel.add(invoiceButton);
         // ...
 
         return panel;

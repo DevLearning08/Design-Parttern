@@ -10,9 +10,17 @@ public class ManagementApp extends JFrame {
     private DefaultTableModel tableModel;
     private JScrollPane scrollPane;
 
-    private ArrayList<ManagementAppInfor> billList = new ArrayList<>();
+    private ArrayList<ManagementApp> billList = new ArrayList<>();
 
-    
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> {
+            try {
+                new ManagementApp().initialize();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+    }
 
     public void initialize() {
         // Tạo JFrame và cấu hình giao diện chính
@@ -22,8 +30,8 @@ public class ManagementApp extends JFrame {
         setExtendedState(JFrame.MAXIMIZED_BOTH);
 
         // Tạo DefaultTableModel và JTable để hiển thị danh sách hoá đơn
-        tableModel = new DefaultTableModel(new String[]{"Mục", "Loại khách hàng", "Họ và tên", "Mã khách hàng",
-                "Đối tượng", "Ngày xuất hoá đơn", "Số lượng", "Đơn giá", "Định mức", "Quốc tịch"}, 0);
+        tableModel = new DefaultTableModel(new String[]{"Loại khách hàng", "Họ và tên", "Mã khách hàng",
+                "Đối tượng", "Ngày xuất hoá đơn", "Số lượng", "Đơn giá", "Định mức", "Quốc tịch", "Thành tiền"}, 0);
         table = new JTable(tableModel);
         scrollPane = new JScrollPane(table);
 
@@ -40,11 +48,12 @@ public class ManagementApp extends JFrame {
 
         // Set kích thước và hiển thị JFrame
         setSize(800, 500);
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
         setLocationRelativeTo(null); // Đưa JFrame vào giữa màn hình
         setVisible(true);
     }
 
-    public ArrayList<ManagementAppInfor> getBillList() {
+    public ArrayList<ManagementApp> getBillList() {
         return billList;
     }
 
