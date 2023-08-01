@@ -9,15 +9,15 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class ManagementAppInput extends JPanel {
-    private JTextField fullNameField;
-    private JTextField customerIdField;
-    private JComboBox<String> customerTypeComboBox;
-    private JComboBox<String> customerObjectComboBox;
-    private JTextField invoiceDateField;
-    private JTextField quantityField;
-    private JTextField unitPriceField;
-    private JTextField quotaField;
-    private JTextField nationalityField;
+    private JTextField fullNameFieldRemote;
+    private JTextField customerIdFieldRemote;
+    private JComboBox<String> customerTypeComboBoxRemote;
+    private JComboBox<String> customerObjectComboBoxRemote;
+    private JTextField invoiceDateFieldRemote;
+    private JTextField quantityFieldRemote;
+    private JTextField unitPriceFieldRemote;
+    private JTextField quotaFieldRemote;
+    private JTextField nationalityFieldRemote;
 
     private ManagementApp managementApp;
 
@@ -28,35 +28,35 @@ public class ManagementAppInput extends JPanel {
 
     private void initialize() {
         setLayout(new GridLayout(0, 2, 5, 5));
-        fullNameField = new JTextField();
-        customerIdField = new JTextField();
-        customerTypeComboBox = new JComboBox<>(new String[]{"", "Khách hàng Việt Nam", "Khách hàng nước ngoài"});
-        customerObjectComboBox = new JComboBox<>(new String[]{"", "Kinh doanh", "Sinh hoạt", "Sản xuất"});
-        invoiceDateField = new JTextField();
-        quantityField = new JTextField();
-        unitPriceField = new JTextField();
-        quotaField = new JTextField();
-        nationalityField = new JTextField();
+        fullNameFieldRemote = new JTextField();
+        customerIdFieldRemote = new JTextField();
+        customerTypeComboBoxRemote = new JComboBox<>(new String[]{"", "Khách hàng Việt Nam", "Khách hàng nước ngoài"});
+        customerObjectComboBoxRemote = new JComboBox<>(new String[]{"", "Kinh doanh", "Sinh hoạt", "Sản xuất"});
+        invoiceDateFieldRemote = new JTextField();
+        quantityFieldRemote = new JTextField();
+        unitPriceFieldRemote = new JTextField();
+        quotaFieldRemote = new JTextField();
+        nationalityFieldRemote = new JTextField();
 
         // Thêm các thành phần vào InputPanel
         add(new JLabel("Loại khách hàng:"));
-        add(customerTypeComboBox);
+        add(customerTypeComboBoxRemote);
         add(new JLabel("Họ và tên:"));
-        add(fullNameField);
+        add(fullNameFieldRemote);
         add(new JLabel("Mã khách hàng:"));
-        add(customerIdField);
+        add(customerIdFieldRemote);
         add(new JLabel("Đối tượng khách hàng:"));
-        add(customerObjectComboBox);
+        add(customerObjectComboBoxRemote);
         add(new JLabel("Ngày xuất hoá đơn:"));
-        add(invoiceDateField);
+        add(invoiceDateFieldRemote);
         add(new JLabel("Số lượng:"));
-        add(quantityField);
+        add(quantityFieldRemote);
         add(new JLabel("Đơn giá:"));
-        add(unitPriceField);
+        add(unitPriceFieldRemote);
         add(new JLabel("Định mức:"));
-        add(quotaField);
+        add(quotaFieldRemote);
         add(new JLabel("Quốc tịch:"));
-        add(nationalityField);
+        add(nationalityFieldRemote);
         add(new JLabel());
         add(createButtonPanel());
 
@@ -97,15 +97,15 @@ public class ManagementAppInput extends JPanel {
 
     private void addBill() {
         // Lấy thông tin từ các trường nhập liệu
-        String customerType = (String) customerTypeComboBox.getSelectedItem();
-        String fullName = fullNameField.getText();
-        String customerId = customerIdField.getText();
-        String customerObject = (String) customerObjectComboBox.getSelectedItem();
-        String invoiceDate = invoiceDateField.getText();
-        String quantity = quantityField.getText();
-        String unitPrice = unitPriceField.getText();
-        String quota = quotaField.getText();
-        String nationality = nationalityField.getText();
+        String customerType = (String) customerTypeComboBoxRemote.getSelectedItem();
+        String fullName = fullNameFieldRemote.getText();
+        String customerId = customerIdFieldRemote.getText();
+        String customerObject = (String) customerObjectComboBoxRemote.getSelectedItem();
+        String invoiceDate = invoiceDateFieldRemote.getText();
+        String quantity = quantityFieldRemote.getText();
+        String unitPrice = unitPriceFieldRemote.getText();
+        String quota = quotaFieldRemote.getText();
+        String nationality = nationalityFieldRemote.getText();
 
         // Kiểm tra xem có trường nào bị bỏ trống không
         if (!customerType.isEmpty() && !fullName.isEmpty() && !customerId.isEmpty() && !customerObject.isEmpty()
