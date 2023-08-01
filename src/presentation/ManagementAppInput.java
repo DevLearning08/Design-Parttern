@@ -32,7 +32,7 @@ public class ManagementAppInput extends JPanel {
         fullNameField = new JTextField();
         customerIdField = new JTextField();
         customerTypeComboBox = new JComboBox<>(new String[]{"", "Khách hàng Việt Nam", "Khách hàng nước ngoài"});
-        customerObjectComboBox = new JComboBox<>(new String[]{"", "Kinh doanh", "Định mức", "Sản xuất"});
+        customerObjectComboBox = new JComboBox<>(new String[]{"", "Kinh doanh", "Sinh hoạt", "Sản xuất"});
         invoiceDateField = new JTextField();
         quantityField = new JTextField();
         unitPriceField = new JTextField();
