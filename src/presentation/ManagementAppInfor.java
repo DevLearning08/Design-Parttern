@@ -13,8 +13,8 @@ public class ManagementAppInfor {
     private String quota;
     private String nationality;
 
-    public ManagementAppInfor(String fullName, String customerId, String customerType, String customerObject,
-                           String invoiceDate, String quantity, String unitPrice, String quota, String nationality) {
+    public ManagementAppInfor(fullName, customerId, customerType, customerObject,
+                           invoiceDate, quantity, unitPrice, quota, nationality) {
         this.fullName = fullName;
         this.customerId = customerId;
         this.customerType = customerType;
