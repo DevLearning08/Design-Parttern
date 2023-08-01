@@ -19,7 +19,6 @@ public class ManagementAppInput extends JPanel {
     private JTextField quotaField;
     private JTextField nationalityField;
 
-    private ManagementApp electricityBillGUI;
     private ManagementApp managementApp;
 
     public ManagementAppInput(ManagementApp managementApp) {
@@ -115,4 +114,5 @@ public class ManagementAppInput extends JPanel {
             JOptionPane.showMessageDialog(this, "Vui lòng điền đầy đủ thông tin.");
         }
     }
+    
 }
