@@ -13,6 +13,7 @@ public class ManagementAppInfor {
     private String quota;
     private String nationality;
 
+<<<<<<< HEAD
     public String getFullName() {
         return fullName;
     }
@@ -87,6 +88,10 @@ public class ManagementAppInfor {
 
     public ManagementAppInfor(String fullName, String customerId, String customerType, String customerObject,
                            String invoiceDate, String quantity, String unitPrice, String quota, String nationality) {
+=======
+    public ManagementAppInfor(fullName, customerId, customerType, customerObject,
+                           invoiceDate, quantity, unitPrice, quota, nationality) {
+>>>>>>> cf495163ca70e6b7e643daa9446be942fc4df16c
         this.fullName = fullName;
         this.customerId = customerId;
         this.customerType = customerType;
