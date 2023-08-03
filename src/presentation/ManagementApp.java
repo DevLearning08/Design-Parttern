@@ -21,17 +21,17 @@ public class ManagementApp {
     private JTextField nationalityField;
     private JScrollPane scrollPane;
 
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            try {
-                new ManagementApp().initialize();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
-    }
+    // public static void main(String[] args) {
+    //     SwingUtilities.invokeLater(() -> {
+    //         try {
+    //             new ManagementApp().initialize();
+    //         } catch (Exception e) {
+    //             e.printStackTrace();
+    //         }
+    //     });
+    // }
 
-    private void initialize() {
+    public void initialize() {
         // Tạo JFrame và cấu hình giao diện chính
         frame = new JFrame("Quản lý danh sách hoá đơn tiền điện");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -229,6 +229,10 @@ public class ManagementApp {
     // Xuất hoá đơn
     private void exportInvoice() {
         // Implement your export logic here
+    }
+
+    public DefaultTableModel getTableModel() {
+        return null;
     }
 }
 
