@@ -3,6 +3,8 @@ package presentation;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
+import presentation.controller.InvoiceManagementController;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,18 +22,31 @@ public class ManagementAppInput extends JPanel {
     private JTextField nationalityFieldRemote;
 
     private ManagementApp managementApp;
+    //  remote controller 
 
+    private ManagementAppInfor managementAppInforRemote;
+    private InvoiceManagementController invoiceManagementController;
+    // buttons
+    private JButton searchButtonRemote = new JButton("Tìm kiếm");
+    private JButton addButtonRemote = new JButton("Thêm");
+    private JButton deleteButtonRemote = new JButton("Xóa");
+    private JButton updateButtonRemote = new JButton("Sửa");
+    private JButton calculateButtonRemote = new JButton("Thành tiền");
+    private JButton invoiceButtonRemote = new JButton("Xuất hoá đơn");
+        // ...
     public ManagementAppInput(ManagementApp managementApp) {
         this.managementApp = managementApp;
         initialize();
     }
 
+
+    
     private void initialize() {
         setLayout(new GridLayout(0, 2, 5, 5));
+        customerTypeComboBoxRemote = new JComboBox<>(new String[]{"Khách hàng Việt Nam", "Khách hàng nước ngoài"});
         fullNameFieldRemote = new JTextField();
         customerIdFieldRemote = new JTextField();
-        customerTypeComboBoxRemote = new JComboBox<>(new String[]{"", "Khách hàng Việt Nam", "Khách hàng nước ngoài"});
-        customerObjectComboBoxRemote = new JComboBox<>(new String[]{"", "Kinh doanh", "Sinh hoạt", "Sản xuất"});
+        customerObjectComboBoxRemote = new JComboBox<>(new String[]{"Kinh doanh", "Sinh hoạt", "Sản xuất"});
         invoiceDateFieldRemote = new JTextField();
         quantityFieldRemote = new JTextField();
         unitPriceFieldRemote = new JTextField();
@@ -65,37 +80,32 @@ public class ManagementAppInput extends JPanel {
     // Tạo JPanel chứa các nút bấm để thêm, xoá, sửa, tính toán và xuất hoá đơn
     private JPanel createButtonPanel() {
         JPanel panel = new JPanel();
-        JButton searchButton = new JButton("Tìm kiếm");
-        JButton addButton = new JButton("Thêm");
-        JButton deleteButton = new JButton("Xóa");
-        JButton updateButton = new JButton("Sửa");
-        JButton calculateButton = new JButton("Thành tiền");
-        JButton invoiceButton = new JButton("Xuất hoá đơn");
-        // ...
+        
 
         // Xử lý sự kiện khi nhấn các nút bấm
-        addButton.addActionListener(new ActionListener() {
+        addButtonRemote.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 addBill();
             }
         });
+        
 
-        // ...
+
 
         // Thêm các nút bấm vào panel
-        panel.add(addButton);
-        panel.add(deleteButton);
-        panel.add(updateButton);
-        panel.add(calculateButton);
-        panel.add(searchButton);
-        panel.add(invoiceButton);
+        panel.add(addButtonRemote);
+        panel.add(deleteButtonRemote);
+        panel.add(updateButtonRemote);
+        panel.add(calculateButtonRemote);
+        panel.add(searchButtonRemote);
+        panel.add(invoiceButtonRemote);
         // ...
 
         return panel;
     }
 
-    private void addBill() {
+    public void addBill() {
         // Lấy thông tin từ các trường nhập liệu
         String customerType = (String) customerTypeComboBoxRemote.getSelectedItem();
         String fullName = fullNameFieldRemote.getText();
@@ -125,5 +135,134 @@ public class ManagementAppInput extends JPanel {
             JOptionPane.showMessageDialog(this, "Vui lòng điền đầy đủ thông tin.");
         }
     }
+
+    public JTextField getFullNameFieldRemote() {
+        return fullNameFieldRemote;
+    }
+
+    public void setFullNameFieldRemote(JTextField fullNameFieldRemote) {
+        this.fullNameFieldRemote = fullNameFieldRemote;
+    }
+
+    public JTextField getCustomerIdFieldRemote() {
+        return customerIdFieldRemote;
+    }
+
+    public void setCustomerIdFieldRemote(JTextField customerIdFieldRemote) {
+        this.customerIdFieldRemote = customerIdFieldRemote;
+    }
+
+    public JComboBox<String> getCustomerTypeComboBoxRemote() {
+        return customerTypeComboBoxRemote;
+    }
+
+    public void setCustomerTypeComboBoxRemote(JComboBox<String> customerTypeComboBoxRemote) {
+        this.customerTypeComboBoxRemote = customerTypeComboBoxRemote;
+    }
+
+    public JComboBox<String> getCustomerObjectComboBoxRemote() {
+        return customerObjectComboBoxRemote;
+    }
+
+    public void setCustomerObjectComboBoxRemote(JComboBox<String> customerObjectComboBoxRemote) {
+        this.customerObjectComboBoxRemote = customerObjectComboBoxRemote;
+    }
+
+    public JTextField getInvoiceDateFieldRemote() {
+        return invoiceDateFieldRemote;
+    }
+
+    public void setInvoiceDateFieldRemote(JTextField invoiceDateFieldRemote) {
+        this.invoiceDateFieldRemote = invoiceDateFieldRemote;
+    }
+
+    public JTextField getQuantityFieldRemote() {
+        return quantityFieldRemote;
+    }
+
+    public void setQuantityFieldRemote(JTextField quantityFieldRemote) {
+        this.quantityFieldRemote = quantityFieldRemote;
+    }
+
+    public JTextField getUnitPriceFieldRemote() {
+        return unitPriceFieldRemote;
+    }
+
+    public void setUnitPriceFieldRemote(JTextField unitPriceFieldRemote) {
+        this.unitPriceFieldRemote = unitPriceFieldRemote;
+    }
+
+    public JTextField getQuotaFieldRemote() {
+        return quotaFieldRemote;
+    }
+
+    public void setQuotaFieldRemote(JTextField quotaFieldRemote) {
+        this.quotaFieldRemote = quotaFieldRemote;
+    }
+
+    public JTextField getNationalityFieldRemote() {
+        return nationalityFieldRemote;
+    }
+
+    public void setNationalityFieldRemote(JTextField nationalityFieldRemote) {
+        this.nationalityFieldRemote = nationalityFieldRemote;
+    }
+
+    public ManagementApp getManagementApp() {
+        return managementApp;
+    }
+
+    public void setManagementApp(ManagementApp managementApp) {
+        this.managementApp = managementApp;
+    }
+
+    public JButton getSearchButtonRemote() {
+        return searchButtonRemote;
+    }
+
+    public void setSearchButtonRemote(JButton searchButtonRemote) {
+        this.searchButtonRemote = searchButtonRemote;
+    }
+
+    public JButton getAddButtonRemote() {
+        return addButtonRemote;
+    }
+
+    public void setAddButtonRemote(JButton addButtonRemote) {
+        this.addButtonRemote = addButtonRemote;
+    }
+
+    public JButton getDeleteButtonRemote() {
+        return deleteButtonRemote;
+    }
+
+    public void setDeleteButtonRemote(JButton deleteButtonRemote) {
+        this.deleteButtonRemote = deleteButtonRemote;
+    }
+
+    public JButton getUpdateButtonRemote() {
+        return updateButtonRemote;
+    }
+
+    public void setUpdateButtonRemote(JButton updateButtonRemote) {
+        this.updateButtonRemote = updateButtonRemote;
+    }
+
+    public JButton getCalculateButtonRemote() {
+        return calculateButtonRemote;
+    }
+
+    public void setCalculateButtonRemote(JButton calculateButtonRemote) {
+        this.calculateButtonRemote = calculateButtonRemote;
+    }
+
+    public JButton getInvoiceButtonRemote() {
+        return invoiceButtonRemote;
+    }
+
+    public void setInvoiceButtonRemote(JButton invoiceButtonRemote) {
+        this.invoiceButtonRemote = invoiceButtonRemote;
+    }
+    
     
 }
