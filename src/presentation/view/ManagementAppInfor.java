@@ -1,4 +1,4 @@
-package presentation;
+package presentation.view;
 
 import java.util.ArrayList;
 
