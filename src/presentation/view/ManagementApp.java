@@ -1,13 +1,9 @@
-package view;
+package presentation.view;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
-import controller.InvoiceManagementController;
-
 import java.awt.*;
-import java.util.ArrayList;
-import domain.HoadonService;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
