@@ -1,13 +1,9 @@
-package view;
+package presentation.view;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
-import controller.InvoiceManagementController;
-
 import java.awt.*;
-import java.util.ArrayList;
-import domain.HoadonService;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -32,8 +28,7 @@ public class ManagementApp {
     private JButton editButton = new JButton("Sửa");
     private JButton calculateButton = new JButton("Thành tiền");
     private JButton exportButton = new JButton("Xuất hoá đơn");
-
-
+    private JButton findButton = new JButton("Tìm kiếm");
 
     public void initialize() {
         // Tạo JFrame và cấu hình giao diện chính
@@ -101,7 +96,7 @@ public class ManagementApp {
     
 
 
-    // Tạo JPanel chứa các nút bấm để thêm, xoá, sửa, tính toán và xuất hoá đơn
+    // Tạo JPanel chứa các nút bấm để thêm, xoá, sửa, tính toán, xuất hoá đơn, tìm kiếm
     private JPanel createButtonPanel() {
         JPanel panel = new JPanel();
         
@@ -141,12 +136,20 @@ public class ManagementApp {
             }
         });
 
+        findButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                findInvoice();
+            }
+        });
+
         // Thêm các nút bấm vào panel
         panel.add(addButton);
         panel.add(deleteButton);
         panel.add(editButton);
         panel.add(calculateButton);
         panel.add(exportButton);
+        panel.add(findButton);
 
         return panel;
     }
@@ -231,6 +234,10 @@ public class ManagementApp {
     // Xuất hoá đơn
     private void exportInvoice() {
         // Implement your export logic here
+    }
+
+    private void findInvoice() {
+        
     }
 
     public DefaultTableModel getTableModel() {
@@ -354,6 +361,10 @@ public class ManagementApp {
 
     public JButton getExportButton() {
         return exportButton;
+    }
+
+    public JButton getFindButton() {
+        return findButton;
     }
     
 }

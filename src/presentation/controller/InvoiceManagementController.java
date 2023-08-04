@@ -1,6 +1,5 @@
-package controller;
+package presentation.controller;
 
-import domain.model.*;
 import view.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
