@@ -1,9 +1,9 @@
-package presentation.view;
+package view;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
-import presentation.controller.InvoiceManagementController;
+import controller.InvoiceManagementController;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -26,76 +26,28 @@ public class ManagementApp {
     private JTextField nationalityField;
     private JScrollPane scrollPane;
 
-<<<<<<< HEAD:src/presentation/view/ManagementApp.java
-    private ArrayList<ManagementApp> billList = new ArrayList<>();
-    private HoadonService hoadonServiceRemote;
- 
-    private void initialize() {
-=======
-<<<<<<< HEAD
-    // public static void main(String[] args) {
-    //     SwingUtilities.invokeLater(() -> {
-    //         try {
-    //             new ManagementApp().initialize();
-    //         } catch (Exception e) {
-    //             e.printStackTrace();
-    //         }
-    //     });
-    // }
-=======
-<<<<<<< HEAD
-    private ArrayList<ManagementApp> billList = new ArrayList<>();
-    private HoadonService hoadonServiceRemote;
-    public void initialize() {
 
-        
-
-        
-        // Tạo JFrame và cấu hình giao diện chính
-        setTitle("Quản lý danh sách hoá đơn tiền điện");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new BorderLayout());
-        setExtendedState(JFrame.MAXIMIZED_BOTH);
-        
-        // Tạo DefaultTableModel và JTable để hiển thị danh sách hoá đơn
-        tableModel = new DefaultTableModel(new String[]{"Loại khách hàng", "Họ và tên", "Mã khách hàng",
-        "Đối tượng", "Ngày xuất hoá đơn", "Số lượng", "Đơn giá", "Định mức", "Quốc tịch", "Thành tiền"}, 0);
-=======
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            try {
-                new ManagementApp().initialize();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
-    }
->>>>>>> 999ef153febda5c7d8705ab0dddcd99978df2237
 
     public void initialize() {
->>>>>>> ba893979af0674baf4c1f90e8152ec920e5f6033:src/presentation/ManagementApp.java
         // Tạo JFrame và cấu hình giao diện chính
         frame = new JFrame("Quản lý danh sách hoá đơn tiền điện");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().setLayout(new BorderLayout());
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-
+    
         // Tạo DefaultTableModel và JTable để hiển thị danh sách hoá đơn
-        tableModel = new DefaultTableModel(new String[]{"Mục", "Loại khách hàng", "Họ và tên", "Mã khách hàng",
-                "Đối tượng", "Ngày xuất hoá đơn", "Số lượng", "Đơn giá", "Định mức", "Quốc tịch"}, 0);
+        tableModel = new DefaultTableModel(new String[]{"Loại khách hàng", "Họ và tên", "Mã khách hàng",
+                "Đối tượng", "Ngày xuất hoá đơn", "Số lượng", "Đơn giá", "Định mức", "Quốc tịch", "Thành tiền"}, 0);
         table = new JTable(tableModel);
         scrollPane = new JScrollPane(table);
-        
+    
         // Đưa JTable vào JScrollPane để có khả năng cuộn ngang và cuộn dọc
         scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-
+    
         // Thêm JScrollPane vào JFrame
         frame.getContentPane().add(scrollPane, BorderLayout.CENTER);
-
-   
-        
-        
+    
         // Tạo JPanel để nhập thông tin hoá đơn
         JPanel inputPanel = new JPanel(new GridLayout(0, 2, 5, 5));
         fullNameField = new JTextField();
@@ -107,7 +59,7 @@ public class ManagementApp {
         unitPriceField = new JTextField();
         quotaField = new JTextField();
         nationalityField = new JTextField();
-
+    
         // Thêm các thành phần vào inputPanel
         inputPanel.add(new JLabel("Loại khách hàng:"));
         inputPanel.add(customerTypeComboBox);
@@ -129,15 +81,16 @@ public class ManagementApp {
         inputPanel.add(nationalityField);
         inputPanel.add(new JLabel());
         inputPanel.add(createButtonPanel());
-
+    
         // Đưa inputPanel vào JFrame
         frame.getContentPane().add(inputPanel, BorderLayout.NORTH);
-
+    
         // Set kích thước và hiển thị JFrame
         frame.setSize(800, 500);
         frame.setLocationRelativeTo(null); // Đưa JFrame vào giữa màn hình
         frame.setVisible(true);
     }
+    
     
 
 
@@ -278,17 +231,111 @@ public class ManagementApp {
         // Implement your export logic here
     }
 
-<<<<<<< HEAD
     public DefaultTableModel getTableModel() {
         return null;
     }
-=======
 
+    public JFrame getFrame() {
+        return frame;
+    }
 
-    public HoadonService getHoadonServiceRemote() {
-        return hoadonServiceRemote;
+    public void setFrame(JFrame frame) {
+        this.frame = frame;
+    }
+
+    public JTable getTable() {
+        return table;
+    }
+
+    public void setTable(JTable table) {
+        this.table = table;
+    }
+
+    public void setTableModel(DefaultTableModel tableModel) {
+        this.tableModel = tableModel;
+    }
+
+    public JTextField getFullNameField() {
+        return fullNameField;
+    }
+
+    public void setFullNameField(JTextField fullNameField) {
+        this.fullNameField = fullNameField;
+    }
+
+    public JTextField getCustomerIdField() {
+        return customerIdField;
+    }
+
+    public void setCustomerIdField(JTextField customerIdField) {
+        this.customerIdField = customerIdField;
+    }
+
+    public JComboBox<String> getCustomerTypeComboBox() {
+        return customerTypeComboBox;
+    }
+    public void setCustomerTypeComboBox(JComboBox<String> customerTypeComboBox) {
+        this.customerTypeComboBox = customerTypeComboBox;
+    }
+
+    public JComboBox<String> getCustomerObjectComboBox() {
+        return customerObjectComboBox;
+    }
+
+    public void setCustomerObjectComboBox(JComboBox<String> customerObjectComboBox) {
+        this.customerObjectComboBox = customerObjectComboBox;
+    }
+
+    public JTextField getInvoiceDateField() {
+        return invoiceDateField;
+    }
+
+    public void setInvoiceDateField(JTextField invoiceDateField) {
+        this.invoiceDateField = invoiceDateField;
+    }
+
+    public JTextField getQuantityField() {
+        return quantityField;
+    }
+
+    public void setQuantityField(JTextField quantityField) {
+        this.quantityField = quantityField;
+    }
+
+    public JTextField getUnitPriceField() {
+        return unitPriceField;
+    }
+
+    public void setUnitPriceField(JTextField unitPriceField) {
+        this.unitPriceField = unitPriceField;
+    }
+
+    public JTextField getQuotaField() {
+        return quotaField;
+    }
+
+    public void setQuotaField(JTextField quotaField) {
+        this.quotaField = quotaField;
+    }
+
+    public JTextField getNationalityField() {
+        return nationalityField;
+    }
+
+    public void setNationalityField(JTextField nationalityField) {
+        this.nationalityField = nationalityField;
+    }
+
+    public JScrollPane getScrollPane() {
+        return scrollPane;
+    }
+
+    public void setScrollPane(JScrollPane scrollPane) {
+        this.scrollPane = scrollPane;
     }
     
->>>>>>> 999ef153febda5c7d8705ab0dddcd99978df2237
+
+
+    
 }
 

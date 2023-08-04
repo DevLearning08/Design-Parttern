@@ -1,8 +1,6 @@
-package presentation.controller;
+package controller;
 
-import presentation.ManagementApp;
-import presentation.ManagementAppInfor;
-import presentation.ManagementAppInput;
+import view.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -24,70 +22,52 @@ import domain.HoadonService;
 
 public class InvoiceManagementController implements ActionListener {
     private ManagementApp managementAppRemote;
-    private ManagementAppInfor managementAppInforRemote;
-    private ManagementApp managementAppInputRemote;
     private HoadonService hoadonServiceRemote;
 
     public InvoiceManagementController() {
         
     }
 
-    
 
-
-
-
-
-    public ManagementAppInfor getManagementAppInforRemote() {
-        return managementAppInforRemote;
+    public ManagementApp getManagementAppRemote() {
+        return managementAppRemote;
     }
 
-
-    public void setManagementAppInforRemote(ManagementAppInfor managementAppInforRemote) {
-        this.managementAppInforRemote = managementAppInforRemote;
+    public HoadonService getHoadonServiceRemote() {
+        return hoadonServiceRemote;
     }
 
-
-    public ManagementAppInput getManagementAppInputRemote() {
-        return managementAppInputRemote;
-    }
-
-
-    public void setManagementAppInputRemote(ManagementAppInput managementAppInputRemote) {
-        this.managementAppInputRemote = managementAppInputRemote;
-    }
-    
 
     public void actionPerformed(ActionEvent e) {
         // gửi message đến view (view input data)
 
 
         // lấy dữ liệu từ các celJTextField, fahJTextField , jComboBox tại Boundary
-        JComboBox customerTypeComboBoxRemote = managementAppInputRemote.getCustomerTypeComboBoxRemote();
+        JComboBox customerTypeComboBoxRemote = managementAppRemote.getCustomerTypeComboBox();
         String customerType = (String) customerTypeComboBoxRemote.getSelectedItem();
 
-        JTextField fullNameCustomer = managementAppInputRemote.getFullNameFieldRemote();
+        JTextField fullNameCustomer = managementAppRemote.getFullNameField();
         String fullName = fullNameCustomer.getText();
 
-        JTextField  customerIdFieldRemote = managementAppInputRemote.getCustomerIdFieldRemote();
+        JTextField  customerIdFieldRemote = managementAppRemote.getCustomerIdField();
         String customerIdField = customerIdFieldRemote.getText();
 
-        JComboBox customerOjectComboBoxRemote = managementAppInputRemote.getCustomerObjectComboBoxRemote();
+        JComboBox customerOjectComboBoxRemote = managementAppRemote.getCustomerObjectComboBoxRemote();
         String customerOject = (String) customerOjectComboBoxRemote.getSelectedItem();
 
-        JTextField invoiceDateFieldRemote = managementAppInputRemote.getInvoiceDateFieldRemote();
+        JTextField invoiceDateFieldRemote = managementAppRemote.getInvoiceDateFieldRemote();
         String invoiceDateField = invoiceDateFieldRemote.getText();
 
-        JTextField quantityFieldRemote = managementAppInputRemote.getQuantityFieldRemote();
+        JTextField quantityFieldRemote = managementAppRemote.getQuantityFieldRemote();
         String quantityField = quantityFieldRemote.getText();
 
-        JTextField unitPriceFieldRemote = managementAppInputRemote.getUnitPriceFieldRemote();
+        JTextField unitPriceFieldRemote = managementAppRemote.getUnitPriceFieldRemote();
         String unitPriceField = unitPriceFieldRemote.getText();
 
-        JTextField quotaFieldRemote = managementAppInputRemote.getQuotaFieldRemote();
+        JTextField quotaFieldRemote = managementAppRemote.getQuotaFieldRemote();
         String quotaField = quotaFieldRemote.getText();
 
-        JTextField nationalityFieldRemote = managementAppInputRemote.getNationalityFieldRemote();
+        JTextField nationalityFieldRemote = managementAppRemote.getNationalityFieldRemote();
         String nationalityField = nationalityFieldRemote.getText();
         
         HoadonService modelRemote = managementAppRemote.getHoadonServiceRemote();
@@ -103,7 +83,7 @@ public class InvoiceManagementController implements ActionListener {
 
 
         // tim kiem trong database
-        JButton searchButtonRemote = managementAppInputRemote.getSearchButtonRemote();
+        JButton searchButtonRemote = managementAppRemote.getSearchButtonRemote();
         try {
             searchButtonRemote.addActionListener(new ActionListener() {
             @Override
@@ -119,7 +99,7 @@ public class InvoiceManagementController implements ActionListener {
         }
         
         // them moi 
-        JButton addButtonRemote = managementAppInputRemote.getAddButtonRemote();
+        JButton addButtonRemote = managementAppRemote.getAddButtonRemote();
         addButtonRemote.addActionListener(new ActionListener() {
             // Xử lý sự kiện khi nhấn nut them
             @Override
@@ -131,7 +111,7 @@ public class InvoiceManagementController implements ActionListener {
         });
         
         // delete
-        JButton deleteButtonRemote = managementAppInputRemote.getDeleteButtonRemote();
+        JButton deleteButtonRemote = managementAppRemote.getDeleteButtonRemote();
         deleteButtonRemote.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -141,7 +121,7 @@ public class InvoiceManagementController implements ActionListener {
         
         // sua 
         
-        JButton updateButtonRemote = managementAppInputRemote.getUpdateButtonRemote();
+        JButton updateButtonRemote = managementAppRemote.getUpdateButtonRemote();
         updateButtonRemote.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -153,7 +133,7 @@ public class InvoiceManagementController implements ActionListener {
             }
         });
         // tinh hoa don
-        JButton calculateButtonRemote = managementAppInputRemote.getCalculateButtonRemote();
+        JButton calculateButtonRemote = managementAppRemote.getCalculateButtonRemote();
         calculateButtonRemote.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -167,7 +147,7 @@ public class InvoiceManagementController implements ActionListener {
         
         
         // so luong
-        JButton invoiceButtonRemote = managementAppInputRemote.getInvoiceButtonRemote();
+        JButton invoiceButtonRemote = managementAppRemote.getInvoiceButtonRemote();
         invoiceButtonRemote.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
