@@ -29,6 +29,7 @@ public class ManagementApp {
     private JButton calculateButton = new JButton("Thành tiền");
     private JButton exportButton = new JButton("Xuất hoá đơn");
     private JButton findButton = new JButton("Tìm kiếm");
+    private JButton TBHDNNButton = new JButton("Tính TB hóa đơn nước ngoài");
 
     public void initialize() {
         // Tạo JFrame và cấu hình giao diện chính
@@ -96,7 +97,7 @@ public class ManagementApp {
     
 
 
-    // Tạo JPanel chứa các nút bấm để thêm, xoá, sửa, tính toán, xuất hoá đơn, tìm kiếm
+    // Tạo JPanel chứa các nút bấm để thêm, xoá, sửa, tính toán, xuất hoá đơn, tìm kiếm, TB hóa đơn nước ngoài
     private JPanel createButtonPanel() {
         JPanel panel = new JPanel();
         
@@ -139,7 +140,22 @@ public class ManagementApp {
         findButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                findInvoice();
+                String findQuery = JOptionPane.showInputDialog("Nhập ID cần tìm!");
+                if(findQuery != null){
+                    boolean found = findInvoice(findQuery);
+                    if(!found)
+                        JOptionPane.showMessageDialog(null, "ID không thể tìm thấy!");
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, "ID không được để trống!");
+                }
+            }
+        });
+
+        TBHDNNButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                avergForeignInvoice();
             }
         });
 
@@ -150,6 +166,7 @@ public class ManagementApp {
         panel.add(calculateButton);
         panel.add(exportButton);
         panel.add(findButton);
+        panel.add(TBHDNNButton);
 
         return panel;
     }
@@ -236,7 +253,11 @@ public class ManagementApp {
         // Implement your export logic here
     }
 
-    private void findInvoice() {
+    public boolean findInvoice(String findQuery) {
+        return false;
+    }
+
+    public void avergForeignInvoice() {
         
     }
 

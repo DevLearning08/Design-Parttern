@@ -102,6 +102,7 @@ public class InvoiceManagementController implements ActionListener {
         
         // them moi 
         JButton addButtonRemote = managementAppRemote.getAddButton();
+        try{
         addButtonRemote.addActionListener(new ActionListener() {
             // Xử lý sự kiện khi nhấn nut them
             @Override
@@ -111,55 +112,87 @@ public class InvoiceManagementController implements ActionListener {
             them.action();
         }
         });
-        
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "them khong thanh cong");
+        }
         // delete
         JButton deleteButtonRemote = managementAppRemote.getDeleteButton();
+        try{
         deleteButtonRemote.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 xoa.action();
             }
         });
-        
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "xoa khong thanh cong");
+        }
         // sua 
         
         JButton updateButtonRemote = managementAppRemote.getEditButton();
-        updateButtonRemote.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (customerType.isEmpty() && fullName.isEmpty() && customerIdField.isEmpty() && customerOject.isEmpty()
-                        && invoiceDateField.isEmpty() && quantityField.isEmpty() && unitPriceField.isEmpty() && quotaField.isEmpty() && nationalityField.isEmpty()
-                ) {
-                    sua.action();
+        try{
+            updateButtonRemote.addActionListener(new ActionListener() {
+                
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    if (customerType.isEmpty() && fullName.isEmpty() && customerIdField.isEmpty() && customerOject.isEmpty()
+                            && invoiceDateField.isEmpty() && quantityField.isEmpty() && unitPriceField.isEmpty() && quotaField.isEmpty() && nationalityField.isEmpty()
+                    ) {
+                        sua.action();
+                    }
                 }
-            }
-        });
+            });
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "sua khong thanh cong");
+        }
         // tinh hoa don
         JButton calculateButtonRemote = managementAppRemote.getCalculateButton();
-        calculateButtonRemote.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (customerType.isEmpty() && fullName.isEmpty() && customerIdField.isEmpty() && customerOject.isEmpty()
-                        && invoiceDateField.isEmpty() && quantityField.isEmpty() && unitPriceField.isEmpty() && quotaField.isEmpty()&& nationalityField.isEmpty()
-                ) {
-                    tinhHoaDonTungloai.action();
+        try{
+            calculateButtonRemote.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    if (customerType.isEmpty() && fullName.isEmpty() && customerIdField.isEmpty() && customerOject.isEmpty()
+                            && invoiceDateField.isEmpty() && quantityField.isEmpty() && unitPriceField.isEmpty() && quotaField.isEmpty()&& nationalityField.isEmpty()
+                    ) {
+                        tinhHoaDonTungloai.action();
+                    }
                 }
-            }
-        });
-        
+            });
+        }catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "tinh hoa don khong thanh cong");
+        }
         
         // so luong
         JButton exportButtonRemote = managementAppRemote.getExportButton();
-        exportButtonRemote.addActionListener(new ActionListener() {
+        try{
+            exportButtonRemote.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    if (customerType.isEmpty() && fullName.isEmpty() && customerIdField.isEmpty() && customerOject.isEmpty()
+                            && invoiceDateField.isEmpty() && quantityField.isEmpty() && unitPriceField.isEmpty() && quotaField.isEmpty() && nationalityField.isEmpty()
+                    ) {
+                        xuatHoaDonThang.action();
+                    }
+                }
+            });
+        }catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "tinh so luong khong thanh cong");
+        }
+        JButton TBHDNNButtonRemote = managementAppRemote.getTBHDNNButton();
+        try{
+        TBHDNNButtonRemote.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (customerType.isEmpty() && fullName.isEmpty() && customerIdField.isEmpty() && customerOject.isEmpty()
                         && invoiceDateField.isEmpty() && quantityField.isEmpty() && unitPriceField.isEmpty() && quotaField.isEmpty() && nationalityField.isEmpty()
                 ) {
-                    xuatHoaDonThang.action();
+                    TBHHDNN.action();
                 }
             }
         });
+        }catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "tinh trung binh khong thanh cong");
+        }
     }
 
 }

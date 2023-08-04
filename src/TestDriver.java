@@ -1,6 +1,6 @@
 import javax.swing.SwingUtilities;
 
-import view.ManagementApp;
+import presentation.view.ManagementApp;
 public class TestDriver {
     public static void main(String[] args) {
 
