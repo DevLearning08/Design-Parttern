@@ -1,6 +1,6 @@
-package presentation.controller;
+package controller;
 
-import presentation.view.*;
+import view.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -17,6 +17,8 @@ import domain.HoaDon_Timkiem;
 import domain.HoaDon_Xoa;
 import domain.HoaDon_XuatHDThang;
 import domain.HoadonService;
+import domain.model.DoiTuongKH;
+import domain.model.HoaDon;
 
 
 
@@ -70,7 +72,7 @@ public class InvoiceManagementController implements ActionListener {
         JTextField nationalityFieldRemote = managementAppRemote.getNationalityField();
         String nationalityField = nationalityFieldRemote.getText();
         
-        HoadonService modelRemote = managementAppRemote.getHoadonService();
+        
 
 
         HoadonService tinhHoaDonTungloai = new HoaDon_SolgTungLoai();
@@ -83,7 +85,7 @@ public class InvoiceManagementController implements ActionListener {
 
 
         // tim kiem trong database
-        JButton searchButtonRemote = managementAppRemote.getSearchButton();
+        JButton searchButtonRemote = managementAppRemote.getFindButton();
         try {
             searchButtonRemote.addActionListener(new ActionListener() {
             @Override
@@ -121,7 +123,7 @@ public class InvoiceManagementController implements ActionListener {
         
         // sua 
         
-        JButton updateButtonRemote = managementAppRemote.getUpdateButton();
+        JButton updateButtonRemote = managementAppRemote.getEditButton();
         updateButtonRemote.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -147,8 +149,8 @@ public class InvoiceManagementController implements ActionListener {
         
         
         // so luong
-        JButton invoiceButtonRemote = managementAppRemote.getInvoiceButton();
-        invoiceButtonRemote.addActionListener(new ActionListener() {
+        JButton exportButtonRemote = managementAppRemote.getExportButton();
+        exportButtonRemote.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (customerType.isEmpty() && fullName.isEmpty() && customerIdField.isEmpty() && customerOject.isEmpty()
