@@ -1,4 +1,4 @@
-package presentation.controller;
+package controller;
 
 import view.*;
 import java.awt.event.ActionEvent;
@@ -85,7 +85,7 @@ public class InvoiceManagementController implements ActionListener {
 
 
         // tim kiem trong database
-        JButton searchButtonRemote = managementAppRemote.getSearchButton();
+        JButton searchButtonRemote = managementAppRemote.getFindButton();
         try {
             searchButtonRemote.addActionListener(new ActionListener() {
             @Override
@@ -149,8 +149,8 @@ public class InvoiceManagementController implements ActionListener {
         
         
         // so luong
-        JButton invoiceButtonRemote = managementAppRemote.getInvoiceButton();
-        invoiceButtonRemote.addActionListener(new ActionListener() {
+        JButton exportButtonRemote = managementAppRemote.getExportButton();
+        exportButtonRemote.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (customerType.isEmpty() && fullName.isEmpty() && customerIdField.isEmpty() && customerOject.isEmpty()
