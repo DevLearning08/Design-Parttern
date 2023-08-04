@@ -4,13 +4,11 @@ import java.util.Date;
 public class HoaDonNuocNgoai extends HoaDon{
     private String quocTich;
     
-    public HoaDonNuocNgoai(int maKH, String hotenKH, Date ngayraHD, Double soLuong, Double donGia, String quocTich) {
+    public HoaDonNuocNgoai(int maKH, String hotenKH, Date ngayraHD, Double soLuong, Double donGia, String quocTich, Double thanhTien) {
         super(maKH, hotenKH, ngayraHD, soLuong, donGia);
         this.quocTich = quocTich;
     }
-    public HoaDonNuocNgoai(){
-        super();
-    }
+   
     public String getQuocTich() {
         return quocTich;
     }
@@ -21,7 +19,8 @@ public class HoaDonNuocNgoai extends HoaDon{
 
     @Override
     public Double thanhTien() {
-        return getDonGia() * getSoLuong();
+        Double thanhTien = getDonGia() * getSoLuong();
+        return thanhTien;
     }
 
     

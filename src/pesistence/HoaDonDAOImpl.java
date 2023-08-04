@@ -39,15 +39,15 @@ public class HoaDonDAOImpl implements HoaDonDAO {
     }
 
     @Override
-    public void tbHoaDonNN(int maKH) {
+    public void tbHoaDonNN() {
         HoaDonGateway hoaDonGateway = new HoaDonGatewayImpl();
-        hoaDonGateway.tbHoaDonNN(maKH);
+        hoaDonGateway.tbHoaDonNN();
     }
 
     @Override
-    public List<HoaDon> xuatHoaDonTrongThang() {
+    public List<HoaDon> xuatHoaDonTrongThang(HoaDon hoaDon, int thang, int nam) {
         HoaDonGateway hoaDonGateway = new HoaDonGatewayImpl();
-       return hoaDonGateway.xuatHoaDonTrongThang();
+       return hoaDonGateway.xuatHoaDonTrongThang(hoaDon,thang, nam);
     }
 
     @Override

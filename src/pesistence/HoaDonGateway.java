@@ -9,8 +9,8 @@ public interface HoaDonGateway {
     public void xoaHoaDon(int maKH, HoaDon hoaDon);
     public void suaHoaDon(HoaDon hoaDon);
     public void tinhSoLuongTungLoai(int maKH);
-    public void tbHoaDonNN(int maKH);
-    public List<HoaDon> xuatHoaDonTrongThang();
+    public void tbHoaDonNN();
+    public List<HoaDon> xuatHoaDonTrongThang(HoaDon hoaDon, int thang, int nam);
     public HoaDon timKiemID(int maKH, HoaDon hoaDon);   
     public HoaDon timKiemTenNN(String hotenKH);
     public HoaDon timKiemTenVN(String hotenKH);
