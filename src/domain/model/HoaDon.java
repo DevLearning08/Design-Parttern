@@ -1,19 +1,24 @@
 package domain.model;
 
+import java.util.Date;
+
 public abstract class HoaDon {
     private int maKH;
     private String hotenKH;
-    private String ngayraHD;
+    private Date ngayraHD;
     private Double soLuong;
     private Double donGia;
 
 
-    public HoaDon(int maKH, String hotenKH, String ngayraHD, Double soLuong, Double donGia) {
+    public HoaDon(int maKH, String hotenKH, Date ngayraHD, Double soLuong, Double donGia) {
         this.maKH = maKH;
         this.hotenKH = hotenKH;
         this.ngayraHD = ngayraHD;
         this.soLuong = soLuong;
         this.donGia = donGia;
+    }
+
+    public HoaDon() {
     }
 
     public abstract Double thanhTien();
@@ -36,11 +41,11 @@ public abstract class HoaDon {
         this.hotenKH = hotenKH;
     }
 
-    public String getNgayraHD() {
+    public Date getNgayraHD() {
         return ngayraHD;
     }
 
-    public void setNgayraHD(String ngayraHD) {
+    public void setNgayraHD(Date ngayraHD) {
         this.ngayraHD = ngayraHD;
     }
 

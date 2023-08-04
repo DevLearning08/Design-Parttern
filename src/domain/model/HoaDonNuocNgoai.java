@@ -1,19 +1,22 @@
 package domain.model;
 
+import java.util.Date;
 public class HoaDonNuocNgoai extends HoaDon{
-    private String quocTinh;
+    private String quocTich;
     
-    public HoaDonNuocNgoai(int maKH, String hotenKH, String ngayraHD, Double soLuong, Double donGia, String quocTinh) {
+    public HoaDonNuocNgoai(int maKH, String hotenKH, Date ngayraHD, Double soLuong, Double donGia, String quocTich) {
         super(maKH, hotenKH, ngayraHD, soLuong, donGia);
-        this.quocTinh = quocTinh;
+        this.quocTich = quocTich;
+    }
+    public HoaDonNuocNgoai(){
+        super();
+    }
+    public String getQuocTich() {
+        return quocTich;
     }
 
-    public String getQuocTinh() {
-        return quocTinh;
-    }
-
-    public void setQuocTinh(String quocTinh) {
-        this.quocTinh = quocTinh;
+    public void setQuocTich(String quocTinc) {
+        this.quocTich = quocTinc;
     }
 
     @Override

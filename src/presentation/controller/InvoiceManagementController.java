@@ -24,7 +24,19 @@ import domain.model.HoaDon;
 
 public class InvoiceManagementController implements ActionListener {
     private ManagementApp managementAppRemote;
+<<<<<<< HEAD
+
+    
+    
+
+
+    private ManagementAppInfor managementAppInforRemote;
+    private ManagementAppInput managementAppInputRemote;
     private HoadonService hoadonServiceRemote;
+
+=======
+    private HoadonService hoadonServiceRemote;
+>>>>>>> 3ffdeab03fc49c851a88f953545973cb77c8b88a
 
     public InvoiceManagementController() {
         
