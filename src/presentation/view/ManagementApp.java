@@ -1,9 +1,10 @@
-package presentation.view;
+package view;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
 import java.awt.*;
+<<<<<<< HEAD
 <<<<<<< HEAD:src/presentation/ManagementApp.java
 
 import java.util.ArrayList;
@@ -16,6 +17,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 >>>>>>> 3ffdeab03fc49c851a88f953545973cb77c8b88a:src/presentation/view/ManagementApp.java
 
+=======
+>>>>>>> 6a59dba2eabec8fd4e78d45b3ac12885b2bafb99
 public class ManagementApp {
     private JFrame frame;
     private JTable table;
@@ -78,7 +81,11 @@ public class ManagementApp {
     private JButton calculateButton = new JButton("Thành tiền");
     private JButton exportButton = new JButton("Xuất hoá đơn");
     private JButton findButton = new JButton("Tìm kiếm");
+<<<<<<< HEAD
 >>>>>>> 3ffdeab03fc49c851a88f953545973cb77c8b88a:src/presentation/view/ManagementApp.java
+=======
+    private JButton TBHDNNButton = new JButton("Tính TB hóa đơn nước ngoài");
+>>>>>>> 6a59dba2eabec8fd4e78d45b3ac12885b2bafb99
 
     public void initialize() {
         // Tạo JFrame và cấu hình giao diện chính
@@ -164,56 +171,10 @@ public class ManagementApp {
         frame.setVisible(true);
     }
     
-    
-
-
-    // Tạo JPanel chứa các nút bấm để thêm, xoá, sửa, tính toán, xuất hoá đơn, tìm kiếm
+    // Tạo JPanel chứa các nút bấm để thêm, xoá, sửa, tính toán, xuất hoá đơn, tìm kiếm, TB hóa đơn nước ngoài
     private JPanel createButtonPanel() {
+
         JPanel panel = new JPanel();
-        
-        // Xử lý sự kiện khi nhấn các nút bấm
-        addButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                addRowToTable();
-            }
-        });
-
-        deleteButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                deleteSelectedRowFromTable();
-            }
-        });
-
-        editButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                editSelectedRowInTable();
-            }
-        });
-
-        calculateButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                calculateTotalAmount();
-            }
-        });
-
-        exportButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                exportInvoice();
-            }
-        });
-
-        findButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                findInvoice();
-            }
-        });
-
         // Thêm các nút bấm vào panel
         panel.add(addButton);
         panel.add(deleteButton);
@@ -221,87 +182,16 @@ public class ManagementApp {
         panel.add(calculateButton);
         panel.add(exportButton);
         panel.add(findButton);
-
+        panel.add(TBHDNNButton);
         return panel;
     }
-
-    // Thêm thông tin hoá đơn vào bảng
-    private void addRowToTable() {
-        // Lấy thông tin từ các trường nhập liệu
-        String customerType = (String) customerTypeComboBox.getSelectedItem();
-        String fullName = fullNameField.getText();
-        String customerId = customerIdField.getText();
-        String customerObject = (String) customerObjectComboBox.getSelectedItem();
-        String invoiceDate = invoiceDateField.getText();
-        String quantity = quantityField.getText();
-        String unitPrice = unitPriceField.getText();
-        String quota = quotaField.getText();
-        String nationality = nationalityField.getText();
-
-        // Kiểm tra xem có trường nào bị bỏ trống không
-        if (!customerType.isEmpty() && !fullName.isEmpty() && !customerId.isEmpty() && !customerObject.isEmpty()
-                && !invoiceDate.isEmpty() && !quantity.isEmpty() && !unitPrice.isEmpty() && !quota.isEmpty()
-                && (!customerType.equals("Khách hàng nước ngoài") || !nationality.isEmpty())) {
-            // Thêm thông tin vào bảng
-            tableModel.addRow(new String[]{customerType, fullName, customerId, customerObject,
-                    invoiceDate, quantity, unitPrice, quota, nationality});
-        } else {
-            JOptionPane.showMessageDialog(frame, "Vui lòng điền đầy đủ thông tin.");
-        }
-    }
-
-    // Xoá hàng được chọn từ bảng
-    private void deleteSelectedRowFromTable() {
-        int selectedRow = table.getSelectedRow();
-        if (selectedRow >= 0) {
-            tableModel.removeRow(selectedRow);
-        } else {
-            JOptionPane.showMessageDialog(frame, "Vui lòng chọn hàng cần xoá.");
-        }
-    }
-
-    // Sửa thông tin trong hàng được chọn từ bảng
-    private void editSelectedRowInTable() {
-        int selectedRow = table.getSelectedRow();
-        if (selectedRow >= 0) {
-            // Lấy thông tin từ các trường nhập liệu
-            String customerType = (String) customerTypeComboBox.getSelectedItem();
-            String fullName = fullNameField.getText();
-            String customerId = customerIdField.getText();
-            String customerObject = (String) customerObjectComboBox.getSelectedItem();
-            String invoiceDate = invoiceDateField.getText();
-            String quantity = quantityField.getText();
-            String unitPrice = unitPriceField.getText();
-            String quota = quotaField.getText();
-            String nationality = nationalityField.getText();
-
-            // Kiểm tra xem có trường nào bị bỏ trống không
-            if (!customerType.isEmpty() && !fullName.isEmpty() && !customerId.isEmpty() && !customerObject.isEmpty()
-                    && !invoiceDate.isEmpty() && !quantity.isEmpty() && !unitPrice.isEmpty() && !quota.isEmpty()
-                    && (!customerType.equals("Khách hàng nước ngoài") || !nationality.isEmpty())) {
-                // Cập nhật thông tin vào hàng đã chọn
-                tableModel.setValueAt(customerType, selectedRow, 0);
-                tableModel.setValueAt(fullName, selectedRow, 1);
-                tableModel.setValueAt(customerId, selectedRow, 2);
-                tableModel.setValueAt(customerObject, selectedRow, 3);
-                tableModel.setValueAt(invoiceDate, selectedRow, 4);
-                tableModel.setValueAt(quantity, selectedRow, 5);
-                tableModel.setValueAt(unitPrice, selectedRow, 6);
-                tableModel.setValueAt(quota, selectedRow, 7);
-                tableModel.setValueAt(nationality, selectedRow, 8);
-            } else {
-                JOptionPane.showMessageDialog(frame, "Vui lòng điền đầy đủ thông tin.");
-            }
-        } else {
-            JOptionPane.showMessageDialog(frame, "Vui lòng chọn hàng cần sửa.");
-        }
-    }
-
     // Tính tổng thành tiền
-    private void calculateTotalAmount() {
-        // Implement your calculation logic here
+ 
+    public boolean findInvoice(String findQuery) {
+        return false;
     }
 
+<<<<<<< HEAD
     // Xuất hoá đơn
     private void exportInvoice() {
         // Implement your export logic here
@@ -310,6 +200,9 @@ public class ManagementApp {
 <<<<<<< HEAD:src/presentation/ManagementApp.java
 =======
     private void findInvoice() {
+=======
+    public void avergForeignInvoice() {
+>>>>>>> 6a59dba2eabec8fd4e78d45b3ac12885b2bafb99
         
     }
 >>>>>>> 3ffdeab03fc49c851a88f953545973cb77c8b88a:src/presentation/view/ManagementApp.java
@@ -443,6 +336,10 @@ public class ManagementApp {
 
     public JButton getFindButton() {
         return findButton;
+    }
+
+    public JButton getTBHDNNButton() {
+        return TBHDNNButton;
     }
     
 <<<<<<< HEAD:src/presentation/ManagementApp.java
