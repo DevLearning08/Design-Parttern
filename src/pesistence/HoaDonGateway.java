@@ -11,5 +11,6 @@ public interface HoaDonGateway {
     public void tbHoaDonNN(int maKH);
     public List<HoaDon> xuatHoaDonTrongThang();
     public HoaDon timKiemID(int maKH);   
-    public HoaDon timKiemTen(String hotenKH); 
+    public HoaDon timKiemTen(String hotenKH);
+    public List<HoaDon> getAllHoaDons(int maKH); 
 }

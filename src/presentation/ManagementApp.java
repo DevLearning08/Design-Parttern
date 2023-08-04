@@ -6,13 +6,12 @@ import javax.swing.table.DefaultTableModel;
 import presentation.controller.InvoiceManagementController;
 
 import java.awt.*;
-<<<<<<< HEAD
+
 import java.util.ArrayList;
 import domain.HoadonService;
-=======
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
->>>>>>> 32afa0d2fbf1c84ccfaeeeadee4c5fa5e92736c0
+
 
 public class ManagementApp {
     private JFrame frame;
@@ -29,7 +28,7 @@ public class ManagementApp {
     private JTextField nationalityField;
     private JScrollPane scrollPane;
 
-<<<<<<< HEAD
+
     // public static void main(String[] args) {
     //     SwingUtilities.invokeLater(() -> {
     //         try {
@@ -39,35 +38,34 @@ public class ManagementApp {
     //         }
     //     });
     // }
-=======
-<<<<<<< HEAD
+
     private ArrayList<ManagementApp> billList = new ArrayList<>();
     private HoadonService hoadonServiceRemote;
-    public void initialize() {
+    // public void initialize() {
 
         
 
         
-        // Tạo JFrame và cấu hình giao diện chính
-        setTitle("Quản lý danh sách hoá đơn tiền điện");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new BorderLayout());
-        setExtendedState(JFrame.MAXIMIZED_BOTH);
+    //     // Tạo JFrame và cấu hình giao diện chính
+    //     setTitle("Quản lý danh sách hoá đơn tiền điện");
+    //     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    //     getContentPane().setLayout(new BorderLayout());
+    //     setExtendedState(JFrame.MAXIMIZED_BOTH);
         
-        // Tạo DefaultTableModel và JTable để hiển thị danh sách hoá đơn
-        tableModel = new DefaultTableModel(new String[]{"Loại khách hàng", "Họ và tên", "Mã khách hàng",
-        "Đối tượng", "Ngày xuất hoá đơn", "Số lượng", "Đơn giá", "Định mức", "Quốc tịch", "Thành tiền"}, 0);
-=======
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            try {
-                new ManagementApp().initialize();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
-    }
->>>>>>> 999ef153febda5c7d8705ab0dddcd99978df2237
+    //     // Tạo DefaultTableModel và JTable để hiển thị danh sách hoá đơn
+    //     tableModel = new DefaultTableModel(new String[]{"Loại khách hàng", "Họ và tên", "Mã khách hàng",
+    //     "Đối tượng", "Ngày xuất hoá đơn", "Số lượng", "Đơn giá", "Định mức", "Quốc tịch", "Thành tiền"}, 0);
+
+    //  public static void main(String[] args) {
+    //      SwingUtilities.invokeLater(() -> {
+    //          try {
+    //             new ManagementApp().initialize();
+    //         } catch (Exception e) {
+    //             e.printStackTrace();
+    //         }
+    //     });
+    // }
+
 
     public void initialize() {
         // Tạo JFrame và cấu hình giao diện chính
@@ -79,7 +77,7 @@ public class ManagementApp {
         // Tạo DefaultTableModel và JTable để hiển thị danh sách hoá đơn
         tableModel = new DefaultTableModel(new String[]{"Mục", "Loại khách hàng", "Họ và tên", "Mã khách hàng",
                 "Đối tượng", "Ngày xuất hoá đơn", "Số lượng", "Đơn giá", "Định mức", "Quốc tịch"}, 0);
->>>>>>> 32afa0d2fbf1c84ccfaeeeadee4c5fa5e92736c0
+
         table = new JTable(tableModel);
         scrollPane = new JScrollPane(table);
         
@@ -90,13 +88,12 @@ public class ManagementApp {
         // Thêm JScrollPane vào JFrame
         frame.getContentPane().add(scrollPane, BorderLayout.CENTER);
 
-<<<<<<< HEAD
+
         // Thêm JPanel để nhập thông tin hoá đơn vào JFrame
-        ManagementAppInput managementAppInput = new ManagementAppInput(this);
-        getContentPane().add(managementAppInput, BorderLayout.NORTH);
+      
         
         
-=======
+
         // Tạo JPanel để nhập thông tin hoá đơn
         JPanel inputPanel = new JPanel(new GridLayout(0, 2, 5, 5));
         fullNameField = new JTextField();
@@ -134,7 +131,7 @@ public class ManagementApp {
         // Đưa inputPanel vào JFrame
         frame.getContentPane().add(inputPanel, BorderLayout.NORTH);
 
->>>>>>> 32afa0d2fbf1c84ccfaeeeadee4c5fa5e92736c0
+
         // Set kích thước và hiển thị JFrame
         frame.setSize(800, 500);
         frame.setLocationRelativeTo(null); // Đưa JFrame vào giữa màn hình
@@ -280,17 +277,17 @@ public class ManagementApp {
         // Implement your export logic here
     }
 
-<<<<<<< HEAD
+
     public DefaultTableModel getTableModel() {
         return null;
     }
-=======
+
 
 
     public HoadonService getHoadonServiceRemote() {
         return hoadonServiceRemote;
     }
     
->>>>>>> 999ef153febda5c7d8705ab0dddcd99978df2237
+
 }
 
