@@ -5,14 +5,16 @@ import java.util.List;
 import domain.model.HoaDon;
 
 public interface HoaDonDAO {
-    public void themHoaDon(HoaDon hoaDon);
-    public void xoaHoaDon(int maKH);
+    public void themHoaDonVN(HoaDon hoaDon);
+    public void themHoaDonNuocNgoai(HoaDon hoaDon);
+    public void xoaHoaDon(int maKH, HoaDon hoaDon);
     public void suaHoaDon(HoaDon hoaDon);
     public void tinhSoLuongTungLoai(int maKH);
     public void tbHoaDonNN(int maKH);
     public List<HoaDon> xuatHoaDonTrongThang();
-    public HoaDon timKiemID(int maKH);   
-    public HoaDon timKiemTen(String hotenKH); 
+    public HoaDon timKiemID(int maKH,HoaDon hoaDon);   
+    public HoaDon timKiemTenVN(String hotenKH); 
+    public HoaDon timKiemTenNN(String hotenKH);
     
 }
   

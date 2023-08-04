@@ -13,16 +13,16 @@ public class HoaDonDAOImpl implements HoaDonDAO {
 
 
     @Override
-    public void themHoaDon(HoaDon hoaDon) {
+    public void themHoaDonVN(HoaDon hoaDon) {
         HoaDonGateway hoaDonGateway = new HoaDonGatewayImpl();
-        hoaDonGateway.themHoaDon(hoaDon);
+        hoaDonGateway.themHoaDonVN(hoaDon);
         
     }
 
     @Override
-    public void xoaHoaDon(int maKH) {
+    public void xoaHoaDon(int maKH, HoaDon hoaDon) {
         HoaDonGateway hoaDonGateway = new HoaDonGatewayImpl();
-        hoaDonGateway.xoaHoaDon(maKH);
+        hoaDonGateway.xoaHoaDon(maKH, hoaDon);
         
     }
 
@@ -51,14 +51,26 @@ public class HoaDonDAOImpl implements HoaDonDAO {
     }
 
     @Override
-    public HoaDon timKiemID(int maKH) {
+    public HoaDon timKiemID(int maKH, HoaDon hoaDon) {
         HoaDonGateway hoaDonGateway = new HoaDonGatewayImpl();
-        return hoaDonGateway.timKiemID(maKH);
+        return hoaDonGateway.timKiemID(maKH, hoaDon);
     }
     
     @Override
-    public HoaDon timKiemTen(String hotenKH) {
+    public HoaDon timKiemTenVN(String hotenKH) {
         HoaDonGateway hoaDonGateway = new HoaDonGatewayImpl();
-        return hoaDonGateway.timKiemTen(hotenKH);
+        return hoaDonGateway.timKiemTenVN(hotenKH);
+    }
+
+    @Override
+    public void themHoaDonNuocNgoai(HoaDon hoaDon) {
+        HoaDonGateway hoaDonGateway = new HoaDonGatewayImpl();
+        hoaDonGateway.themHoaDonNuocNgoai(hoaDon);
+    }
+
+    @Override
+    public HoaDon timKiemTenNN(String hotenKH) {
+        HoaDonGateway hoaDonGateway = new HoaDonGatewayImpl();
+        return hoaDonGateway.timKiemTenNN(hotenKH);
     }
 }
