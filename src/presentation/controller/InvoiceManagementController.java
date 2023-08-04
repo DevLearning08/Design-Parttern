@@ -1,5 +1,6 @@
 package controller;
 
+import domain.model.*;
 import view.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,6 +18,8 @@ import domain.HoaDon_Timkiem;
 import domain.HoaDon_Xoa;
 import domain.HoaDon_XuatHDThang;
 import domain.HoadonService;
+import domain.model.DoiTuongKH;
+import domain.model.HoaDon;
 
 
 
@@ -70,7 +73,7 @@ public class InvoiceManagementController implements ActionListener {
         JTextField nationalityFieldRemote = managementAppRemote.getNationalityField();
         String nationalityField = nationalityFieldRemote.getText();
         
-        HoadonService modelRemote = managementAppRemote.getHoadonService();
+        
 
 
         HoadonService tinhHoaDonTungloai = new HoaDon_SolgTungLoai();
@@ -121,7 +124,7 @@ public class InvoiceManagementController implements ActionListener {
         
         // sua 
         
-        JButton updateButtonRemote = managementAppRemote.getUpdateButton();
+        JButton updateButtonRemote = managementAppRemote.getEditButton();
         updateButtonRemote.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
