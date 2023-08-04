@@ -23,6 +23,13 @@ public class ManagementApp {
     private JScrollPane scrollPane;
 
 
+    private JButton addButton = new JButton("Thêm");
+    private JButton deleteButton = new JButton("Xoá");
+    private JButton editButton = new JButton("Sửa");
+    private JButton calculateButton = new JButton("Thành tiền");
+    private JButton exportButton = new JButton("Xuất hoá đơn");
+
+
 
     public void initialize() {
         // Tạo JFrame và cấu hình giao diện chính
@@ -93,12 +100,7 @@ public class ManagementApp {
     // Tạo JPanel chứa các nút bấm để thêm, xoá, sửa, tính toán và xuất hoá đơn
     private JPanel createButtonPanel() {
         JPanel panel = new JPanel();
-        JButton addButton = new JButton("Thêm");
-        JButton deleteButton = new JButton("Xoá");
-        JButton editButton = new JButton("Sửa");
-        JButton calculateButton = new JButton("Thành tiền");
-        JButton exportButton = new JButton("Xuất hoá đơn");
-
+        
         // Xử lý sự kiện khi nhấn các nút bấm
         addButton.addActionListener(new ActionListener() {
             @Override
@@ -329,9 +331,26 @@ public class ManagementApp {
     public void setScrollPane(JScrollPane scrollPane) {
         this.scrollPane = scrollPane;
     }
-    
 
+    public JButton getAddButton() {
+        return addButton;
+    }
 
+    public JButton getDeleteButton() {
+        return deleteButton;
+    }
+
+    public JButton getEditButton() {
+        return editButton;
+    }
+
+    public JButton getCalculateButton() {
+        return calculateButton;
+    }
+
+    public JButton getExportButton() {
+        return exportButton;
+    }
     
 }
 
