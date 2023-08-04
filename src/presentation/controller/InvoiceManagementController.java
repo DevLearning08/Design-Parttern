@@ -23,15 +23,15 @@ import domain.HoadonService;
 
 public class InvoiceManagementController implements ActionListener {
     private ManagementApp managementAppRemote;
-<<<<<<< HEAD
+
     
     
 
-=======
+
     private ManagementAppInfor managementAppInforRemote;
     private ManagementAppInput managementAppInputRemote;
     private HoadonService hoadonServiceRemote;
->>>>>>> 999ef153febda5c7d8705ab0dddcd99978df2237
+
 
     public InvoiceManagementController() {
         

@@ -3,19 +3,19 @@
 // import javax.swing.*;
 // import javax.swing.table.DefaultTableModel;
 
-<<<<<<< HEAD
+
 // import java.awt.*;
 // import java.awt.event.ActionEvent;
 // import java.awt.event.ActionListener;
 // import java.util.ArrayList;
-=======
+
 import presentation.controller.InvoiceManagementController;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
->>>>>>> 999ef153febda5c7d8705ab0dddcd99978df2237
+
 
 // public class ManagementAppInput extends JPanel {
 //     private JTextField fullNameFieldRemote;
@@ -28,7 +28,7 @@ import java.util.ArrayList;
 //     private JTextField quotaFieldRemote;
 //     private JTextField nationalityFieldRemote;
 
-<<<<<<< HEAD
+
 //     private ManagementApp managementApp;
 
 //     public ManagementAppInput(ManagementApp managementApp) {
@@ -47,7 +47,7 @@ import java.util.ArrayList;
 //         unitPriceFieldRemote = new JTextField();
 //         quotaFieldRemote = new JTextField();
 //         nationalityFieldRemote = new JTextField();
-=======
+
     private ManagementApp managementApp;
     //  remote controller 
 
@@ -79,7 +79,7 @@ import java.util.ArrayList;
         unitPriceFieldRemote = new JTextField();
         quotaFieldRemote = new JTextField();
         nationalityFieldRemote = new JTextField();
->>>>>>> 999ef153febda5c7d8705ab0dddcd99978df2237
+
 
 //         // Thêm các thành phần vào InputPanel
 //         add(new JLabel("Loại khách hàng:"));
@@ -105,7 +105,7 @@ import java.util.ArrayList;
 
 //     }
 
-<<<<<<< HEAD
+
 //     // Tạo JPanel chứa các nút bấm để thêm, xoá, sửa, tính toán và xuất hoá đơn
 //     private JPanel createButtonPanel() {
 //         JPanel panel = new JPanel();
@@ -135,7 +135,7 @@ import java.util.ArrayList;
 //         panel.add(searchButton);
 //         panel.add(invoiceButton);
 //         // ...
-=======
+
     // Tạo JPanel chứa các nút bấm để thêm, xoá, sửa, tính toán và xuất hoá đơn
     private JPanel createButtonPanel() {
         JPanel panel = new JPanel();
@@ -160,12 +160,12 @@ import java.util.ArrayList;
         panel.add(searchButtonRemote);
         panel.add(invoiceButtonRemote);
         // ...
->>>>>>> 999ef153febda5c7d8705ab0dddcd99978df2237
+
 
 //         return panel;
 //     }
 
-<<<<<<< HEAD
+
 //     private void addBill() {
 //         // Lấy thông tin từ các trường nhập liệu
 //         String customerType = (String) customerTypeComboBoxRemote.getSelectedItem();
@@ -177,7 +177,7 @@ import java.util.ArrayList;
 //         String unitPrice = unitPriceFieldRemote.getText();
 //         String quota = quotaFieldRemote.getText();
 //         String nationality = nationalityFieldRemote.getText();
-=======
+
     public void addBill() {
         // Lấy thông tin từ các trường nhập liệu
         String customerType = (String) customerTypeComboBoxRemote.getSelectedItem();
@@ -189,7 +189,7 @@ import java.util.ArrayList;
         String unitPrice = unitPriceFieldRemote.getText();
         String quota = quotaFieldRemote.getText();
         String nationality = nationalityFieldRemote.getText();
->>>>>>> 999ef153febda5c7d8705ab0dddcd99978df2237
+
 
 //         // Kiểm tra xem có trường nào bị bỏ trống không
 //         if (!customerType.isEmpty() && !fullName.isEmpty() && !customerId.isEmpty() && !customerObject.isEmpty()
@@ -200,7 +200,7 @@ import java.util.ArrayList;
 //             tableModel.addRow(new String[]{customerType, fullName, customerId, customerObject,
 //                     invoiceDate, quantity, unitPrice, quota, nationality});
 
-<<<<<<< HEAD
+
 //             // Thêm thông tin vào danh sách hoá đơn
 //             ArrayList<ManagementAppInfor> billList = ManagementAppInfor.getBillList();
 //             ManagementAppInfor bill = new ManagementAppInfor(fullName, customerId, customerType, customerObject,
@@ -210,7 +210,7 @@ import java.util.ArrayList;
 //             JOptionPane.showMessageDialog(this, "Vui lòng điền đầy đủ thông tin.");
 //         }
 //     }
-=======
+
             // Thêm thông tin vào danh sách hoá đơn
             ArrayList<ManagementAppInfor> billList = ManagementAppInfor.getBillList();
             ManagementAppInfor bill = new ManagementAppInfor(fullName, customerId, customerType, customerObject,
@@ -349,6 +349,6 @@ import java.util.ArrayList;
         this.invoiceButtonRemote = invoiceButtonRemote;
     }
     
->>>>>>> 999ef153febda5c7d8705ab0dddcd99978df2237
+
     
 // }
