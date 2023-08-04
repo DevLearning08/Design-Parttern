@@ -26,10 +26,54 @@ public class ManagementApp {
     private JTextField nationalityField;
     private JScrollPane scrollPane;
 
+<<<<<<< HEAD:src/presentation/view/ManagementApp.java
     private ArrayList<ManagementApp> billList = new ArrayList<>();
     private HoadonService hoadonServiceRemote;
  
     private void initialize() {
+=======
+<<<<<<< HEAD
+    // public static void main(String[] args) {
+    //     SwingUtilities.invokeLater(() -> {
+    //         try {
+    //             new ManagementApp().initialize();
+    //         } catch (Exception e) {
+    //             e.printStackTrace();
+    //         }
+    //     });
+    // }
+=======
+<<<<<<< HEAD
+    private ArrayList<ManagementApp> billList = new ArrayList<>();
+    private HoadonService hoadonServiceRemote;
+    public void initialize() {
+
+        
+
+        
+        // Tạo JFrame và cấu hình giao diện chính
+        setTitle("Quản lý danh sách hoá đơn tiền điện");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new BorderLayout());
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
+        
+        // Tạo DefaultTableModel và JTable để hiển thị danh sách hoá đơn
+        tableModel = new DefaultTableModel(new String[]{"Loại khách hàng", "Họ và tên", "Mã khách hàng",
+        "Đối tượng", "Ngày xuất hoá đơn", "Số lượng", "Đơn giá", "Định mức", "Quốc tịch", "Thành tiền"}, 0);
+=======
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> {
+            try {
+                new ManagementApp().initialize();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+    }
+>>>>>>> 999ef153febda5c7d8705ab0dddcd99978df2237
+
+    public void initialize() {
+>>>>>>> ba893979af0674baf4c1f90e8152ec920e5f6033:src/presentation/ManagementApp.java
         // Tạo JFrame và cấu hình giao diện chính
         frame = new JFrame("Quản lý danh sách hoá đơn tiền điện");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -234,11 +278,17 @@ public class ManagementApp {
         // Implement your export logic here
     }
 
+<<<<<<< HEAD
+    public DefaultTableModel getTableModel() {
+        return null;
+    }
+=======
 
 
     public HoadonService getHoadonServiceRemote() {
         return hoadonServiceRemote;
     }
     
+>>>>>>> 999ef153febda5c7d8705ab0dddcd99978df2237
 }
 

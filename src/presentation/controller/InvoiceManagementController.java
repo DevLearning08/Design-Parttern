@@ -1,8 +1,8 @@
 package presentation.controller;
 
-import presentation.view.ManagementApp;
-import presentation.view.ManagementAppInfor;
-
+import presentation.ManagementApp;
+import presentation.ManagementAppInfor;
+import presentation.ManagementAppInput;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -23,6 +23,7 @@ import domain.HoadonService;
 
 
 public class InvoiceManagementController implements ActionListener {
+    private ManagementApp managementAppRemote;
     private ManagementAppInfor managementAppInforRemote;
     private ManagementApp managementAppInputRemote;
     private HoadonService hoadonServiceRemote;
@@ -47,12 +48,12 @@ public class InvoiceManagementController implements ActionListener {
     }
 
 
-    public ManagementApp getManagementAppInputRemote() {
+    public ManagementAppInput getManagementAppInputRemote() {
         return managementAppInputRemote;
     }
 
 
-    public void setManagementAppInputRemote(ManagementApp managementAppInputRemote) {
+    public void setManagementAppInputRemote(ManagementAppInput managementAppInputRemote) {
         this.managementAppInputRemote = managementAppInputRemote;
     }
     
