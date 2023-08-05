@@ -6,7 +6,7 @@ public class HoaDonVietNam extends HoaDon {
     private DoiTuongKH doiTuongHK;
     private Double dinhMuc;
 
-    public HoaDonVietNam(int maKH, String hotenKH, Date ngayraHD, Double soLuong, Double donGia, DoiTuongKH doiTuongHK, Double dinhMuc) {
+    public HoaDonVietNam(int maKH, String hotenKH, Date ngayraHD, Double soLuong, Double donGia, DoiTuongKH doiTuongHK, Double dinhMuc, Double thanhTien) {
         super(maKH, hotenKH, ngayraHD, soLuong, donGia);
         this.doiTuongHK = doiTuongHK;
         this.dinhMuc = dinhMuc;
@@ -15,10 +15,12 @@ public class HoaDonVietNam extends HoaDon {
     @Override
     public Double thanhTien() {
         if(getSoLuong() <= dinhMuc){
-            return getSoLuong() * getDonGia();
+            Double thanhTien = getDonGia() * getSoLuong();
+            return thanhTien;
         }
         else{
-            return (getSoLuong() * getDonGia() * dinhMuc) + ((getSoLuong() - dinhMuc)* getDonGia() * 2.5);
+            Double thanhTien =  getDonGia() * dinhMuc + ((getSoLuong() - dinhMuc)* getDonGia() * 2.5);
+            return thanhTien;
         }
     }
 

@@ -3,16 +3,11 @@ package view;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
+import controller.InvoiceManagementController;
+
 import java.awt.*;
+import java.lang.ModuleLayer.Controller;
 
-
-import java.util.ArrayList;
-import domain.HoadonService;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class ManagementApp {
     private JFrame frame;
@@ -28,45 +23,6 @@ public class ManagementApp {
     private JTextField quotaField;
     private JTextField nationalityField;
     private JScrollPane scrollPane;
-
-
-    // public static void main(String[] args) {
-    //     SwingUtilities.invokeLater(() -> {
-    //         try {
-    //             new ManagementApp().initialize();
-    //         } catch (Exception e) {
-    //             e.printStackTrace();
-    //         }
-    //     });
-    // }
-
-    // private ArrayList<ManagementApp> billList = new ArrayList<>();
-    // private HoadonService hoadonServiceRemote;
-    // public void initialize() {
-
-        
-
-        
-    //     // Tạo JFrame và cấu hình giao diện chính
-    //     setTitle("Quản lý danh sách hoá đơn tiền điện");
-    //     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    //     getContentPane().setLayout(new BorderLayout());
-    //     setExtendedState(JFrame.MAXIMIZED_BOTH);
-        
-    //     // Tạo DefaultTableModel và JTable để hiển thị danh sách hoá đơn
-    //     tableModel = new DefaultTableModel(new String[]{"Loại khách hàng", "Họ và tên", "Mã khách hàng",
-    //     "Đối tượng", "Ngày xuất hoá đơn", "Số lượng", "Đơn giá", "Định mức", "Quốc tịch", "Thành tiền"}, 0);
-
-    //  public static void main(String[] args) {
-    //      SwingUtilities.invokeLater(() -> {
-    //          try {
-    //             new ManagementApp().initialize();
-    //         } catch (Exception e) {
-    //             e.printStackTrace();
-    //         }
-    //     });
-    // }
-
 
     private JButton addButton = new JButton("Thêm");
     private JButton deleteButton = new JButton("Xoá");
@@ -85,8 +41,6 @@ public class ManagementApp {
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
     
         // Tạo DefaultTableModel và JTable để hiển thị danh sách hoá đơn
-        tableModel = new DefaultTableModel(new String[]{"Mục", "Loại khách hàng", "Họ và tên", "Mã khách hàng",
-                "Đối tượng", "Ngày xuất hoá đơn", "Số lượng", "Đơn giá", "Định mức", "Quốc tịch"}, 0);
 
         tableModel = new DefaultTableModel(new String[]{"Loại khách hàng", "Họ và tên", "Mã khách hàng",
                 "Đối tượng", "Ngày xuất hoá đơn", "Số lượng", "Đơn giá", "Định mức", "Quốc tịch", "Thành tiền"}, 0);
@@ -99,12 +53,6 @@ public class ManagementApp {
     
         // Thêm JScrollPane vào JFrame
         frame.getContentPane().add(scrollPane, BorderLayout.CENTER);
-
-
-        // Thêm JPanel để nhập thông tin hoá đơn vào JFrame
-      
-        
-        
 
     
         // Tạo JPanel để nhập thông tin hoá đơn
@@ -144,16 +92,21 @@ public class ManagementApp {
         // Đưa inputPanel vào JFrame
         frame.getContentPane().add(inputPanel, BorderLayout.NORTH);
 
-
         // Set kích thước và hiển thị JFrame
         frame.setSize(800, 500);
         frame.setLocationRelativeTo(null); // Đưa JFrame vào giữa màn hình
         frame.setVisible(true);
+
+
+        //  // Khởi tạo controller để lắng nghe sự kiện
+        InvoiceManagementController controller = new InvoiceManagementController(this);
+        controller.initializeListeners();
+
     }
+    
     
     // Tạo JPanel chứa các nút bấm để thêm, xoá, sửa, tính toán, xuất hoá đơn, tìm kiếm, TB hóa đơn nước ngoài
     private JPanel createButtonPanel() {
-
         JPanel panel = new JPanel();
         // Thêm các nút bấm vào panel
         panel.add(addButton);
@@ -165,21 +118,19 @@ public class ManagementApp {
         panel.add(TBHDNNButton);
         return panel;
     }
-    // Tính tổng thành tiền
+    
+
+
+    // Thêm thông tin hoá đơn vào bảng
  
-    // public boolean findInvoice(String findQuery) {
-    //     return false;
-    // }
 
-    // // Xuất hoá đơn
-    // private void exportInvoice() {
-    //     // Implement your export logic here
-    // }
+    public boolean findInvoice(String findQuery) {
+        return false;
+    }
 
-    // private void findInvoice() {}
-    // public void avergForeignInvoice() {
+    public void avergForeignInvoice() {
         
-    // }
+    }
 
     public DefaultTableModel getTableModel() {
         return null;
@@ -307,6 +258,7 @@ public class ManagementApp {
     public JButton getFindButton() {
         return findButton;
     }
+
 
     public JButton getTBHDNNButton() {
         return TBHDNNButton;
