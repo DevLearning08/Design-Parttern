@@ -4,21 +4,16 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
 import java.awt.*;
-<<<<<<< HEAD
-<<<<<<< HEAD:src/presentation/ManagementApp.java
+
 
 import java.util.ArrayList;
 import domain.HoadonService;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-=======
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
->>>>>>> 3ffdeab03fc49c851a88f953545973cb77c8b88a:src/presentation/view/ManagementApp.java
 
-=======
->>>>>>> 6a59dba2eabec8fd4e78d45b3ac12885b2bafb99
 public class ManagementApp {
     private JFrame frame;
     private JTable table;
@@ -34,7 +29,6 @@ public class ManagementApp {
     private JTextField nationalityField;
     private JScrollPane scrollPane;
 
-<<<<<<< HEAD:src/presentation/ManagementApp.java
 
     // public static void main(String[] args) {
     //     SwingUtilities.invokeLater(() -> {
@@ -46,8 +40,8 @@ public class ManagementApp {
     //     });
     // }
 
-    private ArrayList<ManagementApp> billList = new ArrayList<>();
-    private HoadonService hoadonServiceRemote;
+    // private ArrayList<ManagementApp> billList = new ArrayList<>();
+    // private HoadonService hoadonServiceRemote;
     // public void initialize() {
 
         
@@ -73,19 +67,15 @@ public class ManagementApp {
     //     });
     // }
 
-=======
 
     private JButton addButton = new JButton("Thêm");
     private JButton deleteButton = new JButton("Xoá");
     private JButton editButton = new JButton("Sửa");
+    private JButton findButton = new JButton("Tìm kiếm");
     private JButton calculateButton = new JButton("Thành tiền");
     private JButton exportButton = new JButton("Xuất hoá đơn");
-    private JButton findButton = new JButton("Tìm kiếm");
-<<<<<<< HEAD
->>>>>>> 3ffdeab03fc49c851a88f953545973cb77c8b88a:src/presentation/view/ManagementApp.java
-=======
+
     private JButton TBHDNNButton = new JButton("Tính TB hóa đơn nước ngoài");
->>>>>>> 6a59dba2eabec8fd4e78d45b3ac12885b2bafb99
 
     public void initialize() {
         // Tạo JFrame và cấu hình giao diện chính
@@ -95,14 +85,11 @@ public class ManagementApp {
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
     
         // Tạo DefaultTableModel và JTable để hiển thị danh sách hoá đơn
-<<<<<<< HEAD:src/presentation/ManagementApp.java
         tableModel = new DefaultTableModel(new String[]{"Mục", "Loại khách hàng", "Họ và tên", "Mã khách hàng",
                 "Đối tượng", "Ngày xuất hoá đơn", "Số lượng", "Đơn giá", "Định mức", "Quốc tịch"}, 0);
 
-=======
         tableModel = new DefaultTableModel(new String[]{"Loại khách hàng", "Họ và tên", "Mã khách hàng",
                 "Đối tượng", "Ngày xuất hoá đơn", "Số lượng", "Đơn giá", "Định mức", "Quốc tịch", "Thành tiền"}, 0);
->>>>>>> 3ffdeab03fc49c851a88f953545973cb77c8b88a:src/presentation/view/ManagementApp.java
         table = new JTable(tableModel);
         scrollPane = new JScrollPane(table);
     
@@ -112,7 +99,6 @@ public class ManagementApp {
     
         // Thêm JScrollPane vào JFrame
         frame.getContentPane().add(scrollPane, BorderLayout.CENTER);
-<<<<<<< HEAD:src/presentation/ManagementApp.java
 
 
         // Thêm JPanel để nhập thông tin hoá đơn vào JFrame
@@ -120,9 +106,7 @@ public class ManagementApp {
         
         
 
-=======
     
->>>>>>> 3ffdeab03fc49c851a88f953545973cb77c8b88a:src/presentation/view/ManagementApp.java
         // Tạo JPanel để nhập thông tin hoá đơn
         JPanel inputPanel = new JPanel(new GridLayout(0, 2, 5, 5));
         fullNameField = new JTextField();
@@ -159,12 +143,8 @@ public class ManagementApp {
     
         // Đưa inputPanel vào JFrame
         frame.getContentPane().add(inputPanel, BorderLayout.NORTH);
-<<<<<<< HEAD:src/presentation/ManagementApp.java
 
 
-=======
-    
->>>>>>> 3ffdeab03fc49c851a88f953545973cb77c8b88a:src/presentation/view/ManagementApp.java
         // Set kích thước và hiển thị JFrame
         frame.setSize(800, 500);
         frame.setLocationRelativeTo(null); // Đưa JFrame vào giữa màn hình
@@ -187,33 +167,23 @@ public class ManagementApp {
     }
     // Tính tổng thành tiền
  
-    public boolean findInvoice(String findQuery) {
-        return false;
-    }
+    // public boolean findInvoice(String findQuery) {
+    //     return false;
+    // }
 
-<<<<<<< HEAD
-    // Xuất hoá đơn
-    private void exportInvoice() {
-        // Implement your export logic here
-    }
+    // // Xuất hoá đơn
+    // private void exportInvoice() {
+    //     // Implement your export logic here
+    // }
 
-<<<<<<< HEAD:src/presentation/ManagementApp.java
-=======
-    private void findInvoice() {
-=======
-    public void avergForeignInvoice() {
->>>>>>> 6a59dba2eabec8fd4e78d45b3ac12885b2bafb99
+    // private void findInvoice() {}
+    // public void avergForeignInvoice() {
         
-    }
->>>>>>> 3ffdeab03fc49c851a88f953545973cb77c8b88a:src/presentation/view/ManagementApp.java
+    // }
 
     public DefaultTableModel getTableModel() {
         return null;
     }
-<<<<<<< HEAD:src/presentation/ManagementApp.java
-
-=======
->>>>>>> 3ffdeab03fc49c851a88f953545973cb77c8b88a:src/presentation/view/ManagementApp.java
 
     public JFrame getFrame() {
         return frame;
@@ -342,9 +312,6 @@ public class ManagementApp {
         return TBHDNNButton;
     }
     
-<<<<<<< HEAD:src/presentation/ManagementApp.java
 
-=======
->>>>>>> 3ffdeab03fc49c851a88f953545973cb77c8b88a:src/presentation/view/ManagementApp.java
 }
 

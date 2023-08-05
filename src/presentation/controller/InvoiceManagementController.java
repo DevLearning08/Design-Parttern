@@ -24,19 +24,13 @@ import domain.model.HoaDon;
 
 public class InvoiceManagementController implements ActionListener {
     private ManagementApp managementAppRemote;
-<<<<<<< HEAD
 
     
     
 
 
-    private ManagementAppInfor managementAppInforRemote;
-    private ManagementAppInput managementAppInputRemote;
-    private HoadonService hoadonServiceRemote;
 
-=======
     private HoadonService hoadonServiceRemote;
->>>>>>> 3ffdeab03fc49c851a88f953545973cb77c8b88a
 
     public InvoiceManagementController() {
         
@@ -87,7 +81,7 @@ public class InvoiceManagementController implements ActionListener {
         
 
 
-        HoadonService tinhHoaDonTungloai = new HoaDon_SolgTungLoai();
+        HoadonService thanhTien = new HoaDon_SolgTungLoai();
         HoadonService them = new HoaDon_Them();
         HoadonService sua = new HoaDon_Sua();
         HoadonService xoa = new HoaDon_Xoa();
@@ -157,34 +151,30 @@ public class InvoiceManagementController implements ActionListener {
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "sua khong thanh cong");
         }
-        // tinh hoa don
+        // Thanh tien
         JButton calculateButtonRemote = managementAppRemote.getCalculateButton();
         try{
             calculateButtonRemote.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    if (customerType.isEmpty() && fullName.isEmpty() && customerIdField.isEmpty() && customerOject.isEmpty()
-                            && invoiceDateField.isEmpty() && quantityField.isEmpty() && unitPriceField.isEmpty() && quotaField.isEmpty()&& nationalityField.isEmpty()
-                    ) {
-                        tinhHoaDonTungloai.action();
+                  
+                        thanhTien.action();
                     }
-                }
+                
             });
         }catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "tinh hoa don khong thanh cong");
         }
         
-        // so luong
+        // hoa don thang
         JButton exportButtonRemote = managementAppRemote.getExportButton();
         try{
             exportButtonRemote.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    if (customerType.isEmpty() && fullName.isEmpty() && customerIdField.isEmpty() && customerOject.isEmpty()
-                            && invoiceDateField.isEmpty() && quantityField.isEmpty() && unitPriceField.isEmpty() && quotaField.isEmpty() && nationalityField.isEmpty()
-                    ) {
+                    
                         xuatHoaDonThang.action();
-                    }
+                   
                 }
             });
         }catch (Exception ex) {
@@ -195,11 +185,9 @@ public class InvoiceManagementController implements ActionListener {
         TBHDNNButtonRemote.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (customerType.isEmpty() && fullName.isEmpty() && customerIdField.isEmpty() && customerOject.isEmpty()
-                        && invoiceDateField.isEmpty() && quantityField.isEmpty() && unitPriceField.isEmpty() && quotaField.isEmpty() && nationalityField.isEmpty()
-                ) {
+                
                     TBHHDNN.action();
-                }
+                
             }
         });
         }catch (Exception ex) {
