@@ -7,6 +7,7 @@ import controller.InvoiceManagementController;
 
 import java.awt.*;
 import java.lang.ModuleLayer.Controller;
+import java.sql.Date;
 
 
 public class ManagementApp {
@@ -17,7 +18,7 @@ public class ManagementApp {
     private JTextField customerIdField;
     private JComboBox<String> customerTypeComboBox;
     private JComboBox<String> customerObjectComboBox;
-    private JTextField invoiceDateField;
+    private JSpinner invoiceDateField;
     private JTextField quantityField;
     private JTextField unitPriceField;
     private JTextField quotaField;
@@ -61,7 +62,12 @@ public class ManagementApp {
         customerIdField = new JTextField();
         customerTypeComboBox = new JComboBox<>(new String[]{"", "Khách hàng Việt Nam", "Khách hàng nước ngoài"});
         customerObjectComboBox = new JComboBox<>(new String[]{"", "Kinh doanh", "Định mức", "Sản xuất"});
-        invoiceDateField = new JTextField();
+        // ---------------------------------------------------------
+        // tạo Ô nhập chon ngày tháng 
+        invoiceDateField = new JSpinner(new SpinnerDateModel());
+        JSpinner.DateEditor dateEditor = new JSpinner.DateEditor(invoiceDateField, "dd/MM/yyyy");
+        invoiceDateField.setEditor(dateEditor);
+        // ---------------------------------------------------------
         quantityField = new JTextField();
         unitPriceField = new JTextField();
         quotaField = new JTextField();
@@ -88,7 +94,7 @@ public class ManagementApp {
         inputPanel.add(nationalityField);
         inputPanel.add(new JLabel());
         inputPanel.add(createButtonPanel());
-    
+        
         // Đưa inputPanel vào JFrame
         frame.getContentPane().add(inputPanel, BorderLayout.NORTH);
 
@@ -187,13 +193,17 @@ public class ManagementApp {
         this.customerObjectComboBox = customerObjectComboBox;
     }
 
-    public JTextField getInvoiceDateField() {
+
+
+    public JSpinner getInvoiceDateField() {
         return invoiceDateField;
     }
 
-    public void setInvoiceDateField(JTextField invoiceDateField) {
+
+    public void setInvoiceDateField(JSpinner invoiceDateField) {
         this.invoiceDateField = invoiceDateField;
     }
+
 
     public JTextField getQuantityField() {
         return quantityField;

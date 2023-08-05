@@ -3,11 +3,14 @@ package controller;
 import view.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Date;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import javax.swing.JSpinner;
 import javax.swing.JTextField;
+// import domain
 
 import domain.HoaDon_SolgTungLoai;
 import domain.HoaDon_Sua;
@@ -17,6 +20,10 @@ import domain.HoaDon_Timkiem;
 import domain.HoaDon_Xoa;
 import domain.HoaDon_XuatHDThang;
 import domain.HoadonService;
+// import domain.model
+import domain.model.HoaDonVietNam;
+import domain.model.HoaDon;
+import domain.model.HoaDonNuocNgoai;
 
 public class InvoiceManagementController implements ActionListener {
     private ManagementApp managementAppRemote;
@@ -30,8 +37,10 @@ public class InvoiceManagementController implements ActionListener {
     String customerIdField = customerIdFieldRemote.getText();
     JComboBox customerOjectComboBoxRemote = managementAppRemote.getCustomerObjectComboBox();
     String customerOject = (String) customerOjectComboBoxRemote.getSelectedItem();
-    JTextField invoiceDateFieldRemote = managementAppRemote.getInvoiceDateField();
-    String invoiceDateField = invoiceDateFieldRemote.getText();
+    // lấy ngày tháng năm
+    JSpinner invoiceDateFieldRemote = managementAppRemote.getInvoiceDateField();
+    Date invoiceDateField = (Date) invoiceDateFieldRemote.getValue();
+    
     JTextField quantityFieldRemote = managementAppRemote.getQuantityField();
     String quantityField = quantityFieldRemote.getText();
     JTextField unitPriceFieldRemote = managementAppRemote.getUnitPriceField();
@@ -58,8 +67,13 @@ public class InvoiceManagementController implements ActionListener {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    hoadonServiceRemote = new HoaDon_Timkiem();
-                    hoadonServiceRemote.action();
+                    if (customerType == "Khách hàng Việt Nam"){
+                        hoadonServiceRemote = new HoaDon_Timkiem();
+                        
+                        HoaDon hoaDon = new HoaDonVietNam();
+                        hoadonServiceRemote.action(hoaDon);
+                    }
+                   
                 } catch (Exception ex) {
                     JOptionPane.showMessageDialog(null, "Lưu không thành công 1");
                 }

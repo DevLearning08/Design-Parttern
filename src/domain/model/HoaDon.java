@@ -9,7 +9,6 @@ public abstract class HoaDon {
     private Double soLuong;
     private Double donGia;
 
-
     public HoaDon(int maKH, String hotenKH, Date ngayraHD, Double soLuong, Double donGia) {
         this.maKH = maKH;
         this.hotenKH = hotenKH;
