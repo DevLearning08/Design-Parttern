@@ -62,11 +62,11 @@ public class HoaDonDAOImpl implements HoaDonDAO {
         return hoaDonGateway.timKiemTenVN(hotenKH);
     }
 
-    //@Override
-    // public void themHoaDonNuocNgoai(HoaDon hoaDon) {
-    //     HoaDonGateway hoaDonGateway = new HoaDonGatewayImpl();
-    //     hoaDonGateway.themHoaDonNuocNgoai(hoaDon);
-    // }
+    @Override
+    public void themHoaDonNuocNgoai(HoaDon hoaDon) {
+        HoaDonGateway hoaDonGateway = new HoaDonGatewayImpl();
+        hoaDonGateway.themHoaDonNuocNgoai(hoaDon);
+    }
 
     @Override
     public HoaDon timKiemTenNN(String hotenKH) {

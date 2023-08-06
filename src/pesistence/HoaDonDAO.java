@@ -6,7 +6,7 @@ import domain.model.HoaDon;
 
 public interface HoaDonDAO {
     public void themHoaDonVN(HoaDon hoaDon);
-    //public void themHoaDonNuocNgoai(HoaDon hoaDon);
+    public void themHoaDonNuocNgoai(HoaDon hoaDon);
     public void xoaHoaDon(int maKH, HoaDon hoaDon);
     public void suaHoaDon(HoaDon hoaDon);
     public void tinhSoLuongTungLoai(int maKH);
