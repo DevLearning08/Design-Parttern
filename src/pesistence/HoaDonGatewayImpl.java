@@ -35,10 +35,10 @@ public class HoaDonGatewayImpl implements HoaDonGateway {
    
     @Override
     public void gopHoaDon(HoaDon hoaDon) {
-        String sql = "CREATE TABLE combined_data AS"+
-        "SELECT HoaDonVietNam (maKH, hotenKH, ngayraHD, soLuong, donGia, doiTuongHK, dinhMuc, thanhTien)"+
-        " FROM HoaDonVietNam"+
-        " INNER JOIN HoaDon ON HoaDonVietNam.maKH = HoaDonNuocNgoai.maKH";
+        String sql = " INSERT INTO HoaDon (maKH, hotenKH, ngayraHD, soLuong, donGia, doiTuongHK, quocTich, dinhMuc, thanhTien) "+
+        " SELECT HoaDonVietNam (maKH, hotenKH, ngayraHD, soLuong, donGia, doiTuongHK, dinhMuc, thanhTien) "+
+        " FROM HoaDonVietNam "+
+        " INNER JOIN HoaDon ON HoaDonVietNam.maKH = HoaDonNuocNgoai.maKH ";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.executeUpdate();
         System.out.println("Bảng combined_data đã được tạo thành công.");
