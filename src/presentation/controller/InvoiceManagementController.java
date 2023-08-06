@@ -57,16 +57,18 @@ public class InvoiceManagementController implements ActionListener {
         DefaultTableModel tableModel = managementAppRemote.getTableModel();
         JTable table = managementAppRemote.getTable();
         JComboBox customerTypeComboBox = managementAppRemote.getCustomerTypeComboBox();
+        String customerType = (String) customerTypeComboBox.getSelectedItem();
         // lấy dữ liệu từ view
         String fullName = fullNameCustomer.getText();
         int customerId = Integer.parseInt(customerIdField.getText());
         Date invoiceDate =Date.valueOf( invoiceDateField.getText());
         double quantity =Double.parseDouble( quantityField.getText());
         double unitPrice =Double.parseDouble( unitPriceField.getText());
-        double quota =Double.parseDouble( quotaField.getText());
+        
         String nationality = nationalityField.getText();
 
-        if(e.getSource() == addButton){
+        if(e.getActionCommand() == "Thêm"){
+            
             if(customerTypeComboBox.getSelectedItem().equals("Khách hàng nước ngoài")){
             hoaDon = new HoaDonNuocNgoai();
             hoaDon.setMaHD( customerId);
@@ -80,7 +82,8 @@ public class InvoiceManagementController implements ActionListener {
             HoadonService service2 = new HoaDon_GetAll();
             service2.action(hoaDon);
             managementAppRemote.showAll();
-        }else if(customerTypeComboBox.getSelectedItem().equals("khách hàng Việt Nam")){
+        }else if(customerTypeComboBox.getSelectedItem().equals("Khách hàng Việt Nam")){
+            double quota =Double.parseDouble( quotaField.getText());
             //set lại giá trị cho HoadonVietNam
             hoaDon = new HoaDonVietNam();
             hoaDon.setMaHD( customerId);
