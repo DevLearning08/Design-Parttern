@@ -3,14 +3,14 @@ package domain.model;
 import java.util.Date;
 
 public abstract class HoaDon {
-    private int maKH;
+    private int maHD;
     private String hotenKH;
     private Date ngayraHD;
     private Double soLuong;
     private Double donGia;
 
-    public HoaDon(int maKH, String hotenKH, Date ngayraHD, Double soLuong, Double donGia) {
-        this.maKH = maKH;
+    public HoaDon(int maHD, String hotenKH, Date ngayraHD, Double soLuong, Double donGia) {
+        this.maHD = maHD;
         this.hotenKH = hotenKH;
         this.ngayraHD = ngayraHD;
         this.soLuong = soLuong;
@@ -23,12 +23,12 @@ public abstract class HoaDon {
 
 
     //getter & setter
-    public int getMaKH() {
-        return maKH;
+    public int getMaHD() {
+        return maHD;
     }
 
-    public void setMaKH(int maKH) {
-        this.maKH = maKH;
+    public void setMaHD(int maKH) {
+        this.maHD = maKH;
     }
 
     public String getHotenKH() {
@@ -61,6 +61,12 @@ public abstract class HoaDon {
 
     public void setDonGia(Double donGia) {
         this.donGia = donGia;
+    }
+    public Object getHoVaTen() {
+        return null;
+    }
+    public Object getTinhTrang() {
+        return null;
     }
 
 

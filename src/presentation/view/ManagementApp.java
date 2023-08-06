@@ -9,10 +9,13 @@ import presentation.controller.InvoiceManagementController;
 import java.awt.*;
 
 import java.sql.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 
 public class ManagementApp {
     private HoaDon  hoaDon;
+    private InvoiceManagementController controlRemotel;
     private JFrame frame;
     private JTable table;
     private DefaultTableModel tableModel;
@@ -20,7 +23,7 @@ public class ManagementApp {
     private JTextField customerIdField;
     private JComboBox<String> customerTypeComboBox;
     private JComboBox<String> customerObjectComboBox;
-    private JSpinner invoiceDateField;
+    private JTextField invoiceDateField;
     private JTextField quantityField;
     private JTextField unitPriceField;
     private JTextField quotaField;
@@ -34,13 +37,12 @@ public class ManagementApp {
     private JButton calculateButton = new JButton("Thành tiền");
     private JButton exportButton = new JButton("Xuất hoá đơn");
 
-    private JButton TBHDNNButton = new JButton("Tính TB hóa đơn nước ngoài");
-    public ManagementApp(HoaDon hoaDon) {
-        this.hoaDon = hoaDon;
-    
-    }
 
-    public void initialize() {
+    private JButton TBHDNNButton = new JButton("Tính TB hóa đơn nước ngoài");
+   
+
+    public ManagementApp() {
+        controlRemotel = new InvoiceManagementController(this);
         // Tạo JFrame và cấu hình giao diện chính
         frame = new JFrame("Quản lý danh sách hoá đơn tiền điện");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -49,9 +51,17 @@ public class ManagementApp {
     
         // Tạo DefaultTableModel và JTable để hiển thị danh sách hoá đơn
 
-        tableModel = new DefaultTableModel(new String[]{"Loại khách hàng", "Họ và tên", "Mã khách hàng",
-                "Đối tượng", "Ngày xuất hoá đơn", "Số lượng", "Đơn giá", "Định mức", "Quốc tịch", "Thành tiền"}, 0);
-        table = new JTable(tableModel);
+        tableModel = new DefaultTableModel();
+        tableModel.addColumn( "mã khách hàng");
+        tableModel.addColumn( "Họ và tên");
+        tableModel.addColumn( "số lượng");
+        tableModel.addColumn("định mức");
+        tableModel.addColumn("đối tượng");
+        tableModel.addColumn("ngày ra hóa đơn");
+        tableModel.addColumn("quốc gia");
+        tableModel.addColumn("đơn giá ");
+        table = new JTable();
+        table.setModel(tableModel);
         scrollPane = new JScrollPane(table);
     
         // Đưa JTable vào JScrollPane để có khả năng cuộn ngang và cuộn dọc
@@ -70,9 +80,12 @@ public class ManagementApp {
         customerObjectComboBox = new JComboBox<>(new String[]{"", "Kinh doanh", "Định mức", "Sản xuất"});
         // ---------------------------------------------------------
         // tạo Ô nhập chon ngày tháng 
-        invoiceDateField = new JSpinner(new SpinnerDateModel());
-        JSpinner.DateEditor dateEditor = new JSpinner.DateEditor(invoiceDateField, "dd/MM/yyyy");
-        invoiceDateField.setEditor(dateEditor);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        String today = LocalDate.now().format(formatter);
+        invoiceDateField = new JTextField();
+        invoiceDateField.setText(today);
+        
+       
         // ---------------------------------------------------------
         quantityField = new JTextField();
         unitPriceField = new JTextField();
@@ -110,9 +123,13 @@ public class ManagementApp {
         frame.setVisible(true);
 
 
-        //  // Khởi tạo controller để lắng nghe sự kiện
-        InvoiceManagementController controller = new InvoiceManagementController(this);
-        controller.initializeListeners();
+        // Khởi tạo controller để lắng nghe sự kiện
+        addButton.addActionListener(controlRemotel);
+        findButton.addActionListener(controlRemotel);
+        editButton.addActionListener(controlRemotel);
+        deleteButton.addActionListener(controlRemotel);
+        calculateButton.addActionListener(controlRemotel);
+        exportButton.addActionListener(controlRemotel);
 
     }
     
@@ -145,7 +162,7 @@ public class ManagementApp {
     }
 
     public DefaultTableModel getTableModel() {
-        return null;
+        return tableModel;
     }
 
     public JFrame getFrame() {
@@ -201,12 +218,12 @@ public class ManagementApp {
 
 
 
-    public JSpinner getInvoiceDateField() {
+    public JTextField getInvoiceDateField() {
         return invoiceDateField;
     }
 
 
-    public void setInvoiceDateField(JSpinner invoiceDateField) {
+    public void setInvoiceDateField(JTextField invoiceDateField) {
         this.invoiceDateField = invoiceDateField;
     }
 

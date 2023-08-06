@@ -9,38 +9,34 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-
-
-
 import domain.model.DoiTuongKH;
 import domain.model.HoaDon;
 import domain.model.HoaDonNuocNgoai;
 import domain.model.HoaDonVietNam;
 
 public class HoaDonGatewayImpl implements HoaDonGateway {
-    private Connection connection;
-    public static Connection HoaDonGatewayImpl() {
+    private Connection connection = null;
+    
+    public HoaDonGatewayImpl() {
         String url = "jdbc:mysql://localhost:3306/csdl";
         String username = "root";
         String password = "";
-        Connection connection = null;
+         
         try {
             connection = DriverManager.getConnection(url, username, password);
             System.out.println("Connected to MySQL database!");
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return connection;
+        
         
     }
-    public HoaDonGatewayImpl(){
-        connection = HoaDonGatewayImpl();
-    }
+   
 
     @Override
     public void themHoaDonVN(HoaDon hoaDon) {
         
-       if(!(hoaDon instanceof HoaDonVietNam)){
+       if((hoaDon instanceof HoaDonVietNam)){
             String sql = "INSERT INTO HoaDonVietNam (maKH, hotenKH, ngayraHD, soLuong, donGia, doiTuongHK, dinhMuc) VALUES (?,?,?,?,?,?,?)";
             try (PreparedStatement statement = connection.prepareStatement(sql)) {
                 statement.setString(1, hoaDon.getHotenKH());
@@ -97,7 +93,7 @@ public class HoaDonGatewayImpl implements HoaDonGateway {
                 
                 statement.setObject(5, ((HoaDonVietNam) hoaDon).getDoiTuongHK());
                 statement.setDouble(6, ((HoaDonVietNam) hoaDon).getDinhMuc());
-                statement.setInt(7, hoaDon.getMaKH());
+                statement.setInt(7, hoaDon.getMaHD());
                 
                 statement.executeUpdate();
                 statement.close();
@@ -215,7 +211,7 @@ public class HoaDonGatewayImpl implements HoaDonGateway {
        if(hoaDon instanceof HoaDonVietNam){
            String sql = "SELECT * FROM HoaDonVietNam WHERE maKH=?";
            try(PreparedStatement statement = connection.prepareStatement(sql)){
-               statement.setInt(1, hoaDon.getMaKH());
+               statement.setInt(1, hoaDon.getMaHD());
                ResultSet resultSet = statement.executeQuery();
                if(resultSet.next()){
                    int maHD = resultSet.getInt("maKH");
@@ -235,7 +231,7 @@ public class HoaDonGatewayImpl implements HoaDonGateway {
            }}else if(hoaDon instanceof HoaDonNuocNgoai){
                String sql = "SELECT * FROM HoaDonNuocNgoai WHERE maKH=?";
                try(PreparedStatement statement = connection.prepareStatement(sql)){
-                   statement.setInt(1, hoaDon.getMaKH());
+                   statement.setInt(1, hoaDon.getMaHD());
                    ResultSet resultSet = statement.executeQuery();
                    if(resultSet.next()){
                        int maHD = resultSet.getInt("maKH");
@@ -322,7 +318,7 @@ public class HoaDonGatewayImpl implements HoaDonGateway {
        
        String sql = "INSERT INTO HoaDonNuocNgoai (maKH, hotenKH, ngayraHD, soLuong, donGia, quocTich) VALUES (?, ?, ?, ?, ?, ?)";
        try(PreparedStatement statement = connection.prepareStatement(sql)){
-           statement.setInt(1, hoaDon.getMaKH());
+           statement.setInt(1, hoaDon.getMaHD());
            statement.setString(2, hoaDon.getHotenKH());
            statement.setDate(3, (Date) hoaDon.getNgayraHD());
            statement.setDouble(4, hoaDon.getSoLuong());

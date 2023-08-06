@@ -9,6 +9,6 @@ public class HoaDon_SolgTungLoai implements HoadonService {
     public void action(HoaDon hoaDon){
         
         HoaDonDAO soLuongTungLoai = new HoaDonDAOImpl();
-        soLuongTungLoai.tinhSoLuongTungLoai(hoaDon.getMaKH());
+        soLuongTungLoai.tinhSoLuongTungLoai(hoaDon.getMaHD());
     }
 }
