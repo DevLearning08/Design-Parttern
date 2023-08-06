@@ -12,7 +12,7 @@ public interface HoaDonDAO {
     public void tinhSoLuongTungLoai(int maKH);
     public void tbHoaDonNN();
     public List<HoaDon> xuatHoaDonTrongThang(HoaDon hoaDon);
-    public HoaDon timKiemID(int maKH,HoaDon hoaDon);   
+    public HoaDon timKiemID(HoaDon hoaDon);   
     public HoaDon timKiemTenVN(String hotenKH); 
     public HoaDon timKiemTenNN(String hotenKH);
     

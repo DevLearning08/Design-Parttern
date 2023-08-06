@@ -33,6 +33,9 @@ public class HoaDonGatewayImpl implements HoaDonGateway {
         return connection;
         
     }
+    public HoaDonGatewayImpl(){
+        connection = HoaDonGatewayImpl();
+    }
 
     @Override
     public void themHoaDonVN(HoaDon hoaDon) {
@@ -208,7 +211,7 @@ public class HoaDonGatewayImpl implements HoaDonGateway {
     }
 
     @Override
-    public HoaDon timKiemID(int maKH,HoaDon hoaDon) {
+    public HoaDon timKiemID(HoaDon hoaDon) {
        if(hoaDon instanceof HoaDonVietNam){
            String sql = "SELECT * FROM HoaDonVietNam WHERE maKH=?";
            try(PreparedStatement statement = connection.prepareStatement(sql)){

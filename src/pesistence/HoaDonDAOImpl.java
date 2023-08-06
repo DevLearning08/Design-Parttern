@@ -51,9 +51,9 @@ public class HoaDonDAOImpl implements HoaDonDAO {
     }
 
     @Override
-    public HoaDon timKiemID(int maKH, HoaDon hoaDon) {
+    public HoaDon timKiemID( HoaDon hoaDon) {
         HoaDonGateway hoaDonGateway = new HoaDonGatewayImpl();
-        return hoaDonGateway.timKiemID(maKH, hoaDon);
+        return hoaDonGateway.timKiemID( hoaDon);
     }
     
     @Override

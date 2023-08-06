@@ -35,6 +35,10 @@ public class ManagementApp {
     private JButton exportButton = new JButton("Xuất hoá đơn");
 
     private JButton TBHDNNButton = new JButton("Tính TB hóa đơn nước ngoài");
+    public ManagementApp(HoaDon hoaDon) {
+        this.hoaDon = hoaDon;
+    
+    }
 
     public void initialize() {
         // Tạo JFrame và cấu hình giao diện chính

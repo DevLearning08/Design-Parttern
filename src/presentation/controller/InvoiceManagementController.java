@@ -71,7 +71,9 @@ public class InvoiceManagementController implements ActionListener {
                 try {
                     if (customerType == "Khách hàng Việt Nam"){
                         hoadonServiceRemote = new HoaDon_Timkiem();
-                        
+                        customerIdFieldRemote= managementAppRemote.getCustomerIdField();
+                        customerIdField = customerIdFieldRemote.getText();
+                        int maKH = Integer.parseInt(customerIdField);
                         HoaDon hoaDon = new HoaDonVietNam();
                         hoadonServiceRemote.action(hoaDon);
                     }
