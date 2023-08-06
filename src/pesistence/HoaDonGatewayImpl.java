@@ -1,7 +1,8 @@
 package pesistence;
 
 import java.sql.Connection;
-import java.sql.Date;
+import java.util.Date;
+
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -40,7 +41,7 @@ public class HoaDonGatewayImpl implements HoaDonGateway {
             String sql = "INSERT INTO HoaDonVietNam (maKH, hotenKH, ngayraHD, soLuong, donGia, doiTuongHK, dinhMuc) VALUES (?,?,?,?,?,?,?)";
             try (PreparedStatement statement = connection.prepareStatement(sql)) {
                 statement.setString(1, hoaDon.getHotenKH());
-                statement.setDate(2, (Date) hoaDon.getNgayraHD());
+                statement.setDate(2, (java.sql.Date) hoaDon.getNgayraHD());
                 statement.setDouble(3, hoaDon.getSoLuong());
                 statement.setDouble(4, hoaDon.getDonGia());
                 statement.setObject(5, ((HoaDonVietNam) hoaDon).getDoiTuongHK());
@@ -87,7 +88,7 @@ public class HoaDonGatewayImpl implements HoaDonGateway {
             String sql = "UPDATE HoaDonVietNam SET hotenKH=?, ngayraHD=?, soLuong=?, donGia=?, doiTuongHK=?, dinhMuc=? WHERE maKH=?";
             try (PreparedStatement statement = connection.prepareStatement(sql)) {
                 statement.setString(1, hoaDon.getHotenKH());
-                statement.setDate(2, (Date) hoaDon.getNgayraHD());
+                statement.setDate(2, (java.sql.Date) hoaDon.getNgayraHD());
                 statement.setDouble(3, hoaDon.getSoLuong());
                 statement.setDouble(4, hoaDon.getDonGia());
                 
@@ -104,7 +105,7 @@ public class HoaDonGatewayImpl implements HoaDonGateway {
                 String sql = "UPDATE HoaDonNuocNgoai SET hotenKH=?, ngayraHD=?, soLuong=?, donGia=?, doiTuongHK=?, dinhMuc=? WHERE maKH=?";
                 try (PreparedStatement statement = connection.prepareStatement(sql)) {
                     statement.setString(1, hoaDon.getHotenKH());
-                    statement.setDate(2, (Date) hoaDon.getNgayraHD());
+                    statement.setDate(2, (java.sql.Date) hoaDon.getNgayraHD());
                     statement.setDouble(3, hoaDon.getSoLuong());
                     statement.setDouble(4, hoaDon.getDonGia());
                     
@@ -351,7 +352,7 @@ public class HoaDonGatewayImpl implements HoaDonGateway {
        try(PreparedStatement statement = connection.prepareStatement(sql)){
            statement.setInt(1, hoaDon.getMaHD());
            statement.setString(2, hoaDon.getHotenKH());
-           statement.setDate(3, (Date) hoaDon.getNgayraHD());
+           statement.setDate(3, (java.sql.Date) hoaDon.getNgayraHD());
            statement.setDouble(4, hoaDon.getSoLuong());
            statement.setDouble(5, hoaDon.getDonGia());
            statement.setString(6, ((HoaDonNuocNgoai) hoaDon).getQuocTich());
