@@ -73,4 +73,10 @@ public class HoaDonDAOImpl implements HoaDonDAO {
         HoaDonGateway hoaDonGateway = new HoaDonGatewayImpl();
         return hoaDonGateway.timKiemTenNN(hotenKH);
     }
+
+    @Override
+    public List<HoaDon> getAllHoaDons() {
+       HoaDonGateway hoaDonGateway = new HoaDonGatewayImpl();
+       return hoaDonGateway.getAllHoaDons();
+    }
 }
