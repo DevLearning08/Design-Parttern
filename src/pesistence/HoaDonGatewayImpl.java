@@ -345,7 +345,7 @@ public class HoaDonGatewayImpl implements HoaDonGateway {
     @Override
     public void themHoaDonNuocNgoai(HoaDon hoaDon) {
        
-       String sql = "INSERT INTO HoaDonNuocNgoai (maKH, hotenKH, ngayraHD, soLuong, donGia, quocTich) VALUES (?, ?, ?, ?, ?, ?)";
+       String sql = "INSERT INTO HoaDonNuocNgoai (maKH, hotenKH, ngayraHD, soLuong, donGia, quocTich, thanhTien) VALUES (?, ?, ?, ?, ?, ?, ?)";
        try(PreparedStatement statement = connection.prepareStatement(sql)){
            statement.setInt(1, hoaDon.getMaHD());
            statement.setString(2, hoaDon.getHotenKH());
@@ -353,6 +353,7 @@ public class HoaDonGatewayImpl implements HoaDonGateway {
            statement.setDouble(4, hoaDon.getSoLuong());
            statement.setDouble(5, hoaDon.getDonGia());
            statement.setString(6, ((HoaDonNuocNgoai) hoaDon).getQuocTich());
+           statement.setDouble(7, ((HoaDonNuocNgoai) hoaDon).thanhTien());
            statement.executeUpdate();
            
            statement.close();

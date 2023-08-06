@@ -84,7 +84,7 @@ public class ManagementApp {
         customerObjectComboBox = new JComboBox<>(new String[]{"", "Kinh doanh", "Định mức", "Sản xuất"});
         // ---------------------------------------------------------
         // tạo Ô nhập chon ngày tháng 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         String today = LocalDate.now().format(formatter);
         invoiceDateField = new JTextField();
         invoiceDateField.setText(today);
