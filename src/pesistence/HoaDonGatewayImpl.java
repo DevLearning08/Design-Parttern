@@ -33,12 +33,24 @@ public class HoaDonGatewayImpl implements HoaDonGateway {
         
     }
    
-
     @Override
+    public void gopHoaDon(HoaDon hoaDon) {
+        String sql = "CREATE TABLE combined_data AS"+
+        "SELECT HoaDonVietNam (maKH, hotenKH, ngayraHD, soLuong, donGia, doiTuongHK, dinhMuc, thanhTien)"+
+        " FROM HoaDonVietNam"+
+        " INNER JOIN HoaDon ON HoaDonVietNam.maKH = HoaDonNuocNgoai.maKH";
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.executeUpdate();
+        System.out.println("Bảng combined_data đã được tạo thành công.");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+     @Override
     public void themHoaDonVN(HoaDon hoaDon) {
         
        if((hoaDon instanceof HoaDonVietNam)){
-            String sql = "INSERT INTO HoaDonVietNam (maKH, hotenKH, ngayraHD, soLuong, donGia, doiTuongHK, dinhMuc) VALUES (?,?,?,?,?,?,?)";
+            String sql = "INSERT INTO HoaDonVietNam (maKH, hotenKH, ngayraHD, soLuong, donGia, doiTuongHK, dinhMuc, thanhTien) VALUES (?,?,?,?,?,?,?,)";
             try (PreparedStatement statement = connection.prepareStatement(sql)) {
                 statement.setString(1, hoaDon.getHotenKH());
                 statement.setDate(2, (java.sql.Date) hoaDon.getNgayraHD());
@@ -46,6 +58,7 @@ public class HoaDonGatewayImpl implements HoaDonGateway {
                 statement.setDouble(4, hoaDon.getDonGia());
                 statement.setObject(5, ((HoaDonVietNam) hoaDon).getDoiTuongHK());
                 statement.setDouble(6, ((HoaDonVietNam) hoaDon).getDinhMuc());
+                statement.setDouble(7, ((HoaDonVietNam) hoaDon).thanhTien());
 
                 statement.executeUpdate();
                 statement.close();
@@ -85,7 +98,7 @@ public class HoaDonGatewayImpl implements HoaDonGateway {
     @Override
     public void suaHoaDon(HoaDon hoaDon) {
         if(hoaDon instanceof HoaDonVietNam){
-            String sql = "UPDATE HoaDonVietNam SET hotenKH=?, ngayraHD=?, soLuong=?, donGia=?, doiTuongHK=?, dinhMuc=? WHERE maKH=?";
+            String sql = "UPDATE HoaDonVietNam SET hotenKH=?, ngayraHD=?, soLuong=?, donGia=?, doiTuongHK=?, dinhMuc=?, thanhTien=? WHERE maKH=?";
             try (PreparedStatement statement = connection.prepareStatement(sql)) {
                 statement.setString(1, hoaDon.getHotenKH());
                 statement.setDate(2, (java.sql.Date) hoaDon.getNgayraHD());
@@ -94,7 +107,8 @@ public class HoaDonGatewayImpl implements HoaDonGateway {
                 
                 statement.setObject(5, ((HoaDonVietNam) hoaDon).getDoiTuongHK());
                 statement.setDouble(6, ((HoaDonVietNam) hoaDon).getDinhMuc());
-                statement.setInt(7, hoaDon.getMaHD());
+                statement.setDouble(7, ((HoaDonVietNam) hoaDon).thanhTien());
+                statement.setInt(8, hoaDon.getMaHD());
                 
                 statement.executeUpdate();
                 statement.close();
@@ -310,23 +324,26 @@ public class HoaDonGatewayImpl implements HoaDonGateway {
             e.printStackTrace();
         }}else if(hoaDon instanceof HoaDonNuocNgoai){
                     
-            String sql=  "SELECT * FROM HoaDonNuocNgoai";
+                    String sql=  "SELECT * FROM HoaDonNuocNgoai";
         try(Statement statement = connection.createStatement()){
             try(PreparedStatement statement1 = connection.prepareStatement(sql)){
-               ResultSet resultSet = statement1.executeQuery();
-                while(resultSet.next()){
-                int maKH = resultSet.getInt("maKH");
-                String hotenKH = resultSet.getString("hotenKH");
-                double soLuong = resultSet.getInt("soLuong");
-                double donGia = resultSet.getDouble("donGia");
-                Date ngayraHD = resultSet.getDate("ngayraHD");
+               
+                  
+                 
+                        ResultSet resultSet = statement1.executeQuery();
+                            while(resultSet.next()){
+                            int maKH = resultSet.getInt("maKH");
+                            String hotenKH = resultSet.getString("hotenKH");
+                            double soLuong = resultSet.getInt("soLuong");
+                            double donGia = resultSet.getDouble("donGia");
+                            Date ngayraHD = resultSet.getDate("ngayraHD");
                            // double DinhMuc = resultSet.getInt("dinhMuc");
                            // String doiTuongKHString = resultSet.getString("doiTuongKH");
                            // DoiTuongKH doiTuongKH = DoiTuongKH.valueOf(doiTuongKHString);
-                String QuocTich = resultSet.getString("quocTich");
-                Double thanhTien = resultSet.getDouble("thanhTien");
+                            String QuocTich = resultSet.getString("quocTich");
+                            Double thanhTien = resultSet.getDouble("thanhTien");
                             //hoaDon.add(new HoaDonVietNam(maKH, hotenKH, ngayraHD, soLuong, donGia, doiTuongKH, DinhMuc, thanhTien));
-                 hoaDon.add(new HoaDonNuocNgoai(maKH, hotenKH, ngayraHD, soLuong, donGia,  QuocTich, thanhTien));
+                             hoaDon.add(new HoaDonNuocNgoai(maKH, hotenKH, ngayraHD, soLuong, donGia,  QuocTich, thanhTien));
                 }
               
             }catch (SQLException e) {

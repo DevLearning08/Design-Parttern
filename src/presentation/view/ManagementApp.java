@@ -12,7 +12,6 @@ import presentation.controller.InvoiceManagementController;
 
 import java.awt.*;
 
-import java.sql.Date;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -43,7 +42,7 @@ public class ManagementApp {
 
 
     private JButton TBHDNNButton = new JButton("Tính TB hóa đơn nước ngoài");
-   
+
 
     public ManagementApp() {
         controlRemotel = new InvoiceManagementController(this);
@@ -118,6 +117,7 @@ public class ManagementApp {
         inputPanel.add(new JLabel());
         inputPanel.add(createButtonPanel());
         
+        
         // Đưa inputPanel vào JFrame
         frame.getContentPane().add(inputPanel, BorderLayout.NORTH);
 
@@ -134,7 +134,7 @@ public class ManagementApp {
         deleteButton.addActionListener(controlRemotel);
         calculateButton.addActionListener(controlRemotel);
         exportButton.addActionListener(controlRemotel);
-
+        showAll();
     }
     
     
