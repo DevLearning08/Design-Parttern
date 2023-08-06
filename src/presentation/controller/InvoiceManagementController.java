@@ -68,6 +68,7 @@ public class InvoiceManagementController implements ActionListener {
         if(e.getActionCommand() == "Thêm"){
             if(customerTypeComboBox.getSelectedItem().equals("Khách hàng nước ngoài")){
             hoaDon = new HoaDonNuocNgoai();
+            if(hoaDon instanceof HoaDonNuocNgoai){
             hoaDon.setMaHD( customerId);
             hoaDon.setHotenKH(fullName);
             hoaDon.setNgayraHD(invoiceDate);
@@ -79,6 +80,7 @@ public class InvoiceManagementController implements ActionListener {
             HoadonService service2 = new HoaDon_GetAll();
             service2.action(hoaDon);
             managementAppRemote.showAll();
+        }
         }else if(customerTypeComboBox.getSelectedItem().equals("khách hàng Việt Nam")){
             //set lại giá trị cho HoadonVietNam
             hoaDon = new HoaDonVietNam();

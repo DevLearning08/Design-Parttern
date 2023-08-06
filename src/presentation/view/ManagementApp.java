@@ -43,7 +43,7 @@ public class ManagementApp {
 
 
     private JButton TBHDNNButton = new JButton("Tính TB hóa đơn nước ngoài");
-   
+
 
     public ManagementApp() {
         controlRemotel = new InvoiceManagementController(this);
@@ -118,6 +118,7 @@ public class ManagementApp {
         inputPanel.add(new JLabel());
         inputPanel.add(createButtonPanel());
         
+        
         // Đưa inputPanel vào JFrame
         frame.getContentPane().add(inputPanel, BorderLayout.NORTH);
 
@@ -134,7 +135,7 @@ public class ManagementApp {
         deleteButton.addActionListener(controlRemotel);
         calculateButton.addActionListener(controlRemotel);
         exportButton.addActionListener(controlRemotel);
-
+        showAll();
     }
     
     
@@ -157,7 +158,8 @@ public class ManagementApp {
         HoadonService service = new HoaDon_GetAll();
         service.action(hoaDon);
         tableModel.setRowCount(0);
-        tableModel.addRow(new Object[]{tableModel.getRowCount() +1, hoaDon.getMaHD(),hoaDon.getHoVaTen(),hoaDon.getSoLuong(),hoaDon.getDonGia(),hoaDon.thanhTien(),hoaDon.getNgayraHD(),((HoaDonNuocNgoai) hoaDon).getQuocTich()});
+        Object [] row = new Object[]{hoaDon.getMaHD(),hoaDon.getHoVaTen(),hoaDon.getSoLuong(),hoaDon.getDonGia(),hoaDon.thanhTien(),hoaDon.getNgayraHD(),((HoaDonNuocNgoai) hoaDon).getQuocTich()};
+        tableModel.addRow(row) ;
     }else if(hoaDon instanceof HoaDonVietNam)
     {
     HoadonService service = new HoaDon_GetAll();
