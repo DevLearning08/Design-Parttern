@@ -310,26 +310,23 @@ public class HoaDonGatewayImpl implements HoaDonGateway {
             e.printStackTrace();
         }}else if(hoaDon instanceof HoaDonNuocNgoai){
                     
-                    String sql=  "SELECT * FROM HoaDonNuocNgoai";
+            String sql=  "SELECT * FROM HoaDonNuocNgoai";
         try(Statement statement = connection.createStatement()){
             try(PreparedStatement statement1 = connection.prepareStatement(sql)){
-               
-                  
-                 
-                        ResultSet resultSet = statement1.executeQuery();
-                            while(resultSet.next()){
-                            int maKH = resultSet.getInt("maKH");
-                            String hotenKH = resultSet.getString("hotenKH");
-                            double soLuong = resultSet.getInt("soLuong");
-                            double donGia = resultSet.getDouble("donGia");
-                            Date ngayraHD = resultSet.getDate("ngayraHD");
+               ResultSet resultSet = statement1.executeQuery();
+                while(resultSet.next()){
+                int maKH = resultSet.getInt("maKH");
+                String hotenKH = resultSet.getString("hotenKH");
+                double soLuong = resultSet.getInt("soLuong");
+                double donGia = resultSet.getDouble("donGia");
+                Date ngayraHD = resultSet.getDate("ngayraHD");
                            // double DinhMuc = resultSet.getInt("dinhMuc");
                            // String doiTuongKHString = resultSet.getString("doiTuongKH");
                            // DoiTuongKH doiTuongKH = DoiTuongKH.valueOf(doiTuongKHString);
-                            String QuocTich = resultSet.getString("quocTich");
-                            Double thanhTien = resultSet.getDouble("thanhTien");
+                String QuocTich = resultSet.getString("quocTich");
+                Double thanhTien = resultSet.getDouble("thanhTien");
                             //hoaDon.add(new HoaDonVietNam(maKH, hotenKH, ngayraHD, soLuong, donGia, doiTuongKH, DinhMuc, thanhTien));
-                             hoaDon.add(new HoaDonNuocNgoai(maKH, hotenKH, ngayraHD, soLuong, donGia,  QuocTich, thanhTien));
+                 hoaDon.add(new HoaDonNuocNgoai(maKH, hotenKH, ngayraHD, soLuong, donGia,  QuocTich, thanhTien));
                 }
               
             }catch (SQLException e) {
