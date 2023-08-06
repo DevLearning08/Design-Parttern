@@ -14,6 +14,7 @@ import javax.swing.JTextField;
 // import domain
 import javax.swing.table.DefaultTableModel;
 
+import domain.HoaDon_GetAll;
 import domain.HoaDon_SolgTungLoai;
 import domain.HoaDon_Sua;
 import domain.HoaDon_TBHHDNN;
@@ -30,7 +31,7 @@ import domain.model.HoaDonNuocNgoai;
 
 public class InvoiceManagementController implements ActionListener {
     private  ManagementApp managementAppRemote;
-    
+    private HoaDon hoaDon;
     public InvoiceManagementController(ManagementApp managementAppRemote) {
         this.managementAppRemote = managementAppRemote;
        
@@ -68,13 +69,14 @@ public class InvoiceManagementController implements ActionListener {
             HoaDon hoaDon = new HoaDonNuocNgoai();
             HoadonService service = new HoaDon_Them();
             service.action(hoaDon);
-            tableModel.setRowCount(0);
-            tableModel.addRow(new Object[]{tableModel.getRowCount() +1, hoaDon.getMaHD(),hoaDon.getHoVaTen(),hoaDon.getSoLuong(),hoaDon.getDonGia(),hoaDon.thanhTien()});
-          
+            HoadonService service2 = new HoaDon_GetAll();
+            service2.action(hoaDon);
+            managementAppRemote.showAll();
         }
         
         
     }
+    
     // private ManagementApp managementAppRemote;
     // private HoadonService hoadonServiceRemote;
     // private  HoaDon hoaDon;
