@@ -171,16 +171,16 @@ public class HoaDonGatewayImpl implements HoaDonGateway {
     
 
     @Override
-    public List<HoaDon> xuatHoaDonTrongThang(HoaDon hoaDon, int thang, int nam) {
+    public List<HoaDon> xuatHoaDonTrongThang(HoaDon hoaDon) {
          List<HoaDon> hoaDonList = new ArrayList<>();
     String sql = "SELECT * FROM HoaDonVietNam WHERE MONTH(ngayraHD) = ? AND YEAR(ngayraHD) = ? " +
                  "UNION " +
                  "SELECT * FROM HoaDonNuocNgoai WHERE MONTH(ngayraHD) = ? AND YEAR(ngayraHD) = ?";
     try (PreparedStatement statement = connection.prepareStatement(sql)) {
-        statement.setInt(1, thang);
-        statement.setInt(2, nam);
-        statement.setInt(3, thang);
-        statement.setInt(4, nam);
+        statement.setInt(1, hoaDon.getNgayraHD().getMonth());
+        statement.setInt(2, hoaDon.getNgayraHD().getYear());
+        statement.setInt(3, hoaDon.getNgayraHD().getMonth());
+        statement.setInt(4, hoaDon.getNgayraHD().getYear());
 
         ResultSet resultSet = statement.executeQuery();
         while (resultSet.next()) {

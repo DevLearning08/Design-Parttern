@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "TestDriver",
+            "request": "launch",
+            "mainClass": "TestDriver",
+            "projectName": "Design-Parttern_f78e9c97"
+        },
+        {
+            "type": "java",
             "name": "Current File",
             "request": "launch",
             "mainClass": "${file}"

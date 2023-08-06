@@ -16,7 +16,7 @@ public abstract class HoaDon {
         this.soLuong = soLuong;
         this.donGia = donGia;
     }
-
+    public HoaDon(){}
     
 
     public abstract Double thanhTien();

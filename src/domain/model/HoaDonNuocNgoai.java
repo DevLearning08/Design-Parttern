@@ -8,6 +8,7 @@ public class HoaDonNuocNgoai extends HoaDon{
         super(maKH, hotenKH, ngayraHD, soLuong, donGia);
         this.quocTich = quocTich;
     }
+    public HoaDonNuocNgoai(){}
    
     public String getQuocTich() {
         return quocTich;

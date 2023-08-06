@@ -11,6 +11,7 @@ public class HoaDonVietNam extends HoaDon {
         this.doiTuongHK = doiTuongHK;
         this.dinhMuc = dinhMuc;
     }
+    public HoaDonVietNam(){}
 
     @Override
     public Double thanhTien() {

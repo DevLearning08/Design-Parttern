@@ -45,9 +45,9 @@ public class HoaDonDAOImpl implements HoaDonDAO {
     }
 
     @Override
-    public List<HoaDon> xuatHoaDonTrongThang(HoaDon hoaDon, int thang, int nam) {
+    public List<HoaDon> xuatHoaDonTrongThang(HoaDon hoaDon) {
         HoaDonGateway hoaDonGateway = new HoaDonGatewayImpl();
-       return hoaDonGateway.xuatHoaDonTrongThang(hoaDon,thang, nam);
+       return hoaDonGateway.xuatHoaDonTrongThang(hoaDon);
     }
 
     @Override

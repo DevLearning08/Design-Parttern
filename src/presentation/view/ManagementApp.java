@@ -1,16 +1,18 @@
-package view;
+package presentation.view;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
-import controller.InvoiceManagementController;
+import domain.model.HoaDon;
+import presentation.controller.InvoiceManagementController;
 
 import java.awt.*;
-import java.lang.ModuleLayer.Controller;
+
 import java.sql.Date;
 
 
 public class ManagementApp {
+    private HoaDon  hoaDon;
     private JFrame frame;
     private JTable table;
     private DefaultTableModel tableModel;
@@ -273,7 +275,9 @@ public class ManagementApp {
     public JButton getTBHDNNButton() {
         return TBHDNNButton;
     }
-    
+    public HoaDon getHoaDonRemote(){
+        return hoaDon;
+    }
 
 }
 

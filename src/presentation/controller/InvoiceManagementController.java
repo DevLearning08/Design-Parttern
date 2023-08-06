@@ -1,4 +1,4 @@
-package controller;
+package presentation.controller;
 
 import view.*;
 import java.awt.event.ActionEvent;
@@ -22,12 +22,14 @@ import domain.HoaDon_XuatHDThang;
 import domain.HoadonService;
 // import domain.model
 import domain.model.HoaDonVietNam;
+import presentation.view.ManagementApp;
 import domain.model.HoaDon;
 import domain.model.HoaDonNuocNgoai;
 
 public class InvoiceManagementController implements ActionListener {
     private ManagementApp managementAppRemote;
     private HoadonService hoadonServiceRemote;
+    private  HoaDon hoaDon;
     // lấy dữ liệu từ các celJTextField, fahJTextField , jComboBox tại Boundary
     JComboBox customerTypeComboBoxRemote = managementAppRemote.getCustomerTypeComboBox();
     String customerType = (String) customerTypeComboBoxRemote.getSelectedItem();
@@ -87,7 +89,7 @@ public class InvoiceManagementController implements ActionListener {
                 try {
                     if(validateInputFields()) {
                         hoadonServiceRemote = new HoaDon_Them();
-                        hoadonServiceRemote.action();
+                        hoadonServiceRemote.action(hoaDon);
                         
                     }
                 } catch (Exception ex) {
@@ -102,7 +104,7 @@ public class InvoiceManagementController implements ActionListener {
             public void actionPerformed(ActionEvent e) {
                 try {
                     hoadonServiceRemote = new HoaDon_Xoa();
-                    hoadonServiceRemote.action();
+                    hoadonServiceRemote.action(hoaDon);
                 } catch (Exception ex) {
                     JOptionPane.showMessageDialog(null, "Xoá không thành công");
                 }
@@ -116,7 +118,7 @@ public class InvoiceManagementController implements ActionListener {
                 if (validateInputFields()) {
                     try {
                         hoadonServiceRemote = new HoaDon_Sua();
-                        hoadonServiceRemote.action();
+                        hoadonServiceRemote.action(hoaDon);
                     } catch (Exception ex) {
                         JOptionPane.showMessageDialog(null, "Sửa không thành công");
                     }
@@ -130,7 +132,7 @@ public class InvoiceManagementController implements ActionListener {
             public void actionPerformed(ActionEvent e) {
                 try {
                     hoadonServiceRemote = new HoaDon_SolgTungLoai();
-                    hoadonServiceRemote.action();
+                    hoadonServiceRemote.action(hoaDon);
                 } catch (Exception ex) {
                     JOptionPane.showMessageDialog(null, "Tính hóa đơn không thành công");
                 }
@@ -141,9 +143,10 @@ public class InvoiceManagementController implements ActionListener {
         exportButtonRemote.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                
                 try {
                     hoadonServiceRemote = new HoaDon_XuatHDThang();
-                    hoadonServiceRemote.action();
+                    hoadonServiceRemote.action(hoaDon);
                 } catch (Exception ex) {
                     JOptionPane.showMessageDialog(null, "Xuất hóa đơn tháng không thành công");
                 }
@@ -154,9 +157,10 @@ public class InvoiceManagementController implements ActionListener {
         TBHDNNButtonRemote.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                HoaDon hoaDon = new HoaDonNuocNgoai();
                 try {
                     hoadonServiceRemote = new HoaDon_TBHHDNN();
-                    hoadonServiceRemote.action();
+                    hoadonServiceRemote.action(hoaDon);
                 } catch (Exception ex) {
                     JOptionPane.showMessageDialog(null, "Tính trung bình hóa đơn nước ngoài không thành công");
                 }

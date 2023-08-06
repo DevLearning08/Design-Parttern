@@ -7,6 +7,6 @@ import pesistence.HoaDonDAOImpl;
 public class HoaDon_TBHHDNN implements HoadonService{
     public void action(HoaDon hoaDon){
         HoaDonDAO hoaDon_TB= new HoaDonDAOImpl();
-        hoaDon_TB.tbHoaDonNN(hoaDon.getMaKH());
+        hoaDon_TB.tbHoaDonNN();
     }
 }

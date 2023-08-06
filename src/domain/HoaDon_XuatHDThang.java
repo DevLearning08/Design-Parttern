@@ -7,6 +7,6 @@ import pesistence.HoaDonDAOImpl;
 public class HoaDon_XuatHDThang implements HoadonService{
     public void action(HoaDon hoaDon){
         HoaDonDAO hoaDon_xuat = new HoaDonDAOImpl();
-        hoaDon_xuat.xuatHoaDonTrongThang();
+        hoaDon_xuat.xuatHoaDonTrongThang(hoaDon);
     }
 }
