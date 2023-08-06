@@ -1,6 +1,7 @@
 package presentation.controller;
 
 import presentation.view.*;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Date;
@@ -67,8 +68,11 @@ public class InvoiceManagementController implements ActionListener {
         
         String nationality = nationalityField.getText();
 
-        if(e.getActionCommand() == "Thêm"){
+
             
+
+
+        if(e.getActionCommand() == "Thêm"){
             if(customerTypeComboBox.getSelectedItem().equals("Khách hàng nước ngoài")){
             hoaDon = new HoaDonNuocNgoai();
             hoaDon.setMaHD( customerId);
@@ -83,10 +87,10 @@ public class InvoiceManagementController implements ActionListener {
             service2.action(hoaDon);
             managementAppRemote.showAll();
         }else if(customerTypeComboBox.getSelectedItem().equals("Khách hàng Việt Nam")){
-            double quota =Double.parseDouble( quotaField.getText());
             //set lại giá trị cho HoadonVietNam
             hoaDon = new HoaDonVietNam();
             hoaDon.setMaHD( customerId);
+            double quota =Double.parseDouble( quotaField.getText());
             hoaDon.setHotenKH(fullName);
             ((HoaDonVietNam) hoaDon).setDinhMuc(quota);
             hoaDon.setNgayraHD(invoiceDate);
