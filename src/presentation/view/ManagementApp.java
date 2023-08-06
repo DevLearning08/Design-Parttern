@@ -157,7 +157,7 @@ public class ManagementApp {
         HoadonService service = new HoaDon_GetAll();
         service.action(hoaDon);
         tableModel.setRowCount(0);
-        tableModel.addRow(new Object[]{tableModel.getRowCount() +1, hoaDon.getMaHD(),hoaDon.getHoVaTen(),hoaDon.getSoLuong(),hoaDon.getDonGia(),hoaDon.thanhTien(),hoaDon.getNgayraHD(),((HoaDonNuocNgoai) hoaDon).getQuocTich()});
+        tableModel.addRow(new Object[]{ hoaDon.getMaHD(),hoaDon.getHoVaTen(),hoaDon.getSoLuong(),hoaDon.getDonGia(),hoaDon.thanhTien(),hoaDon.getNgayraHD(),((HoaDonNuocNgoai) hoaDon).getQuocTich()});
     }else if(hoaDon instanceof HoaDonVietNam)
     {
     HoadonService service = new HoaDon_GetAll();
