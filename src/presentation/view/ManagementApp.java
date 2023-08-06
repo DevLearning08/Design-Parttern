@@ -3,7 +3,11 @@ package presentation.view;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
+import domain.HoaDon_GetAll;
+import domain.HoadonService;
 import domain.model.HoaDon;
+import domain.model.HoaDonNuocNgoai;
+import domain.model.HoaDonVietNam;
 import presentation.controller.InvoiceManagementController;
 
 import java.awt.*;
@@ -147,7 +151,20 @@ public class ManagementApp {
         panel.add(TBHDNNButton);
         return panel;
     }
-    
+   public void showAll(){
+    if(hoaDon instanceof HoaDonNuocNgoai){
+        HoadonService service = new HoaDon_GetAll();
+        service.action(hoaDon);
+        tableModel.setRowCount(0);
+        tableModel.addRow(new Object[]{tableModel.getRowCount() +1, hoaDon.getMaHD(),hoaDon.getHoVaTen(),hoaDon.getSoLuong(),hoaDon.getDonGia(),hoaDon.thanhTien()});
+    }else if(hoaDon instanceof HoaDonVietNam)
+    {
+    HoadonService service = new HoaDon_GetAll();
+    service.action(hoaDon);
+    tableModel.setRowCount(0);
+    tableModel.addRow(new Object[]{tableModel.getRowCount() +1, hoaDon.getMaHD(),hoaDon.getHoVaTen(),hoaDon.getSoLuong(),hoaDon.getDonGia(),hoaDon.thanhTien()});
+   }
+}
 
 
     // Thêm thông tin hoá đơn vào bảng

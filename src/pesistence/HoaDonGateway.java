@@ -1,4 +1,5 @@
 package pesistence;
+import java.sql.SQLException;
 import java.util.List;
 
 import domain.model.HoaDon;
@@ -14,5 +15,5 @@ public interface HoaDonGateway {
     public HoaDon timKiemID( HoaDon hoaDon);   
     public HoaDon timKiemTenNN(String hotenKH);
     public HoaDon timKiemTenVN(String hotenKH);
-    public List<HoaDon> getAllHoaDons(int maKH); 
+    public List<HoaDon> getAllHoaDons() ; 
 }

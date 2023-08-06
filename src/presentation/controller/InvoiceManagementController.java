@@ -56,23 +56,46 @@ public class InvoiceManagementController implements ActionListener {
         JButton exportButtom = managementAppRemote.getExportButton();
         DefaultTableModel tableModel = managementAppRemote.getTableModel();
         JTable table = managementAppRemote.getTable();
+        JComboBox customerTypeComboBox = managementAppRemote.getCustomerTypeComboBox();
         // lấy dữ liệu từ view
         String fullName = fullNameCustomer.getText();
-        String customerId = customerIdField.getText();
-        String invoiceDate = invoiceDateField.getText();
-        String quantity = quantityField.getText();
-        String unitPrice = unitPriceField.getText();
-        String quota = quotaField.getText();
+        int customerId = Integer.parseInt(customerIdField.getText());
+        Date invoiceDate =Date.valueOf( invoiceDateField.getText());
+        double quantity =Double.parseDouble( quantityField.getText());
+        double unitPrice =Double.parseDouble( unitPriceField.getText());
+        double quota =Double.parseDouble( quotaField.getText());
         String nationality = nationalityField.getText();
 
         if(e.getSource() == addButton){
-            HoaDon hoaDon = new HoaDonNuocNgoai();
+            if(customerTypeComboBox.getSelectedItem().equals("Khách hàng nước ngoài")){
+            hoaDon = new HoaDonNuocNgoai();
+            hoaDon.setMaHD( customerId);
+            hoaDon.setHotenKH(fullName);
+            hoaDon.setNgayraHD(invoiceDate);
+            hoaDon.setSoLuong(quantity);
+            hoaDon.setDonGia(unitPrice);
+            ((HoaDonNuocNgoai) hoaDon).setQuocTich(nationality);
+            HoadonService service = new HoaDon_Them();
+            service.action(hoaDon);
+            HoadonService service2 = new HoaDon_GetAll();
+            service2.action(hoaDon);
+            managementAppRemote.showAll();
+        }else if(customerTypeComboBox.getSelectedItem().equals("khách hàng Việt Nam")){
+            //set lại giá trị cho HoadonVietNam
+            hoaDon = new HoaDonVietNam();
+            hoaDon.setMaHD( customerId);
+            hoaDon.setHotenKH(fullName);
+            ((HoaDonVietNam) hoaDon).setDinhMuc(quota);
+            hoaDon.setNgayraHD(invoiceDate);
+            hoaDon.setSoLuong(quantity);
+            hoaDon.setDonGia(unitPrice);
             HoadonService service = new HoaDon_Them();
             service.action(hoaDon);
             HoadonService service2 = new HoaDon_GetAll();
             service2.action(hoaDon);
             managementAppRemote.showAll();
         }
+    }
         
         
     }
