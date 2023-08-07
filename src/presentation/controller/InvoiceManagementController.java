@@ -91,7 +91,8 @@ public class InvoiceManagementController implements ActionListener {
         int selectedRow = managementAppRemote.getTable().getSelectedRow();
         if (selectedRow != -1) {
             int maHD = (int) managementAppRemote.getTable().getValueAt(selectedRow, 0);
-           hoaDonService.xoaHoaDon(maHD);
+            hoaDonService.xoaHoaDon(maHD);
+            managementAppRemote.getTableModelVN().removeRow(selectedRow);
     
             // if (hoaDon instanceof HoaDonNuocNgoai) {
             //     hoaDonService.xoaHoaDon(hoaDon.getMaHD());

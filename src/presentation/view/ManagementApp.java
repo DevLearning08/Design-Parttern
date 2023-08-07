@@ -36,7 +36,7 @@ public class ManagementApp {
     private JTextField quotaField;
     private JTextField nationalityField;
     private JScrollPane scrollPane;
-    
+    private JScrollPane scrollPaneNN;
     private JButton addButton = new JButton("Thêm");
     private JButton deleteButton = new JButton("Xoá");
     private JButton editButton = new JButton("Sửa");
@@ -166,7 +166,10 @@ public class ManagementApp {
         panel.add(ShowNN);
         return panel;
     }
-
+    public JScrollPane getScrollPaneNN() {
+        
+        return scrollPane;
+    }
     public HoaDon getHoaDonFromInput() {
         String customerType = (String) customerTypeComboBox.getSelectedItem();
         String fullName = fullNameField.getText();
