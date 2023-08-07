@@ -35,20 +35,6 @@ public class HoaDonGatewayImpl implements HoaDonGateway {
         
         
     }
-   
-    // @Override
-    // public void gopHoaDon(HoaDon hoaDon) {
-    //     String sql = " INSERT INTO HoaDon (maKH, hotenKH, ngayraHD, soLuong, donGia, doiTuongHK, quocTich, dinhMuc, thanhTien) "+
-    //     " SELECT HoaDonVietNam (maKH, hotenKH, ngayraHD, soLuong, donGia, doiTuongHK, dinhMuc, thanhTien) "+
-    //     " FROM HoaDonVietNam "+
-    //     " INNER JOIN HoaDon ON HoaDonVietNam.maKH = HoaDonNuocNgoai.maKH ";
-    //     try (PreparedStatement statement = connection.prepareStatement(sql)) {
-    //         statement.executeUpdate();
-    //     System.out.println("Bảng combined_data đã được tạo thành công.");
-    //     } catch (SQLException e) {
-    //         e.printStackTrace();
-    //     }
-    // }
      @Override
     public List<HoaDon> themHoaDon(HoaDon hoaDon) {
         List<HoaDon> list = new ArrayList<>();
@@ -87,29 +73,26 @@ public class HoaDonGatewayImpl implements HoaDonGateway {
 
 
     @Override
-    public void xoaHoaDon(HoaDon hoaDon) {
-        if(hoaDon instanceof HoaDonVietNam){
-            String sql = "DELETE FROM HoaDonVietNam WHERE maKH=? ";
-            try (PreparedStatement statement = connection.prepareStatement(sql)) {
-                statement.setInt(1, hoaDon.getMaHD());
-                
-                statement.executeUpdate();
-                statement.close();
-            }catch (SQLException e){
-                e.printStackTrace();
-            }}
-            else if(hoaDon instanceof HoaDonNuocNgoai){
-                String sql = "DELETE FROM HoaDonNuocNgoai WHERE maKH=? ";
-                try (PreparedStatement statement = connection.prepareStatement(sql)) {
-                    statement.setInt(1,hoaDon.getMaHD());
-                    
-                    statement.executeUpdate();
-                    statement.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-        
+    public void xoaHoaDon(int maHD) {
+        String sql = "DELETE FROM HoaDonVietNam WHERE maKH=? ";
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, maHD);
+            statement.executeUpdate();
+            connection.commit();
+            statement.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        sql = "DELETE FROM HoaDonNuocNgoai WHERE maKH=? ";
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, maHD);
+            statement.executeUpdate();
+            connection.commit();
+            statement.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -329,27 +312,6 @@ public class HoaDonGatewayImpl implements HoaDonGateway {
         public DefaultTableModel getTableModel() {
                return tableModel;
            }  
-
-    // @Override
-    // public void themHoaDonNuocNgoai(HoaDon hoaDon) {
-       
-    //    String sql = "INSERT INTO HoaDonNuocNgoai (maKH, hotenKH, ngayraHD, soLuong, donGia, quocTich, thanhTien) VALUES (?, ?, ?, ?, ?, ?, ?)";
-    //    try(PreparedStatement statement = connection.prepareStatement(sql)){
-    //        statement.setInt(1, hoaDon.getMaHD());
-    //        statement.setString(2, hoaDon.getHotenKH());
-    //        statement.setDate(3, (java.sql.Date) hoaDon.getNgayraHD());
-    //        statement.setDouble(4, hoaDon.getSoLuong());
-    //        statement.setDouble(5, hoaDon.getDonGia());
-    //        statement.setString(6, ((HoaDonNuocNgoai) hoaDon).getQuocTich());
-    //        statement.setDouble(7, ((HoaDonNuocNgoai) hoaDon).thanhTien());
-
-    //        statement.executeUpdate();
-    //        statement.close();
-    //    }catch(SQLException e) {
-    //        e.printStackTrace();
-    //    }
-    // }
-
     @Override
     public HoaDon timKiemTenVN(String hotenKH) {
        String sql = "SELECT * FROM HoaDonVietNam WHERE hotenKH=?";

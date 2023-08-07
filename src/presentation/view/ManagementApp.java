@@ -11,7 +11,7 @@ import domain.model.HoaDonVietNam;
 import presentation.controller.InvoiceManagementController;
 
 import java.awt.*;
-
+import java.sql.Date;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -120,16 +120,12 @@ public class ManagementApp {
         inputPanel.add(new JLabel());
         inputPanel.add(createButtonPanel());
         
-        
         // Đưa inputPanel vào JFrame
         frame.getContentPane().add(inputPanel, BorderLayout.NORTH);
-
         // Set kích thước và hiển thị JFrame
         frame.setSize(800, 500);
         frame.setLocationRelativeTo(null); // Đưa JFrame vào giữa màn hình
         frame.setVisible(true);
-
-
         // Khởi tạo controller để lắng nghe sự kiện
         addButton.addActionListener(controlRemotel);
         findButton.addActionListener(controlRemotel);
@@ -139,11 +135,7 @@ public class ManagementApp {
         exportButton.addActionListener(controlRemotel);
         ShowVN.addActionListener(controlRemotel);
         ShowNN.addActionListener(controlRemotel);
-        
-       
     }
-    
-    
     // Tạo JPanel chứa các nút bấm để thêm, xoá, sửa, tính toán, xuất hoá đơn, tìm kiếm, TB hóa đơn nước ngoài
     private JPanel createButtonPanel() {
         JPanel panel = new JPanel();
@@ -159,16 +151,47 @@ public class ManagementApp {
         panel.add(ShowNN);
         return panel;
     }
-  
 
+    public HoaDon getHoaDonFromInput() {
+        String customerType = (String) customerTypeComboBox.getSelectedItem();
+        String fullName = fullNameField.getText();
+        int customerId = Integer.parseInt(customerIdField.getText());
+        Date invoiceDate = Date.valueOf(invoiceDateField.getText());
+        double quantity = Double.parseDouble(quantityField.getText());
+        double unitPrice = Double.parseDouble(unitPriceField.getText());
+
+        if (customerType.equals("Khách hàng nước ngoài")) {
+            String nationality = nationalityField.getText();
+            HoaDon hoaDon = new HoaDonNuocNgoai();
+            hoaDon.setMaHD(customerId);
+            hoaDon.setHotenKH(fullName);
+            hoaDon.setNgayraHD(invoiceDate);
+            hoaDon.setSoLuong(quantity);
+            hoaDon.setDonGia(unitPrice);
+            ((HoaDonNuocNgoai) hoaDon).setQuocTich(nationality);
+            ((HoaDonNuocNgoai) hoaDon).thanhTien();
+            return hoaDon;
+        } else if (customerType.equals("Khách hàng Việt Nam")) {
+            HoaDon hoaDon = new HoaDonVietNam();
+            DoiTuongKH doiTuongKH = (DoiTuongKH) customerObjectComboBox.getSelectedItem();
+            ((HoaDonVietNam) hoaDon).setDoiTuongHK(doiTuongKH);
+            double quota = Double.parseDouble(quotaField.getText());
+            hoaDon.setMaHD(customerId);
+            hoaDon.setHotenKH(fullName);
+            ((HoaDonVietNam) hoaDon).setDinhMuc(quota);
+            hoaDon.setNgayraHD(invoiceDate);
+            hoaDon.setSoLuong(quantity);
+            hoaDon.setDonGia(unitPrice);
+            return hoaDon;
+        }
+
+        return null;
+    }
 
     // Thêm thông tin hoá đơn vào bảng
- 
-
     public boolean findInvoice(String findQuery) {
         return false;
     }
-
     public void avergForeignInvoice() {
         
     }
@@ -325,6 +348,9 @@ public class ManagementApp {
     }
     public void setShowNN(JButton ShowNN) {
         this.ShowNN = ShowNN;
+    }
+    public void populateInputFields(HoaDon hoaDon2) {
+        
     }
 }
 

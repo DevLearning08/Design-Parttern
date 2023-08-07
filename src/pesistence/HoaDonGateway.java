@@ -10,7 +10,7 @@ public interface HoaDonGateway {
     public List<HoaDon> themHoaDon(HoaDon hoaDon);
     //public void gopHoaDon(HoaDon hoaDon);
     //public void themHoaDonNuocNgoai(HoaDon hoaDon);
-    public void xoaHoaDon( HoaDon hoaDon);
+    public void xoaHoaDon(int maHD);
     public void suaHoaDon(HoaDon hoaDon);
     public void tinhSoLuongTungLoai(int maKH);
     public void tbHoaDonNN();
