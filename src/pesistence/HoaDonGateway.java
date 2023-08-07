@@ -7,7 +7,7 @@ import javax.swing.table.DefaultTableModel;
 import domain.model.HoaDon;
 
 public interface HoaDonGateway {
-    public List<HoaDon> themHoaDon(HoaDon hoaDon);
+    public void themHoaDon(HoaDon hoaDon);
     //public void gopHoaDon(HoaDon hoaDon);
     //public void themHoaDonNuocNgoai(HoaDon hoaDon);
     public void xoaHoaDon(int maHD);

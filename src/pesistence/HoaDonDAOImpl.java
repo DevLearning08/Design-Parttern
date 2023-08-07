@@ -9,12 +9,12 @@ import domain.model.HoaDon;
 
 public class HoaDonDAOImpl implements HoaDonDAO {
     //private HoaDonGateway hoaDonGateway;
-     HoaDonGateway service = new HoaDonGatewayImpl();
+     HoaDonGateway service ;
     // public HoaDonDAOImpl(HoaDonGateway hoaDonGateway){
     //     this.hoaDonGateway = hoaDonGateway;
     // }
     public HoaDonDAOImpl(){
-        
+        service = new HoaDonGatewayImpl();
     }
    
     @Override
@@ -26,9 +26,9 @@ public class HoaDonDAOImpl implements HoaDonDAO {
     }
 
     @Override
-    public void xoaHoaDon( HoaDon hoaDon) {
+    public void xoaHoaDon( int i) {
         HoaDonGateway hoaDonGateway = new HoaDonGatewayImpl();
-        hoaDonGateway.xoaHoaDon( hoaDon);
+        hoaDonGateway.xoaHoaDon(i);
         
     }
 

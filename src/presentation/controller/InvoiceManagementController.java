@@ -19,13 +19,7 @@ import javax.swing.JTextField;
 // import domain
 import javax.swing.table.DefaultTableModel;
 
-import domain.HoaDon_SolgTungLoai;
-import domain.HoaDon_Sua;
-import domain.HoaDon_TBHHDNN;
-import domain.HoaDon_Them;
-import domain.HoaDon_Timkiem;
-import domain.HoaDon_Xoa;
-import domain.HoaDon_XuatHDThang;
+import domain.HoaDonServiceImp;
 import domain.HoadonService;
 // import domain.model
 import domain.model.HoaDonVietNam;
@@ -38,8 +32,10 @@ import domain.model.HoaDonNuocNgoai;
 public class InvoiceManagementController implements ActionListener {
     private  ManagementApp managementAppRemote;
     private HoaDon hoaDon;
+    private HoadonService hoaDonService;
     public InvoiceManagementController(ManagementApp managementAppRemote) {
         this.managementAppRemote = managementAppRemote;
+        hoaDonService = new HoaDonServiceImp();
     }
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -73,8 +69,8 @@ public class InvoiceManagementController implements ActionListener {
             hoaDon.setDonGia(unitPrice);
             ((HoaDonNuocNgoai) hoaDon).setQuocTich(nationality);
             ((HoaDonNuocNgoai) hoaDon).thanhTien();
-            HoadonService service = new HoaDon_Them();
-            service.action(hoaDon);
+           hoaDonService.themHoaDon(hoaDon);
+           
             managementAppRemote.getShowNN();
         } else if (customerType.equals("Khách hàng Việt Nam")) {
             HoaDon hoaDon = new HoaDonVietNam();
@@ -87,37 +83,35 @@ public class InvoiceManagementController implements ActionListener {
             hoaDon.setNgayraHD(invoiceDate);
             hoaDon.setSoLuong(quantity);
             hoaDon.setDonGia(unitPrice);
-            HoadonService service = new HoaDon_Them();
-            service.action(hoaDon);
+            hoaDonService.themHoaDon(hoaDon);
             managementAppRemote.getShowVN();
         }
     }
     public void xoaHoaDon() {
         int selectedRow = managementAppRemote.getTable().getSelectedRow();
         if (selectedRow != -1) {
-            HoaDon hoaDon = (HoaDon) managementAppRemote.getTable().getValueAt(selectedRow, 0);
-            HoadonService service = null;
+            int maHD = (int) managementAppRemote.getTable().getValueAt(selectedRow, 0);
+           hoaDonService.xoaHoaDon(maHD);
     
-            if (hoaDon instanceof HoaDonNuocNgoai) {
-                service = new HoaDon_Xoa();
-            } else if (hoaDon instanceof HoaDonVietNam) {
-                service = new HoaDon_Xoa();
-            }
-            if (service != null) {
-                try {
-                    // Thực hiện xóa hóa đơn từ cơ sở dữ liệu
-                    HoaDonGateway gateway = new HoaDonGatewayImpl();
-                    gateway.xoaHoaDon(hoaDon.getMaHD());
-                    service.action(hoaDon);
-                    managementAppRemote.getTableModel().removeRow(selectedRow);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    // Xử lý lỗi nếu cần thiết
-                }
-            }
+            // if (hoaDon instanceof HoaDonNuocNgoai) {
+            //     hoaDonService.xoaHoaDon(hoaDon.getMaHD());
+            // } else if (hoaDon instanceof HoaDonVietNam) {
+            // hoaDonService.xoaHoaDon(hoaDon.getMaHD());}
+            // if (service != null) {
+            //     try {
+            //         // Thực hiện xóa hóa đơn từ cơ sở dữ liệu
+            //         HoaDonGateway gateway = new HoaDonGatewayImpl();
+            //         gateway.xoaHoaDon(hoaDon.getMaHD());
+            //         service.action(hoaDon);
+            //         managementAppRemote.getTableModel().removeRow(selectedRow);
+            //     } catch (Exception e) {
+            //         e.printStackTrace();
+            //         // Xử lý lỗi nếu cần thiết
+            //     }
+            // }
         }
+    
     }
-
 public void showSelectedHoadonInfo(HoaDon hoaDon) {
     managementAppRemote.populateInputFields(hoaDon);
 }

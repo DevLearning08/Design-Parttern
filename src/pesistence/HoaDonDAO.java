@@ -9,7 +9,7 @@ import domain.model.HoaDon;
 public interface HoaDonDAO {
     public void themHoaDon(HoaDon hoaDon);
    // public void themHoaDonNuocNgoai(HoaDon hoaDon);
-    public void xoaHoaDon( HoaDon hoaDon);
+    public void xoaHoaDon( int i);
     public void suaHoaDon(HoaDon hoaDon);
     public void tinhSoLuongTungLoai(int maKH);
     public void tbHoaDonNN();
