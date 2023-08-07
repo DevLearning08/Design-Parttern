@@ -4,6 +4,8 @@ import presentation.view.*;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseEvent;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -29,7 +31,7 @@ import presentation.view.ManagementApp;
 
 import domain.model.HoaDon;
 import domain.model.HoaDonNuocNgoai;
-public class InvoiceManagementController implements ActionListener {
+public class InvoiceManagementController implements ActionListener ,MouseListener {
     private  ManagementApp managementAppRemote;
     private HoaDon hoaDon;
     private HoadonService hoaDonService;
@@ -38,13 +40,23 @@ public class InvoiceManagementController implements ActionListener {
         hoaDonService = new HoaDonServiceImp();
     }
     @Override
+
     public void actionPerformed(ActionEvent e) {
+        
+
         if (e.getActionCommand().equals("Thêm")) {
             themHoaDon();
         } else if (e.getActionCommand().equals("Xoá")) {
-            int customerId = Integer.parseInt(managementAppRemote.getCustomerIdField().getText());
-            hoaDonService.xoaHoaDon(customerId);
+            int selectedRow = managementAppRemote.getTable().getSelectedRow();
+            if(selectedRow != -1){
+                int customerId =(int) managementAppRemote.getTableModelVN().getValueAt(selectedRow, 0);
+
+                hoaDonService.xoaHoaDon(customerId);
+            }
+            // int customerId = Integer.parseInt(managementAppRemote.getCustomerIdField().getText());
+            // hoaDonService.xoaHoaDon(customerId);
             ShowVN();
+            
         } else if (e.getSource() == managementAppRemote.getTable()) {
             // Thực hiện các thao tác khi người dùng chọn một hàng trong bảng
             int selectedRow = managementAppRemote.getTable().getSelectedRow();
@@ -53,7 +65,39 @@ public class InvoiceManagementController implements ActionListener {
                 showSelectedHoadonInfo(hoaDon);
             }
     }
-}
+    
+    }
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        // Xử lý khi chuột được nhấn
+        String customerType = (String) managementAppRemote.getCustomerTypeComboBox().getSelectedItem();
+        if (customerType == "Khách hàng Việt Nam") {
+            ShowVN();
+            
+        }else if (customerType == "Khách hàng nước ngoài") {
+            ShowNN();
+        }
+      
+    }
+    @Override
+    public void mousePressed(MouseEvent e) {
+        // Xử lý khi chuột được nhấn
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+        // Xử lý khi chuột được nhả ra sau khi nhấn
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+        // Xử lý khi chuột vào vùng được lắng nghe sự kiện
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+        // Xử lý khi chuột rời khỏi vùng được lắng nghe sự kiện
+    }
     public void themHoaDon() {
         String customerType = (String) managementAppRemote.getCustomerTypeComboBox().getSelectedItem();
         String fullName = managementAppRemote.getFullNameField().getText();
@@ -151,7 +195,18 @@ public void showSelectedHoadonInfo(HoaDon hoaDon) {
         for (HoaDon hoaDon : list) {
             
             
-            tableModelVN.addRow(new Object[]{hoaDon.getMaHD(),hoaDon.getHotenKH(),hoaDon.getSoLuong(),((HoaDonVietNam) hoaDon).getDinhMuc(),((HoaDonVietNam) hoaDon).getDoiTuongHK(),hoaDon.getNgayraHD(),hoaDon.getDonGia()});
+            tableModelVN.addRow(new Object[]{hoaDon.getMaHD(),hoaDon.getHotenKH(),hoaDon.getSoLuong(),((HoaDonVietNam) hoaDon).getDinhMuc(),((HoaDonVietNam) hoaDon).getDoiTuongHK(),hoaDon.getNgayraHD(),hoaDon.getDonGia(),hoaDon.thanhTien()});
+            
+        }
+    }
+      public void ShowNN(){
+        DefaultTableModel tableModelNN = managementAppRemote.getTableModelNN();
+        tableModelNN.setRowCount(0);
+        List<HoaDon> list = hoaDonService.getHoaDonNN();
+        for (HoaDon hoaDon : list) {
+            
+            
+            tableModelNN.addRow(new Object[]{hoaDon.getMaHD(),hoaDon.getHotenKH(),hoaDon.getSoLuong(),hoaDon.getNgayraHD(),((HoaDonNuocNgoai) hoaDon).getQuocTich(),hoaDon.getDonGia(),hoaDon.thanhTien()});
             
         }
     }

@@ -3,6 +3,9 @@ package presentation.view;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
+import org.w3c.dom.events.MouseEvent;
+import java.awt.event.MouseListener;
+
 import domain.HoadonService;
 
 import domain.model.HoaDon;
@@ -11,6 +14,7 @@ import domain.model.HoaDonVietNam;
 import presentation.controller.InvoiceManagementController;
 
 import java.awt.*;
+import java.security.PublicKey;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -26,6 +30,9 @@ public class ManagementApp extends JFrame {
     private JTable tableNN;
     private DefaultTableModel tableModelVN;
     private DefaultTableModel tableModelNN;
+    public DefaultTableModel getTableModelNN() {
+        return tableModelNN;
+    }
     private JTextField fullNameField;
     private JTextField customerIdField;
     private JComboBox<String> customerTypeComboBox;
@@ -68,45 +75,38 @@ public class ManagementApp extends JFrame {
         // Tạo DefaultTableModel và JTable để hiển thị danh sách hoá đơn
 
         tableModelVN = new DefaultTableModel();
-        tableModelVN.addColumn( "mã khách hàng");
+        tableModelVN.addColumn( "Mã khách hàng");
         tableModelVN.addColumn( "Họ và tên");
-        tableModelVN.addColumn( "số lượng");
-        tableModelVN.addColumn("định mức");
-        tableModelVN.addColumn("đối tượng");
-        tableModelVN.addColumn("ngày ra hóa đơn");
-        
-        tableModelVN.addColumn("đơn giá ");
+        tableModelVN.addColumn( "Số lượng");
+        tableModelVN.addColumn("Định mức");
+        tableModelVN.addColumn("Đối tượng");
+        tableModelVN.addColumn("Ngày ra hóa đơn");
+        tableModelVN.addColumn("Đơn giá");
+        tableModelVN.addColumn("Thành tiền");
         table = new JTable();
         table.setModel(tableModelVN);
-        scrollPane = new JScrollPane(table);
+       
         //tạo tabelmodelNN
         tableModelNN = new DefaultTableModel();
-        tableModelNN.addColumn( "mã khách hàng");
+        tableModelNN.addColumn( "Mã khách hàng");
         tableModelNN.addColumn( "Họ và tên");
-        tableModelNN.addColumn( "số lượng");
-        tableModelNN.addColumn("ngày ra hóa đơn");
-        tableModelNN.addColumn("quốc tịch");
-        tableModelNN.addColumn("đơn giá ");
-         tableNN = new JTable();
-         tableNN.setModel(tableModelNN);
-         if(hoaDon instanceof HoaDonNuocNgoai){
-             scrollPane = new JScrollPane(tableNN);
-         }
-         
-        // Đưa JTable vào JScrollPane để có khả năng cuộn ngang và cuộn dọc
-        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-    
-        // Thêm JScrollPane vào JFrame
-        frame.getContentPane().add(scrollPane, BorderLayout.CENTER);
+        tableModelNN.addColumn( "Số lượng");
+        tableModelNN.addColumn("Ngày ra hóa đơn");
+        tableModelNN.addColumn("Quốc tịch");
+        tableModelNN.addColumn("Đơn giá");
+        tableModelNN.addColumn("Thành tiền");
+        tableNN = new JTable();
+        tableNN.setModel(tableModelNN);
+       
+
 
     
         // Tạo JPanel để nhập thông tin hoá đơn
         JPanel inputPanel = new JPanel(new GridLayout(0, 2, 5, 5));
         fullNameField = new JTextField();
         customerIdField = new JTextField();
-        customerTypeComboBox = new JComboBox<>(new String[]{"", "Khách hàng Việt Nam", "Khách hàng nước ngoài"});
-        customerObjectComboBox = new JComboBox<>(new String[]{"", "sinh hoạt", "kinh doanh ","sản xuất"}); 
+        customerTypeComboBox = new JComboBox<>(new String[]{"Khách hàng Việt Nam", "Khách hàng nước ngoài"});
+        customerObjectComboBox = new JComboBox<>(new String[]{  "sinh hoạt", "kinh doanh ","sản xuất"}); 
         // ---------------------------------------------------------
         // tạo Ô nhập chon ngày tháng 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -167,7 +167,40 @@ public class ManagementApp extends JFrame {
         exportButton.addActionListener(controlRemotel);
         ShowVN.addActionListener(controlRemotel);
         ShowNN.addActionListener(controlRemotel);
+        customerTypeComboBox.addMouseListener(controlRemotel);
+        
+        
+        
+        
+         
+        // Thêm JScrollPane vào JFrame
+        
+        
+        // Đưa JTable vào JScrollPane để có khả năng cuộn ngang và cuộn dọc
+        String customerType = (String) customerTypeComboBox.getSelectedItem();
+        if(customerType == "Khách hàng Việt Nam") {
+            scrollPane = new JScrollPane(table);
+            System.out.println(customerType);
+            frame.getContentPane().add(scrollPane, BorderLayout.CENTER);
+            scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+            scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+        }else if (customerType == "Khách hàng nước ngoài") {
+            scrollPane = new JScrollPane(tableNN);
+            frame.getContentPane().add(scrollPane, BorderLayout.CENTER);
+            scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+            scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+        }
+    
     }
+   
+        // Xử lý khi chuột được nhấn
+        
+      
+    
+        
+            
+        
+    
     // Tạo JPanel chứa các nút bấm để thêm, xoá, sửa, tính toán, xuất hoá đơn, tìm kiếm, TB hóa đơn nước ngoài
     private JPanel createButtonPanel() {
         JPanel panel = new JPanel();
@@ -181,6 +214,8 @@ public class ManagementApp extends JFrame {
         panel.add(TBHDNNButton);
         panel.add(ShowVN);
         panel.add(ShowNN);
+        
+            
         return panel;
     }
     public JScrollPane getScrollPaneNN() {
