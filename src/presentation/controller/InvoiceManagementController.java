@@ -26,7 +26,7 @@ import domain.model.HoaDonVietNam;
 import pesistence.HoaDonGateway;
 import pesistence.HoaDonGatewayImpl;
 import presentation.view.ManagementApp;
-import domain.model.DoiTuongKH;
+
 import domain.model.HoaDon;
 import domain.model.HoaDonNuocNgoai;
 public class InvoiceManagementController implements ActionListener {
@@ -70,11 +70,11 @@ public class InvoiceManagementController implements ActionListener {
             ((HoaDonNuocNgoai) hoaDon).setQuocTich(nationality);
             ((HoaDonNuocNgoai) hoaDon).thanhTien();
            hoaDonService.themHoaDon(hoaDon);
-           
+           ShowVN();
             managementAppRemote.getShowNN();
         } else if (customerType.equals("Khách hàng Việt Nam")) {
             HoaDon hoaDon = new HoaDonVietNam();
-            DoiTuongKH doiTuongKH = (DoiTuongKH) managementAppRemote.getCustomerObjectComboBox().getSelectedItem();
+            String doiTuongKH = (String) managementAppRemote.getCustomerObjectComboBox().getSelectedItem();
             ((HoaDonVietNam) hoaDon).setDoiTuongHK(doiTuongKH);
             double quota = Double.parseDouble(managementAppRemote.getQuotaField().getText());
             hoaDon.setMaHD(customerId);
@@ -84,7 +84,7 @@ public class InvoiceManagementController implements ActionListener {
             hoaDon.setSoLuong(quantity);
             hoaDon.setDonGia(unitPrice);
             hoaDonService.themHoaDon(hoaDon);
-            managementAppRemote.getShowVN();
+            ShowVN();
         }
     }
     public void xoaHoaDon() {
@@ -140,6 +140,17 @@ public void showSelectedHoadonInfo(HoaDon hoaDon) {
             quotaField.setText(String.valueOf(((HoaDonVietNam) hoaDon).getDinhMuc()));
             customerObjectComboBox.setSelectedItem(((HoaDonVietNam) hoaDon).getDoiTuongHK());
             customerTypeComboBox.setSelectedItem("Khách hàng Việt Nam");
+        }
+    }
+    public void ShowVN(){
+        DefaultTableModel tableModelVN = managementAppRemote.getTableModelVN();
+        tableModelVN.setRowCount(0);
+        List<HoaDon> list = hoaDonService.getHoaDonVN();
+        for (HoaDon hoaDon : list) {
+            
+            
+            tableModelVN.addRow(new Object[]{hoaDon.getMaHD(),hoaDon.getHotenKH(),hoaDon.getSoLuong(),((HoaDonVietNam) hoaDon).getDinhMuc(),((HoaDonVietNam) hoaDon).getDoiTuongHK(),hoaDon.getNgayraHD(),hoaDon.getDonGia()});
+            
         }
     }
 }

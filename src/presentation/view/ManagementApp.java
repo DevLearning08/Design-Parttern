@@ -4,7 +4,7 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
 import domain.HoadonService;
-import domain.model.DoiTuongKH;
+
 import domain.model.HoaDon;
 import domain.model.HoaDonNuocNgoai;
 import domain.model.HoaDonVietNam;
@@ -23,18 +23,20 @@ public class ManagementApp {
     private InvoiceManagementController controlRemotel;
     private JFrame frame;
     private JTable table;
-    private DefaultTableModel tableModel;
+    private JTable tableNN;
+    private DefaultTableModel tableModelVN;
+    private DefaultTableModel tableModelNN;
     private JTextField fullNameField;
     private JTextField customerIdField;
     private JComboBox<String> customerTypeComboBox;
-    private JComboBox<DoiTuongKH> customerObjectComboBox;
+    private JComboBox<String> customerObjectComboBox;
     private JTextField invoiceDateField;
     private JTextField quantityField;
     private JTextField unitPriceField;
     private JTextField quotaField;
     private JTextField nationalityField;
     private JScrollPane scrollPane;
-
+    
     private JButton addButton = new JButton("Thêm");
     private JButton deleteButton = new JButton("Xoá");
     private JButton editButton = new JButton("Sửa");
@@ -57,19 +59,32 @@ public class ManagementApp {
     
         // Tạo DefaultTableModel và JTable để hiển thị danh sách hoá đơn
 
-        tableModel = new DefaultTableModel();
-        tableModel.addColumn( "mã khách hàng");
-        tableModel.addColumn( "Họ và tên");
-        tableModel.addColumn( "số lượng");
-        tableModel.addColumn("định mức");
-        tableModel.addColumn("đối tượng");
-        tableModel.addColumn("ngày ra hóa đơn");
-        tableModel.addColumn("quốc gia");
-        tableModel.addColumn("đơn giá ");
+        tableModelVN = new DefaultTableModel();
+        tableModelVN.addColumn( "mã khách hàng");
+        tableModelVN.addColumn( "Họ và tên");
+        tableModelVN.addColumn( "số lượng");
+        tableModelVN.addColumn("định mức");
+        tableModelVN.addColumn("đối tượng");
+        tableModelVN.addColumn("ngày ra hóa đơn");
+        
+        tableModelVN.addColumn("đơn giá ");
         table = new JTable();
-        table.setModel(tableModel);
+        table.setModel(tableModelVN);
         scrollPane = new JScrollPane(table);
-    
+        //tạo tabelmodelNN
+        tableModelNN = new DefaultTableModel();
+        tableModelNN.addColumn( "mã khách hàng");
+        tableModelNN.addColumn( "Họ và tên");
+        tableModelNN.addColumn( "số lượng");
+        tableModelNN.addColumn("ngày ra hóa đơn");
+        tableModelNN.addColumn("quốc tịch");
+        tableModelNN.addColumn("đơn giá ");
+         tableNN = new JTable();
+         tableNN.setModel(tableModelNN);
+         if(hoaDon instanceof HoaDonNuocNgoai){
+             scrollPane = new JScrollPane(tableNN);
+         }
+         
         // Đưa JTable vào JScrollPane để có khả năng cuộn ngang và cuộn dọc
         scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
@@ -83,7 +98,7 @@ public class ManagementApp {
         fullNameField = new JTextField();
         customerIdField = new JTextField();
         customerTypeComboBox = new JComboBox<>(new String[]{"", "Khách hàng Việt Nam", "Khách hàng nước ngoài"});
-        customerObjectComboBox = new JComboBox<>(DoiTuongKH.values()); 
+        customerObjectComboBox = new JComboBox<>(new String[]{"", "sinh hoạt", "kinh doanh ","sản xuất"}); 
         // ---------------------------------------------------------
         // tạo Ô nhập chon ngày tháng 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -173,7 +188,7 @@ public class ManagementApp {
             return hoaDon;
         } else if (customerType.equals("Khách hàng Việt Nam")) {
             HoaDon hoaDon = new HoaDonVietNam();
-            DoiTuongKH doiTuongKH = (DoiTuongKH) customerObjectComboBox.getSelectedItem();
+            String doiTuongKH = (String) customerObjectComboBox.getSelectedItem();
             ((HoaDonVietNam) hoaDon).setDoiTuongHK(doiTuongKH);
             double quota = Double.parseDouble(quotaField.getText());
             hoaDon.setMaHD(customerId);
@@ -196,8 +211,8 @@ public class ManagementApp {
         
     }
 
-    public DefaultTableModel getTableModel() {
-        return tableModel;
+    public DefaultTableModel getTableModelVN() {
+        return tableModelVN;
     }
 
     public JFrame getFrame() {
@@ -216,8 +231,8 @@ public class ManagementApp {
         this.table = table;
     }
 
-    public void setTableModel(DefaultTableModel tableModel) {
-        this.tableModel = tableModel;
+    public void setTableModelVN(DefaultTableModel tableModelVN) {
+        this.tableModelVN = tableModelVN;
     }
 
     public JTextField getFullNameField() {
@@ -243,11 +258,11 @@ public class ManagementApp {
         this.customerTypeComboBox = customerTypeComboBox;
     }
 
-    public JComboBox<DoiTuongKH> getCustomerObjectComboBox() {
+    public JComboBox<String> getCustomerObjectComboBox() {
         return customerObjectComboBox;
     }
 
-    public void setCustomerObjectComboBox(JComboBox<DoiTuongKH> customerObjectComboBox) {
+    public void setCustomerObjectComboBox(JComboBox<String> customerObjectComboBox) {
         this.customerObjectComboBox = customerObjectComboBox;
     }
 
