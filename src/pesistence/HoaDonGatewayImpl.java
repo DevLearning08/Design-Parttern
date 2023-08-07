@@ -76,6 +76,7 @@ public class HoaDonGatewayImpl implements HoaDonGateway {
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setInt(1, maHD);
             statement.executeUpdate();
+            connection.setAutoCommit(false);
             connection.commit();
             statement.close();
         } catch (SQLException e) {

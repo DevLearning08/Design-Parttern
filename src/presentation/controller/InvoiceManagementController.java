@@ -42,7 +42,8 @@ public class InvoiceManagementController implements ActionListener {
         if (e.getActionCommand().equals("Thêm")) {
             themHoaDon();
         } else if (e.getActionCommand().equals("Xoá")) {
-            xoaHoaDon();
+            int customerId = Integer.parseInt(managementAppRemote.getCustomerIdField().getText());
+            hoaDonService.xoaHoaDon(customerId);
         } else if (e.getSource() == managementAppRemote.getTable()) {
             // Thực hiện các thao tác khi người dùng chọn một hàng trong bảng
             int selectedRow = managementAppRemote.getTable().getSelectedRow();
@@ -87,31 +88,31 @@ public class InvoiceManagementController implements ActionListener {
             managementAppRemote.getShowVN();
         }
     }
-    public void xoaHoaDon() {
-        int selectedRow = managementAppRemote.getTable().getSelectedRow();
-        if (selectedRow != -1) {
-            int maHD = (int) managementAppRemote.getTable().getValueAt(selectedRow, 0);
-           hoaDonService.xoaHoaDon(maHD);
+    // public void xoaHoaDon() {
+    //     int customerId = Integer.parseInt(managementAppRemote.getCustomerIdField().getText());
+    //     if (customerId == ) {
+    //         int maHD =customerId;
+    //        hoaDonService.xoaHoaDon(maHD);
     
-            // if (hoaDon instanceof HoaDonNuocNgoai) {
-            //     hoaDonService.xoaHoaDon(hoaDon.getMaHD());
-            // } else if (hoaDon instanceof HoaDonVietNam) {
-            // hoaDonService.xoaHoaDon(hoaDon.getMaHD());}
-            // if (service != null) {
-            //     try {
-            //         // Thực hiện xóa hóa đơn từ cơ sở dữ liệu
-            //         HoaDonGateway gateway = new HoaDonGatewayImpl();
-            //         gateway.xoaHoaDon(hoaDon.getMaHD());
-            //         service.action(hoaDon);
-            //         managementAppRemote.getTableModel().removeRow(selectedRow);
-            //     } catch (Exception e) {
-            //         e.printStackTrace();
-            //         // Xử lý lỗi nếu cần thiết
-            //     }
-            // }
-        }
+    //         // if (hoaDon instanceof HoaDonNuocNgoai) {
+    //         //     hoaDonService.xoaHoaDon(hoaDon.getMaHD());
+    //         // } else if (hoaDon instanceof HoaDonVietNam) {
+    //         // hoaDonService.xoaHoaDon(hoaDon.getMaHD());}
+    //         // if (service != null) {
+    //         //     try {
+    //         //         // Thực hiện xóa hóa đơn từ cơ sở dữ liệu
+    //         //         HoaDonGateway gateway = new HoaDonGatewayImpl();
+    //         //         gateway.xoaHoaDon(hoaDon.getMaHD());
+    //         //         service.action(hoaDon);
+    //         //         managementAppRemote.getTableModel().removeRow(selectedRow);
+    //         //     } catch (Exception e) {
+    //         //         e.printStackTrace();
+    //         //         // Xử lý lỗi nếu cần thiết
+    //         //     }
+    //         // }
+    //     }
     
-    }
+    // }
 public void showSelectedHoadonInfo(HoaDon hoaDon) {
     managementAppRemote.populateInputFields(hoaDon);
 }
