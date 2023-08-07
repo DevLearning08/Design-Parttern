@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class ManagementApp {
+public class ManagementApp extends JFrame {
     private HoaDon  hoaDon;
     private InvoiceManagementController controlRemotel;
     private JFrame frame;
@@ -36,7 +36,7 @@ public class ManagementApp {
     private JTextField quotaField;
     private JTextField nationalityField;
     private JScrollPane scrollPane;
-    
+    private JScrollPane scrollPaneNN;
     private JButton addButton = new JButton("Thêm");
     private JButton deleteButton = new JButton("Xoá");
     private JButton editButton = new JButton("Sửa");
@@ -47,7 +47,15 @@ public class ManagementApp {
     private JButton ShowNN = new JButton("ShowNN");
 
     private JButton TBHDNNButton = new JButton("Tính TB hóa đơn nước ngoài");
-
+    private JLabel fullNameFieldJLabel;
+    private JLabel customerIdFieldJLabel;
+    private JLabel quantityFieldJLabel;
+    private JLabel unitPriceFieldJLabel;
+    private JLabel quotaFieldJLabel;
+    private JLabel nationalityFieldJLabel;
+    private JLabel customerTypeFieldJLabel ;
+    private JLabel customerOjectFieldJLabel ;
+    private JLabel invoiceDateJLabel ;
 
     public ManagementApp() {
         controlRemotel = new InvoiceManagementController(this);
@@ -113,24 +121,33 @@ public class ManagementApp {
         quotaField = new JTextField();
         nationalityField = new JTextField();
     
-        // Thêm các thành phần vào inputPanel
-        inputPanel.add(new JLabel("Loại khách hàng:"));
+        fullNameFieldJLabel= new JLabel("Họ và tên:");
+        customerIdFieldJLabel= new JLabel("Mã khách hàng:");
+        quantityFieldJLabel= new JLabel("Số lượng:");
+        unitPriceFieldJLabel= new JLabel("Đơn giá:");
+        quotaFieldJLabel= new JLabel("Định mức:");
+        nationalityFieldJLabel= new JLabel("Quốc tịch");
+        customerTypeFieldJLabel = new JLabel("Loại khách hàng:");
+        customerOjectFieldJLabel = new JLabel("Đối tượng khách hàng:");
+        invoiceDateJLabel = new JLabel("Ngày xuất hoá đơn:");
+        // Thêm các thành phần vào inputPanel;
+        inputPanel.add(customerTypeFieldJLabel);
         inputPanel.add(customerTypeComboBox);
-        inputPanel.add(new JLabel("Họ và tên:"));
+        inputPanel.add(fullNameFieldJLabel);
         inputPanel.add(fullNameField);
-        inputPanel.add(new JLabel("Mã khách hàng:"));
+        inputPanel.add(customerIdFieldJLabel);
         inputPanel.add(customerIdField);
-        inputPanel.add(new JLabel("Đối tượng khách hàng:"));
+        inputPanel.add(customerOjectFieldJLabel);
         inputPanel.add(customerObjectComboBox);
-        inputPanel.add(new JLabel("Ngày xuất hoá đơn:"));
+        inputPanel.add(invoiceDateJLabel);
         inputPanel.add(invoiceDateField);
-        inputPanel.add(new JLabel("Số lượng:"));
+        inputPanel.add(quantityFieldJLabel);
         inputPanel.add(quantityField);
-        inputPanel.add(new JLabel("Đơn giá:"));
+        inputPanel.add(unitPriceFieldJLabel);
         inputPanel.add(unitPriceField);
-        inputPanel.add(new JLabel("Định mức:"));
+        inputPanel.add(quotaFieldJLabel);
         inputPanel.add(quotaField);
-        inputPanel.add(new JLabel("Quốc tịch:"));
+        inputPanel.add(nationalityFieldJLabel);
         inputPanel.add(nationalityField);
         inputPanel.add(new JLabel());
         inputPanel.add(createButtonPanel());
@@ -166,7 +183,10 @@ public class ManagementApp {
         panel.add(ShowNN);
         return panel;
     }
-
+    public JScrollPane getScrollPaneNN() {
+        
+        return scrollPane;
+    }
     public HoaDon getHoaDonFromInput() {
         String customerType = (String) customerTypeComboBox.getSelectedItem();
         String fullName = fullNameField.getText();

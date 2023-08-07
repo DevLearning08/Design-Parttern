@@ -44,6 +44,7 @@ public class InvoiceManagementController implements ActionListener {
         } else if (e.getActionCommand().equals("Xoá")) {
             int customerId = Integer.parseInt(managementAppRemote.getCustomerIdField().getText());
             hoaDonService.xoaHoaDon(customerId);
+            ShowVN();
         } else if (e.getSource() == managementAppRemote.getTable()) {
             // Thực hiện các thao tác khi người dùng chọn một hàng trong bảng
             int selectedRow = managementAppRemote.getTable().getSelectedRow();
