@@ -3,15 +3,15 @@ package domain.model;
 import java.util.Date;
 
 public class HoaDonVietNam extends HoaDon {
-    private DoiTuongKH doiTuongHK;
+    private String doiTuongHK;
     private Double dinhMuc;
     
-    public HoaDonVietNam(int maKH, String hotenKH, Date ngayraHD, Double soLuong, Double donGia, DoiTuongKH doiTuongHK, Double dinhMuc, Double thanhTien) {
+    public HoaDonVietNam(int maKH, String hotenKH, Date ngayraHD, Double soLuong, Double donGia, String doiTuongHK, Double dinhMuc, Double thanhTien) {
         super(maKH, hotenKH, ngayraHD, soLuong, donGia);
         this.doiTuongHK = doiTuongHK;
         this.dinhMuc = dinhMuc;
     }
-    public HoaDonVietNam(int i, String string, java.sql.Date date, double d, double e, DoiTuongKH doiTuongKH, double f){}
+    public HoaDonVietNam(int i, String string, java.sql.Date date, double d, double e, String doiTuongKH, double f){}
     public HoaDonVietNam(){}
     @Override
     public Double thanhTien() {
@@ -25,11 +25,11 @@ public class HoaDonVietNam extends HoaDon {
         }
     }
 
-    public DoiTuongKH getDoiTuongHK() {
+    public String getDoiTuongHK() {
         return doiTuongHK;
     }
 
-    public void setDoiTuongHK(DoiTuongKH doiTuongHK) {
+    public void setDoiTuongHK(String doiTuongHK) {
         this.doiTuongHK = doiTuongHK;
     }
 

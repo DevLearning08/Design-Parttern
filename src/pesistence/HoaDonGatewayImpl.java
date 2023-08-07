@@ -13,7 +13,7 @@ import java.util.List;
 
 import javax.swing.table.DefaultTableModel;
 
-import domain.model.DoiTuongKH;
+
 import domain.model.HoaDon;
 import domain.model.HoaDonNuocNgoai;
 import domain.model.HoaDonVietNam;
@@ -203,8 +203,8 @@ public class HoaDonGatewayImpl implements HoaDonGateway {
             double donGia = resultSet.getDouble("donGia");
             Date ngayraHD = resultSet.getDate("ngayraHD");
         if(hoaDon instanceof HoaDonVietNam){  
-            String doiTuongKHString = resultSet.getString("doiTuongHK");
-            DoiTuongKH doiTuongKH = DoiTuongKH.valueOf(doiTuongKHString);
+            
+            String doiTuongKH = resultSet.getString("doiTuongKH");
             double dinhMuc = resultSet.getDouble("dinhMuc");
             Double thanhTien = resultSet.getDouble("thanhTien");
             hoaDonList.add(new HoaDonVietNam(maKH, hotenKH, ngayraHD, soLuong, donGia, doiTuongKH, dinhMuc, thanhTien));
@@ -287,8 +287,8 @@ public List<HoaDon> getHoaDonVN() {
             double soLuong = resultSet.getInt("soLuong");
             double donGia = resultSet.getDouble("donGia");
             Date ngayraHD = resultSet.getDate("ngayraHD");
-            String doiTuongKHString = resultSet.getString("doiTuongHK");
-            DoiTuongKH doiTuongKH = DoiTuongKH.valueOf(doiTuongKHString);
+            
+            String doiTuongKH = resultSet.getString("doiTuongKH");
             double dinhMuc = resultSet.getDouble("dinhMuc");
             double thanhTien = resultSet.getDouble("thanhTien");
             HoaDonVietNam hoaDon = new HoaDonVietNam(maKH, hotenKH, ngayraHD, soLuong, donGia, doiTuongKH, dinhMuc, thanhTien);
@@ -315,8 +315,8 @@ public List<HoaDon> getHoaDonVN() {
                double donGia = resultSet.getDouble("donGia");
                Date ngayraHD = resultSet.getDate("ngayraHD");
                double DinhMuc = resultSet.getInt("dinhMuc");
-               String doiTuongKHString = resultSet.getString("doiTuongKH");
-               DoiTuongKH doiTuongKH = DoiTuongKH.valueOf(doiTuongKHString);
+               
+               String doiTuongKH = resultSet.getString("doiTuongHK");
                Double thanhTien = resultSet.getDouble("thanhTien");
                
                return new HoaDonVietNam(maKH, hotenKH1, ngayraHD, soLuong, donGia, doiTuongKH, DinhMuc, thanhTien);
