@@ -1,5 +1,7 @@
 package domain;
 
+import javax.swing.table.DefaultTableModel;
+
 import domain.model.HoaDon;
 import pesistence.HoaDonDAO;
 import pesistence.HoaDonDAOImpl;
@@ -7,6 +9,6 @@ import pesistence.HoaDonDAOImpl;
 public class HoaDon_Xoa implements HoadonService{
     public void action(HoaDon hoaDon){
         HoaDonDAO hoaDon_xoa = new HoaDonDAOImpl();
-        hoaDon_xoa.xoaHoaDon(hoaDon.getMaHD(), hoaDon);
+        hoaDon_xoa.xoaHoaDon( hoaDon);
     }
 }

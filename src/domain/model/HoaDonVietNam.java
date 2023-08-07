@@ -11,8 +11,8 @@ public class HoaDonVietNam extends HoaDon {
         this.doiTuongHK = doiTuongHK;
         this.dinhMuc = dinhMuc;
     }
+    public HoaDonVietNam(int i, String string, java.sql.Date date, double d, double e, DoiTuongKH doiTuongKH, double f){}
     public HoaDonVietNam(){}
-
     @Override
     public Double thanhTien() {
         if(getSoLuong() <= dinhMuc){
@@ -40,5 +40,7 @@ public class HoaDonVietNam extends HoaDon {
     public void setDinhMuc(Double dinhMuc) {
         this.dinhMuc = dinhMuc;
     }    
-    
+    public String toString(){
+        return getMaHD() + " " + getHotenKH() + " " + getNgayraHD() + " " + getSoLuong() + " " + getDonGia() + " " + doiTuongHK + " " + dinhMuc + " " + thanhTien();
+    }
 }

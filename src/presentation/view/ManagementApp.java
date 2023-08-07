@@ -3,8 +3,8 @@ package presentation.view;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
-import domain.HoaDon_GetAll;
 import domain.HoadonService;
+import domain.model.DoiTuongKH;
 import domain.model.HoaDon;
 import domain.model.HoaDonNuocNgoai;
 import domain.model.HoaDonVietNam;
@@ -14,6 +14,8 @@ import java.awt.*;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class ManagementApp {
@@ -25,7 +27,7 @@ public class ManagementApp {
     private JTextField fullNameField;
     private JTextField customerIdField;
     private JComboBox<String> customerTypeComboBox;
-    private JComboBox<String> customerObjectComboBox;
+    private JComboBox<DoiTuongKH> customerObjectComboBox;
     private JTextField invoiceDateField;
     private JTextField quantityField;
     private JTextField unitPriceField;
@@ -39,7 +41,8 @@ public class ManagementApp {
     private JButton findButton = new JButton("Tìm kiếm");
     private JButton calculateButton = new JButton("Thành tiền");
     private JButton exportButton = new JButton("Xuất hoá đơn");
-
+    private JButton ShowVN = new JButton("ShowVN");
+    private JButton ShowNN = new JButton("ShowNN");
 
     private JButton TBHDNNButton = new JButton("Tính TB hóa đơn nước ngoài");
 
@@ -80,7 +83,7 @@ public class ManagementApp {
         fullNameField = new JTextField();
         customerIdField = new JTextField();
         customerTypeComboBox = new JComboBox<>(new String[]{"", "Khách hàng Việt Nam", "Khách hàng nước ngoài"});
-        customerObjectComboBox = new JComboBox<>(new String[]{"", "Kinh doanh", "Định mức", "Sản xuất"});
+        customerObjectComboBox = new JComboBox<>(DoiTuongKH.values()); 
         // ---------------------------------------------------------
         // tạo Ô nhập chon ngày tháng 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -134,7 +137,10 @@ public class ManagementApp {
         deleteButton.addActionListener(controlRemotel);
         calculateButton.addActionListener(controlRemotel);
         exportButton.addActionListener(controlRemotel);
-        showAll();
+        ShowVN.addActionListener(controlRemotel);
+        ShowNN.addActionListener(controlRemotel);
+        
+       
     }
     
     
@@ -149,22 +155,11 @@ public class ManagementApp {
         panel.add(exportButton);
         panel.add(findButton);
         panel.add(TBHDNNButton);
+        panel.add(ShowVN);
+        panel.add(ShowNN);
         return panel;
     }
-   public void showAll(){
-    if(hoaDon instanceof HoaDonNuocNgoai){
-        HoadonService service = new HoaDon_GetAll();
-        service.action(hoaDon);
-        tableModel.setRowCount(0);
-        tableModel.addRow(new Object[]{tableModel.getRowCount() +1, hoaDon.getMaHD(),hoaDon.getHoVaTen(),hoaDon.getSoLuong(),hoaDon.getDonGia(),hoaDon.thanhTien()});
-    }else if(hoaDon instanceof HoaDonVietNam)
-    {
-    HoadonService service = new HoaDon_GetAll();
-    service.action(hoaDon);
-    tableModel.setRowCount(0);
-    tableModel.addRow(new Object[]{tableModel.getRowCount() +1, hoaDon.getMaHD(),hoaDon.getHoVaTen(),hoaDon.getSoLuong(),hoaDon.getDonGia(),hoaDon.thanhTien()});
-   }
-}
+  
 
 
     // Thêm thông tin hoá đơn vào bảng
@@ -225,11 +220,11 @@ public class ManagementApp {
         this.customerTypeComboBox = customerTypeComboBox;
     }
 
-    public JComboBox<String> getCustomerObjectComboBox() {
+    public JComboBox<DoiTuongKH> getCustomerObjectComboBox() {
         return customerObjectComboBox;
     }
 
-    public void setCustomerObjectComboBox(JComboBox<String> customerObjectComboBox) {
+    public void setCustomerObjectComboBox(JComboBox<DoiTuongKH> customerObjectComboBox) {
         this.customerObjectComboBox = customerObjectComboBox;
     }
 
@@ -316,6 +311,20 @@ public class ManagementApp {
     public HoaDon getHoaDonRemote(){
         return hoaDon;
     }
-
+    public void setHoaDonRemote(HoaDon hoaDon){
+        this.hoaDon = hoaDon;
+    }
+    public JButton getShowVN() {
+        return ShowVN;
+    }
+    public JButton getShowNN() {
+        return ShowNN;
+    }
+    public void setShowVN(JButton ShowVN) {
+        this.ShowVN = ShowVN;
+    }
+    public void setShowNN(JButton ShowNN) {
+        this.ShowNN = ShowNN;
+    }
 }
 

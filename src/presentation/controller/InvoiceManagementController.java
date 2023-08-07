@@ -5,6 +5,9 @@ import presentation.view.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Vector;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -15,7 +18,6 @@ import javax.swing.JTextField;
 // import domain
 import javax.swing.table.DefaultTableModel;
 
-import domain.HoaDon_GetAll;
 import domain.HoaDon_SolgTungLoai;
 import domain.HoaDon_Sua;
 import domain.HoaDon_TBHHDNN;
@@ -26,21 +28,28 @@ import domain.HoaDon_XuatHDThang;
 import domain.HoadonService;
 // import domain.model
 import domain.model.HoaDonVietNam;
+import pesistence.HoaDonGateway;
+import pesistence.HoaDonGatewayImpl;
 import presentation.view.ManagementApp;
+import domain.model.DoiTuongKH;
 import domain.model.HoaDon;
 import domain.model.HoaDonNuocNgoai;
 
 public class InvoiceManagementController implements ActionListener {
     private  ManagementApp managementAppRemote;
     private HoaDon hoaDon;
+     //DefaultTableModel tableModel = managementAppRemote.getTableModel();
+    //JTable table = managementAppRemote.getTable();
     public InvoiceManagementController(ManagementApp managementAppRemote) {
         this.managementAppRemote = managementAppRemote;
        
+        
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         //gửi thông điệp đên view
+        hoaDon = managementAppRemote.getHoaDonRemote();
         JTextField fullNameCustomer = managementAppRemote.getFullNameField();
         JTextField customerIdField = managementAppRemote.getCustomerIdField();
         JTextField invoiceDateField = managementAppRemote.getInvoiceDateField();
@@ -58,38 +67,45 @@ public class InvoiceManagementController implements ActionListener {
         DefaultTableModel tableModel = managementAppRemote.getTableModel();
         JTable table = managementAppRemote.getTable();
         JComboBox customerTypeComboBox = managementAppRemote.getCustomerTypeComboBox();
+        JComboBox customerObjectComboBox = managementAppRemote.getCustomerObjectComboBox();
         String customerType = (String) customerTypeComboBox.getSelectedItem();
+        
         // lấy dữ liệu từ view
         String fullName = fullNameCustomer.getText();
         int customerId = Integer.parseInt(customerIdField.getText());
         Date invoiceDate =Date.valueOf( invoiceDateField.getText());
         double quantity =Double.parseDouble( quantityField.getText());
         double unitPrice =Double.parseDouble( unitPriceField.getText());
-        
+       
         String nationality = nationalityField.getText();
 
 
             
 
-
+         
         if(e.getActionCommand() == "Thêm"){
             if(customerTypeComboBox.getSelectedItem().equals("Khách hàng nước ngoài")){
             hoaDon = new HoaDonNuocNgoai();
-            if(hoaDon instanceof HoaDonNuocNgoai){
+            
             hoaDon.setMaHD( customerId);
             hoaDon.setHotenKH(fullName);
             hoaDon.setNgayraHD(invoiceDate);
             hoaDon.setSoLuong(quantity);
             hoaDon.setDonGia(unitPrice);
             ((HoaDonNuocNgoai) hoaDon).setQuocTich(nationality);
+            ((HoaDonNuocNgoai)hoaDon).thanhTien();
             HoadonService service = new HoaDon_Them();
             service.action(hoaDon);
-            HoadonService service2 = new HoaDon_GetAll();
-            service2.action(hoaDon);
-            managementAppRemote.showAll();
+            
+            showNN();
+            // service2.action(hoaDon);
+            // managementAppRemote.showAll();
         }else if(customerTypeComboBox.getSelectedItem().equals("Khách hàng Việt Nam")){
             //set lại giá trị cho HoadonVietNam
+            
             hoaDon = new HoaDonVietNam();
+            DoiTuongKH doiTuongKH = (DoiTuongKH) customerObjectComboBox.getSelectedItem();
+            ((HoaDonVietNam) hoaDon).setDoiTuongHK(doiTuongKH);
             hoaDon.setMaHD( customerId);
             double quota =Double.parseDouble( quotaField.getText());
             hoaDon.setHotenKH(fullName);
@@ -99,15 +115,99 @@ public class InvoiceManagementController implements ActionListener {
             hoaDon.setDonGia(unitPrice);
             HoadonService service = new HoaDon_Them();
             service.action(hoaDon);
-            HoadonService service2 = new HoaDon_GetAll();
-            service2.action(hoaDon);
-            managementAppRemote.showAll();
+            showVn();
+            // HoadonService service2 = new HoaDon_GetAll();
+            // service2.action(hoaDon);
+            // managementAppRemote.showAll();
+        }
+        }else if(e.getSource()==deleteButton ){
+            
+            int selctindex = table.getSelectedRow();
+            if(selctindex !=-1){
+                tableModel.removeRow(selctindex);
+                hoaDon = new HoaDonNuocNgoai();
+                hoaDon = (HoaDon) table.getValueAt( selctindex, 0);
+                if(hoaDon instanceof HoaDonNuocNgoai){
+                    
+                
+                HoadonService service = new HoaDon_Xoa();
+                service.action(hoaDon);
+            }else if(hoaDon instanceof HoaDonVietNam){
+                HoadonService service = new HoaDon_Xoa();
+                service.action(hoaDon);
         }
     }
+            
+        }else if(e.getSource() == table)   {
+            showSelectedHoadonInfo(hoaDon);
+        }
+    }
+    public void showVn(){
         
+       HoaDon hoaDonvn = new HoaDonVietNam(); 
+       HoaDonGateway service = new HoaDonGatewayImpl();
+       //HoadonService service = new HoaDon_GetAll();
+       List<HoaDon> list = service.getHoaDonVN();
+        DefaultTableModel tableModel = managementAppRemote.getTableModel();
+        JTable table = managementAppRemote.getTable();
+       
+        tableModel.setRowCount(0);
+            for (HoaDon hoaDon : list) {
+                tableModel.addRow(new Object[]{ hoaDon.getMaHD(),hoaDon.getHotenKH(),hoaDon.getSoLuong(),((HoaDonVietNam) hoaDon).getDinhMuc(),((HoaDonVietNam) hoaDon).getDoiTuongHK(),hoaDon.getNgayraHD(),hoaDon.getDonGia()});
+                table.setModel(tableModel);
+            } 
+    }
+    public void showNN(){
+        HoaDon hoaDonNN = new HoaDonNuocNgoai(); 
+       HoaDonGateway service = new HoaDonGatewayImpl();
+       //HoadonService service = new HoaDon_GetAll();
+       List<HoaDon> list = service.getHoaDonNN();
+        DefaultTableModel tableModel = managementAppRemote.getTableModel();
+        JTable table = managementAppRemote.getTable();
+       
+        tableModel.setRowCount(0);
+            for (HoaDon hoaDon : list) {
+                tableModel.addRow(new Object[]{ hoaDon.getMaHD(),hoaDon.getHotenKH(),hoaDon.getSoLuong(),hoaDon.getNgayraHD(),((HoaDonNuocNgoai) hoaDon).getQuocTich(),hoaDon.getDonGia()});
+                table.setModel(tableModel);
+            } 
+    }
+    public void showSelectedHoadonInfo(HoaDon hoaDon) {
+       JTable table = managementAppRemote.getTable();
+       HoadonService service = new HoaDon_Timkiem();
+        
+        int selectedRow = table.getSelectedRow();
+        if(hoaDon instanceof HoaDonNuocNgoai){
+            
+        if (selectedRow != -1) {
+            int hoaDonId = (int) table.getValueAt(selectedRow, 0);
+
+            service.action(hoaDon);
+            if (hoaDon != null) {
+                populateInputFields(hoaDon);
+            }
+        }}
+    }
+    public  void populateInputFields(HoaDon hoaDon) {
+         JTextField fullNameCustomer = managementAppRemote.getFullNameField();
+        JTextField customerIdField = managementAppRemote.getCustomerIdField();
+        JTextField invoiceDateField = managementAppRemote.getInvoiceDateField();
+        JTextField quantityField = managementAppRemote.getQuantityField();
+        JTextField unitPriceField = managementAppRemote.getUnitPriceField();
+        JTextField quotaField = managementAppRemote.getQuotaField();
+        JTextField nationalityField = managementAppRemote.getNationalityField();
+        JComboBox customerTypeComboBox = managementAppRemote.getCustomerTypeComboBox();
+        JComboBox customerObjectComboBox = managementAppRemote.getCustomerObjectComboBox();
+        fullNameCustomer.setText(hoaDon.getHotenKH());
+        customerIdField.setText(String.valueOf(hoaDon.getMaHD()));
+        invoiceDateField.setText(String.valueOf(hoaDon.getNgayraHD()));
+        quantityField.setText(String.valueOf(hoaDon.getSoLuong()));
+        unitPriceField.setText(String.valueOf(hoaDon.getDonGia()));
+        quotaField.setText(String.valueOf(((HoaDonNuocNgoai) hoaDon).getQuocTich()));
+        nationalityField.setText(((HoaDonNuocNgoai) hoaDon).getQuocTich());
+        customerTypeComboBox.setSelectedItem(((HoaDonNuocNgoai) hoaDon).getQuocTich());
+        customerObjectComboBox.setSelectedItem(((HoaDonVietNam) hoaDon).getDoiTuongHK());
         
     }
-    
     // private ManagementApp managementAppRemote;
     // private HoadonService hoadonServiceRemote;
     // private  HoaDon hoaDon;
@@ -263,4 +363,4 @@ public class InvoiceManagementController implements ActionListener {
     // public void actionPerformed(ActionEvent e) {
         
     // }
-}}
+}

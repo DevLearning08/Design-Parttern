@@ -8,6 +8,9 @@ public class HoaDonNuocNgoai extends HoaDon{
         super(maKH, hotenKH, ngayraHD, soLuong, donGia);
         this.quocTich = quocTich;
     }
+    public HoaDonNuocNgoai(int i, String string, java.sql.Date date, double d, double e, double f){
+
+    }
     public HoaDonNuocNgoai(){}
    
     public String getQuocTich() {
@@ -24,5 +27,7 @@ public class HoaDonNuocNgoai extends HoaDon{
         return thanhTien;
     }
 
-    
+    public String toString(){
+        return getMaHD() + " " + getHotenKH() + " " + getNgayraHD() + " " + getSoLuong() + " " + getDonGia() + " " + quocTich + " " + thanhTien();
+    }
 }

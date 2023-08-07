@@ -11,7 +11,7 @@ public class HoaDon_Them implements HoadonService{
     public void action(HoaDon hoaDon) {
         
             HoaDonDAO hoaDon_them = new HoaDonDAOImpl();
-            hoaDon_them.themHoaDonVN(hoaDon);
+            hoaDon_them.themHoaDon(hoaDon);
         
     }
     

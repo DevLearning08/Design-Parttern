@@ -1,28 +1,34 @@
 package pesistence;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import javax.swing.table.DefaultTableModel;
 
 import domain.model.HoaDon;
 
 public class HoaDonDAOImpl implements HoaDonDAO {
-    // private HoaDonGateway hoaDonGateway;
-     
+    //private HoaDonGateway hoaDonGateway;
+     HoaDonGateway service = new HoaDonGatewayImpl();
     // public HoaDonDAOImpl(HoaDonGateway hoaDonGateway){
     //     this.hoaDonGateway = hoaDonGateway;
     // }
-
-
+    public HoaDonDAOImpl(){
+        
+    }
+   
     @Override
-    public void themHoaDonVN(HoaDon hoaDon) {
+    public void themHoaDon(HoaDon hoaDon) {
+        
         HoaDonGateway hoaDonGateway = new HoaDonGatewayImpl();
-        hoaDonGateway.themHoaDonVN(hoaDon);
+        hoaDonGateway.themHoaDon(hoaDon);
         
     }
 
     @Override
-    public void xoaHoaDon(int maKH, HoaDon hoaDon) {
+    public void xoaHoaDon( HoaDon hoaDon) {
         HoaDonGateway hoaDonGateway = new HoaDonGatewayImpl();
-        hoaDonGateway.xoaHoaDon(maKH, hoaDon);
+        hoaDonGateway.xoaHoaDon( hoaDon);
         
     }
 
@@ -62,11 +68,11 @@ public class HoaDonDAOImpl implements HoaDonDAO {
         return hoaDonGateway.timKiemTenVN(hotenKH);
     }
 
-    @Override
-    public void themHoaDonNuocNgoai(HoaDon hoaDon) {
-        HoaDonGateway hoaDonGateway = new HoaDonGatewayImpl();
-        hoaDonGateway.themHoaDonNuocNgoai(hoaDon);
-    }
+    // @Override
+    // public void themHoaDonNuocNgoai(HoaDon hoaDon) {
+    //     HoaDonGateway hoaDonGateway = new HoaDonGatewayImpl();
+    //     hoaDonGateway.themHoaDonNuocNgoai(hoaDon);
+    // }
 
     @Override
     public HoaDon timKiemTenNN(String hotenKH) {
@@ -75,8 +81,14 @@ public class HoaDonDAOImpl implements HoaDonDAO {
     }
 
     @Override
-    public List<HoaDon> getAllHoaDons() {
+    public List<HoaDon> getHoaDonVN() {
        HoaDonGateway hoaDonGateway = new HoaDonGatewayImpl();
-       return hoaDonGateway.getAllHoaDons();
+      
+       return hoaDonGateway.getHoaDonVN();
     }
+    public List<HoaDon> getHoaDonNN(){
+        HoaDonGateway hoaDonGateway = new HoaDonGatewayImpl();
+        return hoaDonGateway.getHoaDonNN();
+    }
+     
 }
