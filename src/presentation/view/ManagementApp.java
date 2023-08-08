@@ -43,7 +43,7 @@ public class ManagementApp extends JFrame implements Subcriber {
     private JButton deleteButton = new JButton("Xoá");
     private JButton editButton = new JButton("Sửa");
     private JButton findButton = new JButton("Tìm kiếm");
-    private JButton calculateButton = new JButton("Thành tiền");
+    // private JButton calculateButton = new JButton("Thành tiền");
     private JButton exportButton = new JButton("Xuất hóa đơn");
 
     private JButton TBHDNNButton = new JButton("Tính TB hóa đơn nước ngoài");
@@ -157,7 +157,7 @@ public class ManagementApp extends JFrame implements Subcriber {
         findButton.addActionListener(controlRemotel);
         editButton.addActionListener(controlRemotel);
         deleteButton.addActionListener(controlRemotel);
-        calculateButton.addActionListener(controlRemotel);
+        // calculateButton.addActionListener(controlRemotel);
         exportButton.addActionListener(controlRemotel);
         customerTypeComboBox.addMouseListener(controlRemotel);
         
@@ -200,7 +200,7 @@ public class ManagementApp extends JFrame implements Subcriber {
         panel.add(addButton);
         panel.add(deleteButton);
         panel.add(editButton);
-        panel.add(calculateButton);
+        // panel.add(calculateButton);
         panel.add(exportButton);
         panel.add(findButton);
         panel.add(TBHDNNButton);
@@ -340,9 +340,9 @@ public class ManagementApp extends JFrame implements Subcriber {
         return editButton;
     }
 
-    public JButton getCalculateButton() {
-        return calculateButton;
-    }
+    // public JButton getCalculateButton() {
+    //     return calculateButton;
+    // }
 
     public JButton getExportButton() {
         return exportButton;

@@ -182,7 +182,7 @@ public class InvoiceManagementController implements ActionListener ,MouseListene
                     hoaDon.themObserver(managementAppRemote);
                     hoaDon_Sua.action(hoaDon,customerId, customerId, fullName,customerType);
                 }
-                ShowNN(); 
+                // ShowNN(); 
             }
         }else if (e.getActionCommand().equals("Xuất hóa đơn")){
                 if (customerType.equals("Khách hàng Việt Nam")) {
