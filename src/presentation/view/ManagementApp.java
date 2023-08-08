@@ -43,10 +43,7 @@ public class ManagementApp extends JFrame {
     private JButton editButton = new JButton("Sửa");
     private JButton findButton = new JButton("Tìm kiếm");
     private JButton calculateButton = new JButton("Thành tiền");
-    private JButton exportButton = new JButton("Xuất hoá đơn");
-    private JButton resetButton = new JButton("Reset");
-    private JButton ShowVN = new JButton("ShowVN");
-    private JButton ShowNN = new JButton("ShowNN");
+    private JButton exportButton = new JButton("Xuất hóa đơn");
 
     private JButton TBHDNNButton = new JButton("Tính TB hóa đơn nước ngoài");
     private JLabel fullNameFieldJLabel;
@@ -161,9 +158,6 @@ public class ManagementApp extends JFrame {
         deleteButton.addActionListener(controlRemotel);
         calculateButton.addActionListener(controlRemotel);
         exportButton.addActionListener(controlRemotel);
-        resetButton.addActionListener(controlRemotel);
-        ShowVN.addActionListener(controlRemotel);
-        ShowNN.addActionListener(controlRemotel);
         customerTypeComboBox.addMouseListener(controlRemotel);
         
         
@@ -209,9 +203,6 @@ public class ManagementApp extends JFrame {
         panel.add(exportButton);
         panel.add(findButton);
         panel.add(TBHDNNButton);
-        panel.add(resetButton);
-        panel.add(ShowVN);
-        panel.add(ShowNN);
        
             
         return panel;
@@ -370,24 +361,11 @@ public class ManagementApp extends JFrame {
     public void setHoaDonRemote(HoaDon hoaDon){
         this.hoaDon = hoaDon;
     }
-    public JButton getShowVN() {
-        return ShowVN;
-    }
-    public JButton getShowNN() {
-        return ShowNN;
-    }
-    public void setShowVN(JButton ShowVN) {
-        this.ShowVN = ShowVN;
-    }
-    public void setShowNN(JButton ShowNN) {
-        this.ShowNN = ShowNN;
-    }
+
     public void populateInputFields(HoaDon hoaDon2) {
         
     }
-    public JButton getResetButton() {
-        return resetButton;
-    }
+
     public boolean isVietNamSelected() {
         return isVietNamSelected;
     }

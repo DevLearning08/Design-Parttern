@@ -163,8 +163,16 @@ public class InvoiceManagementController implements ActionListener ,MouseListene
 
                     hoaDon_Sua.action(hoaDon,customerId, customerId, fullName,customerType);
                 }
-                ShowNN();
-        }}
+                ShowNN(); 
+            }
+        }else if (e.getActionCommand().equals("Xuất hóa đơn")){
+                if (customerType.equals("Khách hàng Việt Nam")) {
+                    ShowVN();
+                }
+                else if (customerType.equals("Khách hàng nước ngoài")) {
+                    ShowNN();
+                }
+            }
     
     }
     @Override
