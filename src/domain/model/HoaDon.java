@@ -2,7 +2,9 @@ package domain.model;
 
 import java.util.Date;
 
-public abstract class HoaDon {
+import domain.Publisher;
+
+public abstract class HoaDon extends Publisher {
     private int maHD;
     private String hotenKH;
     private Date ngayraHD;
