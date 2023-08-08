@@ -9,6 +9,13 @@
             "name": "TestDriver",
             "request": "launch",
             "mainClass": "TestDriver",
+            "projectName": "Design-Parttern_9030659b"
+        },
+        {
+            "type": "java",
+            "name": "TestDriver",
+            "request": "launch",
+            "mainClass": "TestDriver",
             "projectName": "Design-Parttern_3aec7510"
         },
         {
