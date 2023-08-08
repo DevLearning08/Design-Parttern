@@ -135,16 +135,20 @@ public class InvoiceManagementController implements ActionListener ,MouseListene
                     Object customerMA =managementAppRemote.getTableModelVN().getValueAt(selectedRow, 0);
                     int customerId= Integer.parseInt(customerMA.toString());
                     String Name = (String) managementAppRemote.getTableModelVN().getValueAt(selectedRow, 1);
-                    Double quanTity = (Double) managementAppRemote.getTableModelVN().getValueAt(selectedRow, 2);
-                    Double quota = (Double) managementAppRemote.getTableModelVN().getValueAt(selectedRow, 3);
-                    String Type = (String) managementAppRemote.getTableModelVN().getValueAt(selectedRow, 4);
+                    Object quan = managementAppRemote.getTableModelVN().getValueAt(selectedRow, 2);
+                    Double quanTity = Double.parseDouble(quan.toString());
+                    Object quota = managementAppRemote.getTableModelVN().getValueAt(selectedRow, 3);
+                    Double quotaPrice = Double.parseDouble(quota.toString());
+                    Object Type = managementAppRemote.getTableModelVN().getValueAt(selectedRow, 4);
+                    String tipe = Type.toString();
                     Date date = (Date) managementAppRemote.getTableModelVN().getValueAt(selectedRow, 5);
-                    Double unitPrice = (Double) managementAppRemote.getTableModelVN().getValueAt(selectedRow, 6);
+                    Object unit =  managementAppRemote.getTableModelVN().getValueAt(selectedRow, 6);
+                    Double unitPrice = Double.parseDouble(unit.toString());
                     HoaDon hoaDon = new HoaDonVietNam();
-                    ((HoaDonVietNam) hoaDon).setDoiTuongHK(Type);
+                    ((HoaDonVietNam) hoaDon).setDoiTuongHK(tipe);
                     hoaDon.setMaHD(customerId);
                     hoaDon.setHotenKH(Name);
-                    ((HoaDonVietNam) hoaDon).setDinhMuc(quota);
+                    ((HoaDonVietNam) hoaDon).setDinhMuc(quotaPrice);
                     hoaDon.setNgayraHD(date);
                     hoaDon.setSoLuong(quanTity);
                     hoaDon.setDonGia(unitPrice);
@@ -158,10 +162,15 @@ public class InvoiceManagementController implements ActionListener ,MouseListene
                     Object customerMA =managementAppRemote.getTableModelNN().getValueAt(selectedRow, 0);
                     int customerId= Integer.parseInt(customerMA.toString());
                     String Name = (String) managementAppRemote.getTableModelNN().getValueAt(selectedRow, 1);
-                    Double quanTity = (Double) managementAppRemote.getTableModelNN().getValueAt(selectedRow, 2);
+
+                    Object quan =  managementAppRemote.getTableModelNN().getValueAt(selectedRow, 2);
+                    Double quanTity = Double.parseDouble(quan.toString());
                     Date date = (Date) managementAppRemote.getTableModelNN().getValueAt(selectedRow, 3);
-                    String nationality = (String) managementAppRemote.getTableModelNN().getValueAt(selectedRow, 4);
-                    Double unitPrice = (Double) managementAppRemote.getTableModelNN().getValueAt(selectedRow, 5);
+
+                    Object natio =  managementAppRemote.getTableModelNN().getValueAt(selectedRow, 4);
+                    String nationality = natio.toString();
+                    Object unit = managementAppRemote.getTableModelNN().getValueAt(selectedRow, 5);
+                    Double unitPrice = Double.parseDouble(unit.toString());
                     HoaDon hoaDon = new HoaDonNuocNgoai();
                     hoaDon.setMaHD(customerId);
                     hoaDon.setHotenKH(Name);
