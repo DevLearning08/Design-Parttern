@@ -26,7 +26,7 @@ import domain.HoaDon_Sua;
 import domain.HoaDon_Them;
 // import domain.HoaDonServiceImp;
 import domain.HoaDon_Xoa;
-
+import domain.Subcriber;
 import domain.model.HoaDonVietNam;
 import pesistence.HoaDonGateway;
 import pesistence.HoaDonGatewayImpl;
@@ -75,8 +75,9 @@ public class InvoiceManagementController implements ActionListener ,MouseListene
             double unitPrice = Double.parseDouble(managementAppRemote.getUnitPriceField().getText());
             double quota = Double.parseDouble(managementAppRemote.getQuotaField().getText());
             int customerId = Integer.parseInt(managementAppRemote.getCustomerIdField().getText());
+            String nationality = managementAppRemote.getNationalityField().getText();
                 if (customerType.equals("Khách hàng nước ngoài")) {
-                    String nationality = managementAppRemote.getNationalityField().getText();
+                    
                     HoaDon hoaDon = new HoaDonNuocNgoai();
                     hoaDon.setMaHD(customerId);
                     hoaDon.setHotenKH(fullName);
@@ -252,4 +253,5 @@ public class InvoiceManagementController implements ActionListener ,MouseListene
             managementAppRemote.getTable().setModel(tableModelNN);
         }
     }
+   
 }
