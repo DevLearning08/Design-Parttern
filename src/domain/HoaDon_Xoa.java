@@ -7,6 +7,7 @@ import pesistence.HoaDonDAO;
 import pesistence.HoaDonDAOImpl;
 
 public class HoaDon_Xoa extends HoadonService{
+  
     public void action(HoaDon hoaDon,int maKH,int maHD,String hotenKH, String customerType){
         HoaDonDAO hoaDon_xoa = new HoaDonDAOImpl();
         hoaDon_xoa.xoaHoaDon(maHD);

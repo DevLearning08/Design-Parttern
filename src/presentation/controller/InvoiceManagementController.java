@@ -22,11 +22,11 @@ import javax.swing.JTextField;
 // import domain
 import javax.swing.table.DefaultTableModel;
 
+import domain.HoaDon_Sua;
 import domain.HoaDon_Them;
 // import domain.HoaDonServiceImp;
 import domain.HoaDon_Xoa;
-// import domain.HoadonService;
-// import domain.model
+
 import domain.model.HoaDonVietNam;
 import pesistence.HoaDonGateway;
 import pesistence.HoaDonGatewayImpl;
@@ -38,26 +38,12 @@ public class InvoiceManagementController implements ActionListener ,MouseListene
 
     private  ManagementApp managementAppRemote;
     private HoaDon hoaDon;
-    // private HoadonService hoaDonService;
-
-    // private String customerType ;
-    // private String customerOject ;
-    // private String fullNam;
-    // private int customerId ;
-    // private Date invoiceDate ;
-    // private double quantity;
-    // private double unitPrice ;
+   
 
 
     public InvoiceManagementController(ManagementApp managementAppRemote) {
         this.managementAppRemote = managementAppRemote;
-        // hoaDonService = new HoaDonServiceImp();
-        // managementAppRemote.getResetButton().addActionListener(new ActionListener() {
-        //     @Override
-        //     public void actionPerformed(ActionEvent e) {
-        //         handleResetButton();
-        //     }
-        // });
+        
         JComboBox<String> customerTypeComboBox = managementAppRemote.getCustomerTypeComboBox();
     if (customerTypeComboBox != null) {
         customerTypeComboBox.addActionListener(new ActionListener() {
@@ -104,7 +90,6 @@ public class InvoiceManagementController implements ActionListener ,MouseListene
                     ShowNN();
                 } else if (customerType.equals("Khách hàng Việt Nam")) {
                     HoaDon hoaDon = new HoaDonVietNam();
-                    // String doiTuongKH = (String) managementAppRemote.getCustomerObjectComboBox().getSelectedItem();
                     ((HoaDonVietNam) hoaDon).setDoiTuongHK(customerOject);
                     hoaDon.setMaHD(customerId);
                     hoaDon.setHotenKH(fullName);
@@ -117,9 +102,7 @@ public class InvoiceManagementController implements ActionListener ,MouseListene
                     ShowVN();
                 }
         } else if (e.getActionCommand().equals("Xoá")) {
-            int selectedRow = managementAppRemote.getTable().getSelectedRow();
-            System.out.println(""+selectedRow);
-            // String customerType = (String) managementAppRemote.getCustomerTypeComboBox().getSelectedItem();
+            int selectedRow = managementAppRemote.getTable().getSelectedRow(); 
                 if (customerType.equals("Khách hàng Việt Nam")) {
                     if(selectedRow != -1){
                         int customerId =(int) managementAppRemote.getTableModelVN().getValueAt(selectedRow, 0);
@@ -135,15 +118,53 @@ public class InvoiceManagementController implements ActionListener ,MouseListene
                     }
                     ShowNN();
                 }
-            
-        // } else if (e.getSource() == managementAppRemote.getTable()) {
-        //     // Thực hiện các thao tác khi người dùng chọn một hàng trong bảng
-        //     int selectedRow = managementAppRemote.getTable().getSelectedRow();
-        //     if (selectedRow != -1) {
-        //         HoaDon hoaDon = (HoaDon) managementAppRemote.getTable().getValueAt(selectedRow, 0);
-        //         showSelectedHoadonInfo(hoaDon);
-        //     }
-    }
+        }else if (e.getActionCommand().equals("Sửa")) {
+            int selectedRow = managementAppRemote.getTable().getSelectedRow();
+            if (customerType.equals("Khách hàng Việt Nam")) {
+                if (selectedRow != -1) {
+                    Object customerMA =managementAppRemote.getTableModelVN().getValueAt(selectedRow, 0);
+                    int customerId= Integer.parseInt(customerMA.toString());
+                    String Name = (String) managementAppRemote.getTableModelVN().getValueAt(selectedRow, 1);
+                    Double quanTity = (Double) managementAppRemote.getTableModelVN().getValueAt(selectedRow, 2);
+                    Double quota = (Double) managementAppRemote.getTableModelVN().getValueAt(selectedRow, 3);
+                    String Type = (String) managementAppRemote.getTableModelVN().getValueAt(selectedRow, 4);
+                    Date date = (Date) managementAppRemote.getTableModelVN().getValueAt(selectedRow, 5);
+                    Double unitPrice = (Double) managementAppRemote.getTableModelVN().getValueAt(selectedRow, 6);
+                    HoaDon hoaDon = new HoaDonVietNam();
+                    ((HoaDonVietNam) hoaDon).setDoiTuongHK(Type);
+                    hoaDon.setMaHD(customerId);
+                    hoaDon.setHotenKH(Name);
+                    ((HoaDonVietNam) hoaDon).setDinhMuc(quota);
+                    hoaDon.setNgayraHD(date);
+                    hoaDon.setSoLuong(quanTity);
+                    hoaDon.setDonGia(unitPrice);
+                    HoaDon_Sua hoaDon_Sua = new HoaDon_Sua();
+
+                    hoaDon_Sua.action(hoaDon,customerId, customerId, fullName,customerType);
+                }
+                ShowVN();
+            }else if (customerType.equals("Khách hàng nước ngoài")) {
+                if (selectedRow != -1) {
+                    Object customerMA =managementAppRemote.getTableModelNN().getValueAt(selectedRow, 0);
+                    int customerId= Integer.parseInt(customerMA.toString());
+                    String Name = (String) managementAppRemote.getTableModelNN().getValueAt(selectedRow, 1);
+                    Double quanTity = (Double) managementAppRemote.getTableModelNN().getValueAt(selectedRow, 2);
+                    Date date = (Date) managementAppRemote.getTableModelNN().getValueAt(selectedRow, 3);
+                    String nationality = (String) managementAppRemote.getTableModelNN().getValueAt(selectedRow, 4);
+                    Double unitPrice = (Double) managementAppRemote.getTableModelNN().getValueAt(selectedRow, 5);
+                    HoaDon hoaDon = new HoaDonNuocNgoai();
+                    hoaDon.setMaHD(customerId);
+                    hoaDon.setHotenKH(Name);
+                    hoaDon.setNgayraHD(date);
+                    hoaDon.setSoLuong(quanTity);
+                    ((HoaDonNuocNgoai) hoaDon).setQuocTich(nationality);
+                    hoaDon.setDonGia(unitPrice);
+                    HoaDon_Sua hoaDon_Sua = new HoaDon_Sua();
+
+                    hoaDon_Sua.action(hoaDon,customerId, customerId, fullName,customerType);
+                }
+                ShowNN();
+        }}
     
     }
     @Override
@@ -157,20 +178,7 @@ public class InvoiceManagementController implements ActionListener ,MouseListene
         } else if (customerType.equals("Khách hàng nước ngoài")) {
             managementAppRemote.setVietNamSelected(false);
             ShowNN();
-
-    //         JTable table = managementAppRemote.getTable();
-    // DefaultTableModel tableModel;
-    
-    // if (customerType.equals("Khách hàng Việt Nam")) {
-    //     tableModel = managementAppRemote.getTableModelVN();
-    // } else {
-    //     tableModel = managementAppRemote.getTableModelNN();
     }
-    
-    // table.setModel(tableModel);
-    // managementAppRemote.getScrollPane().setViewportView(table);
-    //     }
-      
     }
    
     @Override
@@ -192,96 +200,7 @@ public class InvoiceManagementController implements ActionListener ,MouseListene
     public void mouseExited(MouseEvent e) {
         // Xử lý khi chuột rời khỏi vùng được lắng nghe sự kiện
     }
-    // public void themHoaDon() {
-    //     String customerType = (String) managementAppRemote.getCustomerTypeComboBox().getSelectedItem();
-    //     String fullName = managementAppRemote.getFullNameField().getText();
-    //     int customerId = Integer.parseInt(managementAppRemote.getCustomerIdField().getText());
-    //     Date invoiceDate = Date.valueOf(managementAppRemote.getInvoiceDateField().getText());
-    //     double quantity = Double.parseDouble(managementAppRemote.getQuantityField().getText());
-    //     double unitPrice = Double.parseDouble(managementAppRemote.getUnitPriceField().getText());
-    //     if (customerType.equals("Khách hàng nước ngoài")) {
-    //         String nationality = managementAppRemote.getNationalityField().getText();
-    //         HoaDon hoaDon = new HoaDonNuocNgoai();
-    //         hoaDon.setMaHD(customerId);
-    //         hoaDon.setHotenKH(fullName);
-    //         hoaDon.setNgayraHD(invoiceDate);
-    //         hoaDon.setSoLuong(quantity);
-    //         hoaDon.setDonGia(unitPrice);
-    //         ((HoaDonNuocNgoai) hoaDon).setQuocTich(nationality);
-    //         ((HoaDonNuocNgoai) hoaDon).thanhTien();
-    //        hoaDonService.themHoaDon(hoaDon);
-    //        ShowVN();
-    //         managementAppRemote.getShowNN();
-    //     } else if (customerType.equals("Khách hàng Việt Nam")) {
-    //         HoaDon hoaDon = new HoaDonVietNam();
-    //         String doiTuongKH = (String) managementAppRemote.getCustomerObjectComboBox().getSelectedItem();
-    //         ((HoaDonVietNam) hoaDon).setDoiTuongHK(doiTuongKH);
-    //         double quota = Double.parseDouble(managementAppRemote.getQuotaField().getText());
-    //         hoaDon.setMaHD(customerId);
-    //         hoaDon.setHotenKH(fullName);
-    //         ((HoaDonVietNam) hoaDon).setDinhMuc(quota);
-    //         hoaDon.setNgayraHD(invoiceDate);
-    //         hoaDon.setSoLuong(quantity);
-    //         hoaDon.setDonGia(unitPrice);
-    //         hoaDonService.themHoaDon(hoaDon);
-    //         ShowVN();
-    //     }
-    // }
-    // public void xoaHoaDon() {
-    //     int customerId = Integer.parseInt(managementAppRemote.getCustomerIdField().getText());
-    // //     if (customerId == ) {
-    // //         int maHD =customerId;
-    // //        hoaDonService.xoaHoaDon(maHD);
     
-    //         if (hoaDon instanceof HoaDonNuocNgoai) {
-    //             hoaDonService.xoaHoaDon(hoaDon.getMaHD());
-    //         } else if (hoaDon instanceof HoaDonVietNam) {
-    //         hoaDonService.xoaHoaDon(hoaDon.getMaHD());}
-    //         if (service != null) {
-    //             try {
-    //                 // Thực hiện xóa hóa đơn từ cơ sở dữ liệu
-    //                 HoaDonGateway gateway = new HoaDonGatewayImpl();
-    //                 gateway.xoaHoaDon(hoaDon.getMaHD());
-    //                 service.action(hoaDon);
-    //                 managementAppRemote.getTableModel().removeRow(selectedRow);
-    //             } catch (Exception e) {
-    //                 e.printStackTrace();
-    //                 // Xử lý lỗi nếu cần thiết
-    //             }
-    //         }
-    //     }
-    
-    // }
-// public void showSelectedHoadonInfo(HoaDon hoaDon) {
-//     managementAppRemote.populateInputFields(hoaDon);
-// }
-//     public void populateInputFields(HoaDon hoaDon) {
-//         JTextField fullNameCustomer = managementAppRemote.getFullNameField();
-//         JTextField customerIdField = managementAppRemote.getCustomerIdField();
-//         JTextField invoiceDateField = managementAppRemote.getInvoiceDateField();
-//         JTextField quantityField = managementAppRemote.getQuantityField();
-//         JTextField unitPriceField = managementAppRemote.getUnitPriceField();
-//         JTextField quotaField = managementAppRemote.getQuotaField();
-//         JTextField nationalityField = managementAppRemote.getNationalityField();
-//         JComboBox customerTypeComboBox = managementAppRemote.getCustomerTypeComboBox();
-//         JComboBox customerObjectComboBox = managementAppRemote.getCustomerObjectComboBox();
-
-//         fullNameCustomer.setText(hoaDon.getHotenKH());
-//         customerIdField.setText(String.valueOf(hoaDon.getMaHD()));
-//         invoiceDateField.setText(String.valueOf(hoaDon.getNgayraHD()));
-//         quantityField.setText(String.valueOf(hoaDon.getSoLuong()));
-//         unitPriceField.setText(String.valueOf(hoaDon.getDonGia()));
-
-//         if (hoaDon instanceof HoaDonNuocNgoai) {
-//             quotaField.setText(String.valueOf(((HoaDonNuocNgoai) hoaDon).getQuocTich()));
-//             nationalityField.setText(((HoaDonNuocNgoai) hoaDon).getQuocTich());
-//             customerTypeComboBox.setSelectedItem("Khách hàng nước ngoài");
-//         } else if (hoaDon instanceof HoaDonVietNam) {
-//             quotaField.setText(String.valueOf(((HoaDonVietNam) hoaDon).getDinhMuc()));
-//             customerObjectComboBox.setSelectedItem(((HoaDonVietNam) hoaDon).getDoiTuongHK());
-//             customerTypeComboBox.setSelectedItem("Khách hàng Việt Nam");
-//         }
-//     }
     public void ShowVN(){
         DefaultTableModel tableModelVN = managementAppRemote.getTableModelVN();
         tableModelVN.setRowCount(0);

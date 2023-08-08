@@ -3,27 +3,17 @@ package presentation.view;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
-import org.w3c.dom.events.MouseEvent;
-
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseListener;
-import java.io.File;
 
 // import domain.HoadonService;
 
 import domain.model.HoaDon;
-import domain.model.HoaDonNuocNgoai;
-import domain.model.HoaDonVietNam;
+
 import presentation.controller.InvoiceManagementController;
 
 import java.awt.*;
-import java.security.PublicKey;
-import java.sql.Date;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
+
 
 
 public class ManagementApp extends JFrame {
@@ -230,41 +220,6 @@ public class ManagementApp extends JFrame {
         
         return scrollPane;
     }
-    // public HoaDon getHoaDonFromInput() {
-    //     String customerType = (String) customerTypeComboBox.getSelectedItem();
-    //     String fullName = fullNameField.getText();
-    //     int customerId = Integer.parseInt(customerIdField.getText());
-    //     Date invoiceDate = Date.valueOf(invoiceDateField.getText());
-    //     double quantity = Double.parseDouble(quantityField.getText());
-    //     double unitPrice = Double.parseDouble(unitPriceField.getText());
-
-    //     if (customerType.equals("Khách hàng nước ngoài")) {
-    //         String nationality = nationalityField.getText();
-    //         HoaDon hoaDon = new HoaDonNuocNgoai();
-    //         hoaDon.setMaHD(customerId);
-    //         hoaDon.setHotenKH(fullName);
-    //         hoaDon.setNgayraHD(invoiceDate);
-    //         hoaDon.setSoLuong(quantity);
-    //         hoaDon.setDonGia(unitPrice);
-    //         ((HoaDonNuocNgoai) hoaDon).setQuocTich(nationality);
-    //         ((HoaDonNuocNgoai) hoaDon).thanhTien();
-    //         return hoaDon;
-    //     } else if (customerType.equals("Khách hàng Việt Nam")) {
-    //         HoaDon hoaDon = new HoaDonVietNam();
-    //         String doiTuongKH = (String) customerObjectComboBox.getSelectedItem();
-    //         ((HoaDonVietNam) hoaDon).setDoiTuongHK(doiTuongKH);
-    //         double quota = Double.parseDouble(quotaField.getText());
-    //         hoaDon.setMaHD(customerId);
-    //         hoaDon.setHotenKH(fullName);
-    //         ((HoaDonVietNam) hoaDon).setDinhMuc(quota);
-    //         hoaDon.setNgayraHD(invoiceDate);
-    //         hoaDon.setSoLuong(quantity);
-    //         hoaDon.setDonGia(unitPrice);
-    //         return hoaDon;
-    //     }
-
-    //     return null;
-    // }
 
     // Thêm thông tin hoá đơn vào bảng
     public boolean findInvoice(String findQuery) {

@@ -3,8 +3,7 @@ package domain;
 import java.util.List;
 
 import domain.model.HoaDon;
-import domain.model.HoaDonNuocNgoai;
-import domain.model.HoaDonVietNam;
+
 import pesistence.HoaDonDAO;
 import pesistence.HoaDonDAOImpl;
 

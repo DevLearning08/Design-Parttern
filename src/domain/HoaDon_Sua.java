@@ -1,6 +1,5 @@
 package domain;
 
-import java.util.List;
 
 import domain.model.HoaDon;
 import pesistence.HoaDonDAO;

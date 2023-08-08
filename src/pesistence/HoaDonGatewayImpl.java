@@ -98,7 +98,7 @@ public class HoaDonGatewayImpl implements HoaDonGateway {
     @Override
     public void suaHoaDon(HoaDon hoaDon) {
         if(hoaDon instanceof HoaDonVietNam){
-            String sql = "UPDATE HoaDonVietNam SET hotenKH=?, ngayraHD=?, soLuong=?, donGia=?, doiTuongHK=?, dinhMuc=?, thanhTien=? WHERE maKH=?";
+            String sql = "UPDATE HoaDonVietNam SET hotenKH=?, ngayraHD=?, soLuong=?, donGia=?, doiTuongKH=?, dinhMuc=?, thanhTien=? WHERE maKH=?";
             try (PreparedStatement statement = connection.prepareStatement(sql)) {
                 statement.setString(1, hoaDon.getHotenKH());
                 statement.setDate(2, (java.sql.Date) hoaDon.getNgayraHD());
@@ -116,15 +116,15 @@ public class HoaDonGatewayImpl implements HoaDonGateway {
                 e.printStackTrace();
             }}
             else if(hoaDon instanceof HoaDonNuocNgoai){
-                String sql = "UPDATE HoaDonNuocNgoai SET hotenKH=?, ngayraHD=?, soLuong=?, donGia=?, doiTuongHK=?, dinhMuc=? WHERE maKH=?";
+                String sql = "UPDATE HoaDonNuocNgoai SET hotenKH=?, ngayraHD=?, soLuong=?, donGia=?, quocTich=?, thanhTien=? WHERE maKH=?";
                 try (PreparedStatement statement = connection.prepareStatement(sql)) {
                     statement.setString(1, hoaDon.getHotenKH());
                     statement.setDate(2, (java.sql.Date) hoaDon.getNgayraHD());
                     statement.setDouble(3, hoaDon.getSoLuong());
                     statement.setDouble(4, hoaDon.getDonGia());
-                    
                     statement.setString(5, ((HoaDonNuocNgoai) hoaDon).getQuocTich());
-                    
+                    statement.setDouble(6, ((HoaDonNuocNgoai) hoaDon).thanhTien());
+                    statement.setInt(7, hoaDon.getMaHD());
                     
                     statement.executeUpdate();
                     statement.close();
