@@ -3,6 +3,7 @@ package presentation.view;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
+import domain.Subcriber;
 
 // import domain.HoadonService;
 
@@ -16,7 +17,7 @@ import java.time.format.DateTimeFormatter;
 
 
 
-public class ManagementApp extends JFrame {
+public class ManagementApp extends JFrame implements Subcriber {
     private HoaDon  hoaDon;
     private InvoiceManagementController controlRemotel;
     private JFrame frame;
@@ -372,6 +373,12 @@ public class ManagementApp extends JFrame {
 
     public void setVietNamSelected(boolean vietNamSelected) {
         isVietNamSelected = vietNamSelected;
+    }
+
+    @Override
+    public void thongBao() {
+       controlRemotel.ShowNN();
+       controlRemotel.ShowVN();
     }
     
    

@@ -86,8 +86,10 @@ public class InvoiceManagementController implements ActionListener ,MouseListene
                     ((HoaDonNuocNgoai) hoaDon).setQuocTich(nationality);
                     ((HoaDonNuocNgoai) hoaDon).thanhTien();
                     HoaDon_Them hoaDon_Them = new HoaDon_Them();
+                    hoaDon.themObserver(managementAppRemote);
                     hoaDon_Them.action(hoaDon, customerId, customerId, fullName, customerType);
-                    ShowNN();
+                    hoaDon.xoaObserver(managementAppRemote);
+                    // ShowNN();
                 } else if (customerType.equals("Khách hàng Việt Nam")) {
                     HoaDon hoaDon = new HoaDonVietNam();
                     ((HoaDonVietNam) hoaDon).setDoiTuongHK(customerOject);
@@ -98,25 +100,33 @@ public class InvoiceManagementController implements ActionListener ,MouseListene
                     hoaDon.setSoLuong(quantity);
                     hoaDon.setDonGia(unitPrice);
                     HoaDon_Them hoaDon_Them = new HoaDon_Them();
+                    hoaDon.themObserver(managementAppRemote);
                     hoaDon_Them.action(hoaDon, customerId, customerId, fullName, customerType);
-                    ShowVN();
+                    hoaDon.xoaObserver(managementAppRemote);
+                    // ShowVN();
                 }
         } else if (e.getActionCommand().equals("Xoá")) {
             int selectedRow = managementAppRemote.getTable().getSelectedRow(); 
                 if (customerType.equals("Khách hàng Việt Nam")) {
+                    hoaDon = new HoaDonVietNam();
                     if(selectedRow != -1){
                         int customerId =(int) managementAppRemote.getTableModelVN().getValueAt(selectedRow, 0);
                         HoaDon_Xoa hoaDon_Xoa = new HoaDon_Xoa();
+                        hoaDon.themObserver(managementAppRemote);
                         hoaDon_Xoa.action(hoaDon,customerId, customerId, fullName,customerType);
+                        hoaDon.xoaObserver(managementAppRemote);
                     }
-                    ShowVN();
+                    // ShowVN();
                 } else if (customerType.equals("Khách hàng nước ngoài")) {
                     if(selectedRow != -1){
+                        hoaDon = new HoaDonNuocNgoai();
                         int customerId =(int) managementAppRemote.getTableModelNN().getValueAt(selectedRow, 0);
                         HoaDon_Xoa hoaDon_Xoa = new HoaDon_Xoa();
+                        hoaDon.themObserver(managementAppRemote);
                         hoaDon_Xoa.action(hoaDon,customerId, customerId, fullName,customerType);
+                        hoaDon.xoaObserver(managementAppRemote);
                     }
-                    ShowNN();
+                    // ShowNN();
                 }
         }else if (e.getActionCommand().equals("Sửa")) {
             int selectedRow = managementAppRemote.getTable().getSelectedRow();
