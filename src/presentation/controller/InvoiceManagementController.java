@@ -149,10 +149,10 @@ public class InvoiceManagementController implements ActionListener ,MouseListene
                     hoaDon.setSoLuong(quanTity);
                     hoaDon.setDonGia(unitPrice);
                     HoaDon_Sua hoaDon_Sua = new HoaDon_Sua();
-
+                    hoaDon.themObserver(managementAppRemote);
                     hoaDon_Sua.action(hoaDon,customerId, customerId, fullName,customerType);
                 }
-                ShowVN();
+                // ShowVN();
             }else if (customerType.equals("Khách hàng nước ngoài")) {
                 if (selectedRow != -1) {
                     Object customerMA =managementAppRemote.getTableModelNN().getValueAt(selectedRow, 0);
@@ -170,7 +170,7 @@ public class InvoiceManagementController implements ActionListener ,MouseListene
                     ((HoaDonNuocNgoai) hoaDon).setQuocTich(nationality);
                     hoaDon.setDonGia(unitPrice);
                     HoaDon_Sua hoaDon_Sua = new HoaDon_Sua();
-
+                    hoaDon.themObserver(managementAppRemote);
                     hoaDon_Sua.action(hoaDon,customerId, customerId, fullName,customerType);
                 }
                 ShowNN(); 

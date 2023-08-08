@@ -105,7 +105,7 @@ public class HoaDonGatewayImpl implements HoaDonGateway {
                 statement.setDouble(3, hoaDon.getSoLuong());
                 statement.setDouble(4, hoaDon.getDonGia());
                 
-                statement.setObject(5, ((HoaDonVietNam) hoaDon).getDoiTuongHK());
+                statement.setString(5, ((HoaDonVietNam) hoaDon).getDoiTuongHK());
                 statement.setDouble(6, ((HoaDonVietNam) hoaDon).getDinhMuc());
                 statement.setDouble(7, ((HoaDonVietNam) hoaDon).thanhTien());
                 statement.setInt(8, hoaDon.getMaHD());
